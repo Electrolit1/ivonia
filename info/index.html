@@ -40,10 +40,10 @@
   <script>
     if (
       localStorage.getItem('maintenanceMode') === 'true' &&
-      window.location.pathname !== '/mantenimiento.html' &&
+      window.location.pathname !== '/mantenimiento' &&
       window.location.pathname !== '/admin.html'
     ) {
-      window.location.href = '/mantenimiento.html';
+      window.location.href = '/mantenimiento';
     }
   </script>
 </body>
