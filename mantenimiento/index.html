@@ -88,6 +88,13 @@
       max-width: 500px;
       line-height: 1.5;
     }
+    .audio-container {
+      margin-top: 20px;
+      text-align: center;
+      color: #eee;
+      font-weight: 600;
+      user-select: none;
+    }
   </style>
 </head>
 <body>
@@ -106,18 +113,20 @@
     </div>
   </div>
 
-  <!-- Música tranquila de fondo -->
-  <audio autoplay loop>
-    <source src="relaxing-music.mp3" type="audio/mpeg" />
-    Tu navegador no soporta la reproducción de audio.
-  </audio>
-
   <div class="content">
     <h1>🚧 Pagina Web en Mantenimiento</h1>
     <p>
       Estamos realizando mejoras para ofrecerte una mejor experiencia.<br />
       Por favor, vuelve más tarde. ¡Gracias por tu paciencia y comprensión!
     </p>
+
+    <div class="audio-container">
+      <audio autoplay loop controls>
+        <source src="relaxing-music.mp3" type="audio/mpeg" />
+        Tu navegador no soporta la reproducción de audio.
+      </audio>
+      <p>🎵 Relaxing Music - FearMC</p>
+    </div>
   </div>
 
   <script>
@@ -132,3 +141,4 @@
   </script>
 </body>
 </html>
+
