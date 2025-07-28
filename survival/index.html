@@ -6,6 +6,27 @@
   <title>FearMC - SurvivalPvP</title>
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="/estilos.css" />
+  <style>
+    .galeria {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 20px;
+      margin-top: 20px;
+    }
+
+    .galeria img {
+      width: 100%;
+      border-radius: 12px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+    }
+
+    .galeria p {
+      margin-top: 8px;
+      text-align: center;
+      font-size: 0.9rem;
+      color: #ccc;
+    }
+  </style>
 </head>
 <body>
   <div class="sidebar">
@@ -35,16 +56,22 @@
       <li>Protección anti-griefing y soporte 24/7</li>
       <li>Crossplay entre Java y Bedrock 1.20.x</li>
     </ul>
-    
-    <h3>Algunas imagenes de nuestro SurvivalPVP:</h3>
-    <ul>
-      <li>Combates PvP balanceados y justos</li>
-   </div>
-      <img src="/crecimiento2.webp" alt="Banner del servidor" />
-      <p>FearMC está buscando ser uno de tus servidores favoritos. ¡Únete!</p>
-  </div>
-    </ul>
-  </div>
 
+    <h3>📷 Imágenes de SurvivalPvP:</h3>
+    <div class="galeria">
+      <div>
+        <img src="/galeria/survival1.webp" alt="Combate PvP" />
+        <p>Batallas épicas en la arena PvP.</p>
+      </div>
+      <div>
+        <img src="/galeria/survival2.webp" alt="Zona protegida" />
+        <p>Zonas protegidas para construir con confianza.</p>
+      </div>
+      <div>
+        <img src="/galeria/survival3.webp" alt="Evento del servidor" />
+        <p>Eventos organizados con premios únicos.</p>
+      </div>
+    </div>
+  </div>
 </body>
 </html>
