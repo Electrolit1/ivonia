@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>FearMC - Admin Mantenimiento</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="/estilos.css" />
+  <style>
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: #111;
+      color: #eee;
+      padding: 2rem;
+    }
+    .container {
+      max-width: 400px;
+      margin: auto;
+      background: #222;
+      padding: 1.5rem;
+      border-radius: 10px;
+      box-shadow: 0 0 10px #f00;
+      text-align: center;
+    }
+    button {
+      background-color: #f00;
+      border: none;
+      color: white;
+      padding: 0.8rem 1.5rem;
+      font-size: 1.1rem;
+      border-radius: 6px;
+      cursor: pointer;
+      margin-top: 1rem;
+      transition: background-color 0.3s ease;
+    }
+    button:hover {
+      background-color: #c00;
+    }
+    .status {
+      margin-top: 1rem;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Panel de Mantenimiento - FearMC</h1>
+    <p>Estado actual del modo mantenimiento:</p>
+    <div class="status" id="status">Cargando...</div>
+    <button id="toggleBtn">Cargando...</button>
+  </div>
+
+  <script>
+    const statusEl = document.getElementById('status');
+    const toggleBtn = document.getElementById('toggleBtn');
+
+    function updateStatus() {
+      const isMaintenance = localStorage.getItem('maintenanceMode') === 'true';
+      statusEl.textContent = isMaintenance ? 'ACTIVO' : 'INACTIVO';
+      toggleBtn.textContent = isMaintenance ? 'Desactivar Mantenimiento' : 'Activar Mantenimiento';
+      toggleBtn.style.backgroundColor = isMaintenance ? '#0a0' : '#f00';
+      toggleBtn.style.color = '#fff';
+    }
+
+    toggleBtn.addEventListener('click', () => {
+      const isMaintenance = localStorage.getItem('maintenanceMode') === 'true';
+      localStorage.setItem('maintenanceMode', !isMaintenance);
+      updateStatus();
+      alert(`Modo mantenimiento ${!isMaintenance ? 'activado' : 'desactivado'}.`);
+    });
+
+    updateStatus();
+  </script>
+</body>
+</html>
