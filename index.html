@@ -78,10 +78,11 @@
   </div>
 
   <script>
-    // Sólo redirige si el mantenimiento está activado y no estás en esa página
-    const maintenanceMode = localStorage.getItem('maintenanceMode') === 'false';
-    if (maintenanceMode && window.location.pathname !== '/mantenimiento.html') {
-      window.location.href = '/mantenimiento.html';
+    const maintenanceMode = localStorage.getItem('maintenanceMode') === 'true';
+    const mantenimientoURL = 'https://fearmc.vercel.app/mantenimiento.html';
+
+    if (maintenanceMode && window.location.href !== mantenimientoURL) {
+      window.location.href = mantenimientoURL;
     }
   </script>
 </body>
