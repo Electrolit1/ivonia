@@ -108,6 +108,10 @@
       margin-top: 8px;
       color: #ccc;
     }
+
+    .noticias, .tutoriales {
+      margin-top: 40px;
+    }
   </style>
 </head>
 
@@ -124,34 +128,51 @@
     </div>
   </div>
 
-  <div class="content" id="contenido">
-    <h2>Bienvenido a FearMC</h2>
-    <p>
-      El servidor donde el PvP y la estrategia se mezclan con la diversión. ¿Prefieres el caos del <strong>SurvivalPvP</strong> o el farmeo inteligente en <strong>Farmbox</strong>? ¡Tú eliges cómo dominar el mundo!
-    </p>
-
-    <h3 style="margin-top: 40px;">📈 Evolución del servidor</h3>
-    <div class="gallery">
-      <div>
-        <img src="crecimiento1.webp" alt="Jugadores conectados">
-        <p>¡Más de 85 jugadores activos al mismo tiempo!</p>
-      </div>
-      <div>
-        <img src="crecimiento2.webp" alt="Banner del servidor">
-        <p>FearMC se posiciona como una de las mejores redes hispanas. ¡Únete!</p>
-      </div>
-    </div>
-  </div>
+  <div class="content" id="contenido"></div>
 
   <script>
+    const mantenimiento = false; // Cambia esto a true para activar el modo mantenimiento
+
     const contenido = document.getElementById('contenido');
 
     const secciones = {
       inicio: `
         <h2>Bienvenido a FearMC</h2>
         <p>
-          El servidor donde el PvP y la estrategia se mezclan con la diversión. ¿Prefieres el caos del <strong>SurvivalPvP</strong> o el farmeo inteligente en <strong>Farmbox</strong>? ¡Tú eliges cómo dominar el mundo!
+          FearMC es una comunidad única enfocada en ofrecer experiencias inolvidables en Minecraft. Contamos con una red estable, administradores activos, eventos semanales, y dos modalidades únicas: <strong>SurvivalPvP</strong> y <strong>Farmbox</strong>.
         </p>
+        <p>
+          Nuestro servidor es completamente compatible con <strong>Java y Bedrock</strong>, permitiendo que todos los jugadores disfruten juntos sin importar su plataforma. Ya llevamos más de <strong>3 meses en funcionamiento</strong> y seguimos creciendo gracias a nuestra dedicada comunidad.
+        </p>
+        <p>
+          Nos enorgullece tener una comunidad activa, participativa y amigable. Celebramos eventos, torneos PvP y actividades especiales donde puedes demostrar tus habilidades y ganar recompensas únicas.
+        </p>
+        <p>
+          🔥 Características principales:<br>
+          ➤ Sistema de rangos personalizables y logros<br>
+          ➤ Tienda online con cosméticos y mejoras<br>
+          ➤ Sistema de clanes y alianzas<br>
+          ➤ Economía equilibrada y comercio entre jugadores<br>
+          ➤ Protección de terrenos y sistema anti-griefing<br>
+          ➤ Modo crossplay entre Java y Bedrock 1.20.x<br>
+          ➤ Staff amigable, soporte 24/7 y comunidad activa en Discord
+        </p>
+        <div class="noticias">
+          <h3>📰 Noticias Recientes</h3>
+          <ul>
+            <li>¡Nuevo mapa PvP añadido el 25 de julio!</li>
+            <li>Actualización de economía y mejoras visuales - julio 2025</li>
+            <li>¡Próximo torneo PvP el 3 de agosto!</li>
+          </ul>
+        </div>
+        <div class="tutoriales">
+          <h3>📘 Tutoriales y Guías</h3>
+          <ul>
+            <li>Cómo proteger tu terreno usando /claim</li>
+            <li>Comenzando en Farmbox: tus primeros pasos</li>
+            <li>Guía rápida para crear tu clan</li>
+          </ul>
+        </div>
         <h3 style="margin-top: 40px;">📈 Evolución del servidor</h3>
         <div class="gallery">
           <div>
@@ -161,6 +182,10 @@
           <div>
             <img src="crecimiento2.webp" alt="Banner del servidor">
             <p>FearMC se posiciona como una de las mejores redes hispanas. ¡Únete!</p>
+          </div>
+          <div>
+            <img src="crecimiento3.webp" alt="Evolución del servidor">
+            <p>Más de 3 meses de progreso y comunidad creciente día a día.</p>
           </div>
         </div>
       `,
@@ -183,8 +208,14 @@
     };
 
     function mostrar(seccion) {
-      contenido.innerHTML = secciones[seccion];
+      if (mantenimiento) {
+        contenido.innerHTML = '<h2>🚧 Mantenimiento en progreso</h2><p>El sitio web se encuentra en mantenimiento. Pronto estaremos de vuelta. Gracias por tu paciencia.</p>';
+      } else {
+        contenido.innerHTML = secciones[seccion];
+      }
     }
+
+    mostrar('inicio');
   </script>
 </body>
 
