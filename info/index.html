@@ -37,17 +37,5 @@
     </ul>
   </div>
 
-  <script>
-    // Redirige a mantenimiento si está activo y no estamos ya en esa página
-    const maintenanceMode = localStorage.getItem('maintenanceMode') === 'true';
-    const currentPath = window.location.pathname;
-
-    if (
-      maintenanceMode &&
-      !currentPath.startsWith('/mantenimiento')
-    ) {
-      window.location.href = '/mantenimiento/';
-    }
-  </script>
 </body>
 </html>
