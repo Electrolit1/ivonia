@@ -37,14 +37,15 @@
     </ul>
   </div>
 
-  <script>
-    if (
-      localStorage.getItem('maintenanceMode') === 'true' &&
-      window.location.pathname !== '/mantenimiento' &&
-      window.location.pathname !== '/admin.html'
-    ) {
-      window.location.href = '/mantenimiento';
-    }
-  </script>
+<script>
+  fetch('/maintenance.json')
+    .then(res => res.json())
+    .then(data => {
+      if (data.active) {
+        window.location.href = '/mantenimiento/';
+      }
+    })
+    .catch(err => console.error('Error al verificar el estado de mantenimiento:', err));
+</script>
 </body>
 </html>
