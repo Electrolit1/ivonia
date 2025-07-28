@@ -31,21 +31,23 @@
 
     <h3>Contacto y Soporte:</h3>
     <ul>
-      <li>Discord oficial: discord.gg/fearmc</li>
-      <li>Correo de soporte: soporte@fearmc.xyz</li>
-      <li>IP del servidor: fearmc.xyz</li>
+      <li>Discord oficial: <a href="https://discord.gg/fearmc" target="_blank" rel="noopener noreferrer">discord.gg/fearmc</a></li>
+      <li>Correo de soporte: <a href="mailto:soporte@fearmc.xyz">soporte@fearmc.xyz</a></li>
+      <li>IP del servidor: <strong>fearmc.xyz</strong></li>
     </ul>
   </div>
 
-<script>
-  fetch('/maintenance.json')
-    .then(res => res.json())
-    .then(data => {
-      if (data.active) {
-        window.location.href = '/mantenimiento/';
-      }
-    })
-    .catch(err => console.error('Error al verificar el estado de mantenimiento:', err));
-</script>
+  <script>
+    // Redirige a mantenimiento si está activo y no estamos ya en esa página
+    const maintenanceMode = localStorage.getItem('maintenanceMode') === 'true';
+    const currentPath = window.location.pathname;
+
+    if (
+      maintenanceMode &&
+      !currentPath.startsWith('/mantenimiento')
+    ) {
+      window.location.href = '/mantenimiento/';
+    }
+  </script>
 </body>
 </html>
