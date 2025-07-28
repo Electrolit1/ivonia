@@ -15,6 +15,12 @@
     <a href="/survival/">SurvivalPvP</a>
     <a href="/farmbox/">Farmbox</a>
     <a href="/info/">Información</a>
+
+    <!-- Botón para acceder al panel de mantenimiento -->
+    <button id="adminBtn" style="margin-top: 1rem; padding: 0.5rem 1rem; background:#f00; color:#fff; border:none; border-radius:5px; cursor:pointer;">
+      Panel Admin
+    </button>
+
     <div class="footer">
       <p>&copy; 2025 FearMC<br />IP: fearmc.xyz</p>
     </div>
@@ -77,6 +83,7 @@
   </div>
 
   <script>
+    // Script para modo mantenimiento
     if (
       localStorage.getItem('maintenanceMode') === 'true' &&
       window.location.pathname !== '/mantenimiento.html' &&
@@ -84,6 +91,16 @@
     ) {
       window.location.href = '/mantenimiento.html';
     }
+
+    // Script botón admin con contraseña
+    document.getElementById('adminBtn').addEventListener('click', () => {
+      const password = prompt('Ingresa la contraseña para acceder al panel de mantenimiento:');
+      if (password === 'tuContraseñaSecreta') {  // Cambia aquí la contraseña
+        window.location.href = '/admin.html';
+      } else if (password !== null) {
+        alert('Contraseña incorrecta');
+      }
+    });
   </script>
 </body>
 </html>
