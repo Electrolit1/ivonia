@@ -9,7 +9,7 @@ export default async function handler(req, res) {
 
   // Verificamos contraseña (cambia "tuContrasena" por una segura)
   const { password, active } = req.body;
-  if (password !== 'tuContrasena') {
+  if (password !== 'fearmc12345@') {
     return res.status(401).json({ error: 'Contraseña incorrecta' });
   }
 
