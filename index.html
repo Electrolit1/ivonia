@@ -7,37 +7,41 @@
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <header>
-    <div class="top-bar">
-      <div class="ip-box" onclick="copiarIP()">▶ FEARMC.XYZ <span>(haz clic para copiar)</span></div>
-      <a class="discord-button" href="https://fearmc.xyz" target="_blank">💬 UNIRSE AL DISCORD</a>
-    </div>
+  <header class="fade-in">
     <div class="logo">
-      <h1>FEAR<span>MC</span></h1>
+      <h1>Fear<span>MC</span></h1>
+      <p class="ip" onclick="copiarIP()">▶ fearmc.xyz <span>(clic para copiar)</span></p>
     </div>
+    <a class="discord-button pulse" href="https://fearmc.xyz" target="_blank">Unirse al Discord</a>
   </header>
 
-  <main>
+  <main class="fade-in">
     <section class="bienvenida">
       <h2>¡Bienvenido a FearMC!</h2>
-      <p>Explora un mundo lleno de desafíos, combate y aventura. Nuestro servidor ofrece modalidades únicas como <strong>SurvivalPVP</strong> y <strong>Farmbox</strong>, creadas para brindarte la mejor experiencia Minecraft.</p>
+      <p>Sumérgete en una aventura única donde el combate y la supervivencia se combinan con la estrategia y la creatividad. Explora nuestras modalidades diseñadas para ofrecerte horas de diversión en comunidad.</p>
     </section>
 
     <section class="modalidades">
       <h2>🎮 Modalidades</h2>
-      <ul>
-        <li>⚔️ SurvivalPVP - Sobrevive y enfréntate a otros jugadores en un mundo hostil.</li>
-        <li>🌾 Farmbox - Farmea, mejora y expande tu base desde un solo bloque.</li>
-      </ul>
+      <div class="cards">
+        <div class="card slide-in-left">
+          <h3>⚔️ SurvivalPVP</h3>
+          <p>Enfréntate a otros jugadores mientras sobrevives y mejoras tu base. Solo los mejores prevalecen.</p>
+        </div>
+        <div class="card slide-in-right">
+          <h3>🌾 Farmbox</h3>
+          <p>Comienza con un solo bloque y crea una granja gigantesca. Expande tus recursos con inteligencia.</p>
+        </div>
+      </div>
     </section>
 
-    <section class="reglas">
-      <h2>📜 Reglas del Servidor</h2>
+    <section class="reglas fade-in">
+      <h2>📜 Reglas Básicas</h2>
       <ul>
-        <li>No se permite el uso de hacks o trampas.</li>
-        <li>Respeta a todos los jugadores.</li>
-        <li>No spam ni publicidad.</li>
-        <li>Sigue las instrucciones del staff.</li>
+        <li>🚫 Nada de hacks o trampas.</li>
+        <li>🤝 Respeto total entre jugadores.</li>
+        <li>🔇 No spam ni publicidad.</li>
+        <li>🎮 Sigue las normas del staff.</li>
       </ul>
     </section>
   </main>
