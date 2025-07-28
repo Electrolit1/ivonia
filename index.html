@@ -16,11 +16,6 @@
     <a href="/farmbox/">Farmbox</a>
     <a href="/info/">Información</a>
 
-    <!-- Botón para acceder al panel de mantenimiento -->
-    <button id="adminBtn" style="margin-top: 1rem; padding: 0.5rem 1rem; background:#f00; color:#fff; border:none; border-radius:5px; cursor:pointer;">
-      Panel Admin
-    </button>
-
     <div class="footer">
       <p>&copy; 2025 FearMC<br />IP: fearmc.xyz</p>
     </div>
@@ -83,26 +78,16 @@
   </div>
 
   <script>
-    // Redirige a mantenimiento si está activo y no estamos en páginas admin o mantenimiento
+    // Redirige a mantenimiento si está activo y no estamos ya en esa página
     const maintenanceMode = localStorage.getItem('maintenanceMode') === 'true';
     const currentPath = window.location.pathname;
 
     if (
       maintenanceMode &&
-      !['/mantenimiento', '/mantenimiento/', '/admin.html'].includes(currentPath)
+      !['/mantenimiento', '/mantenimiento/'].includes(currentPath)
     ) {
       window.location.href = '/mantenimiento/';
     }
-
-    // Botón admin con prompt para ingresar contraseña
-    document.getElementById('adminBtn').addEventListener('click', () => {
-      const password = prompt('Ingresa la contraseña para acceder al panel:');
-      if (password === 'fearmc12345@') {  // Cambia esta contraseña aquí
-        window.location.href = '/admin.html';
-      } else if (password !== null) {
-        alert('Contraseña incorrecta');
-      }
-    });
   </script>
 </body>
 </html>
