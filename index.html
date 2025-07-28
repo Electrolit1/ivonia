@@ -1,93 +1,166 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>FearMC - Servidor Oficial</title>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap" rel="stylesheet">
-    <style>
-        body {
-            margin: 0;
-            font-family: 'Poppins', sans-serif;
-            background-color: #121212;
-            color: #fff;
-            background-image: url('https://i.imgur.com/hWSbSQT.jpeg');
-            background-size: cover;
-            background-position: center;
-            background-attachment: fixed;
-        }
-        header {
-            background: rgba(0, 0, 0, 0.8);
-            padding: 20px;
-            text-align: center;
-        }
-        header img {
-            width: 150px;
-        }
-        h1 {
-            color: #e53935;
-            font-size: 2.5em;
-            margin: 10px 0;
-        }
-        p {
-            font-size: 1.1em;
-            max-width: 800px;
-            margin: auto;
-            padding: 0 20px;
-        }
-        .section {
-            text-align: center;
-            padding: 50px 20px;
-            background: rgba(0, 0, 0, 0.6);
-        }
-        .modes {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            gap: 20px;
-        }
-        .mode {
-            background: #1e1e1e;
-            padding: 20px;
-            border-radius: 12px;
-            width: 250px;
-            border: 2px solid #e53935;
-        }
-        .mode h2 {
-            margin-top: 0;
-            color: #fff;
-        }
-        .footer {
-            background: #000;
-            text-align: center;
-            padding: 20px;
-            font-size: 0.9em;
-            color: #aaa;
-        }
-    </style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>FearMC - Servidor Oficial</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap" rel="stylesheet" />
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Poppins', sans-serif;
+      background-color: #0a0a0a;
+      color: #fff;
+    }
+
+    header {
+      background: #111;
+      padding: 20px;
+      text-align: center;
+      border-bottom: 2px solid #e53935;
+    }
+
+    header img {
+      width: 150px;
+      animation: fadeIn 1s ease-in-out;
+    }
+
+    h1 {
+      color: #e53935;
+      font-size: 2.5em;
+      margin: 10px 0;
+    }
+
+    nav {
+      background: #1a1a1a;
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      padding: 10px;
+      border-bottom: 1px solid #e53935;
+    }
+
+    nav button {
+      background: transparent;
+      border: 2px solid #e53935;
+      color: white;
+      padding: 10px 20px;
+      border-radius: 8px;
+      font-size: 1em;
+      cursor: pointer;
+      transition: background 0.3s, transform 0.2s;
+    }
+
+    nav button:hover {
+      background: #e53935;
+      transform: scale(1.05);
+    }
+
+    .section {
+      display: none;
+      padding: 40px 20px;
+      max-width: 900px;
+      margin: auto;
+      text-align: center;
+      animation: fadeIn 0.5s ease-in-out;
+    }
+
+    .section.active {
+      display: block;
+    }
+
+    .modes {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 20px;
+      margin-top: 20px;
+    }
+
+    .mode {
+      background: #1e1e1e;
+      padding: 20px;
+      border-radius: 12px;
+      width: 250px;
+      border: 2px solid #e53935;
+      transition: transform 0.3s;
+    }
+
+    .mode:hover {
+      transform: scale(1.05);
+    }
+
+    .footer {
+      background: #000;
+      text-align: center;
+      padding: 20px;
+      font-size: 0.9em;
+      color: #aaa;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+  </style>
 </head>
 <body>
-    <header>
-        <img src="logo.webp" alt="FearMC Logo">
-        <h1>FearMC</h1>
-        <p>¡Bienvenido a <strong>FearMC</strong>! El servidor donde el PvP y la estrategia se mezclan con la diversión.<br />
-        ¿Prefieres el caos del <strong>SurvivalPvP</strong> o el farmeo inteligente en <strong>Farmbox</strong>? ¡Tú eliges cómo dominar el mundo!</p>
-    </header>
-    <div class="section">
-        <h2>Modalidades del servidor</h2>
-        <div class="modes">
-            <div class="mode">
-                <h2>🛡️ SurvivalPvP</h2>
-                <p>Lucha, explora y sobrevive con PvP habilitado. ¡Solo los más fuertes sobreviven!</p>
-            </div>
-            <div class="mode">
-                <h2>🌾 Farmbox</h2>
-                <p>Farmea, comercia y pelea con todos los jugadores que estan dispuestos hacer lo que sea por mejorar su kit..</p>
-            </div>
-        </div>
+  <header>
+    <img src="logo.webp" alt="FearMC Logo" />
+    <h1>FearMC</h1>
+    <p>
+      ¡Bienvenido a <strong>FearMC</strong>! El servidor donde el PvP y la estrategia se mezclan con la diversión.
+    </p>
+  </header>
+
+  <nav>
+    <button onclick="showSection('home')">Inicio</button>
+    <button onclick="showSection('survival')">SurvivalPvP</button>
+    <button onclick="showSection('farmbox')">Farmbox</button>
+    <button onclick="showSection('info')">Información</button>
+  </nav>
+
+  <div id="home" class="section active">
+    <h2>¡Bienvenido!</h2>
+    <p>¿Prefieres el caos del <strong>SurvivalPvP</strong> o el farmeo inteligente en <strong>Farmbox</strong>? ¡Tú eliges cómo dominar el mundo!</p>
+  </div>
+
+  <div id="survival" class="section">
+    <h2>🛡️ SurvivalPvP</h2>
+    <div class="modes">
+      <div class="mode">
+        <h3>Supervivencia Extrema</h3>
+        <p>Lucha, explora y sobrevive con PvP activo. ¡Solo los mejores dominan el campo!</p>
+      </div>
     </div>
-    <div class="footer">
-        &copy; 2025 FearMC - Todos los derechos reservados. | Dominio: fearmc.xyz
+  </div>
+
+  <div id="farmbox" class="section">
+    <h2>🌾 Farmbox</h2>
+    <div class="modes">
+      <div class="mode">
+        <h3>Economía Competitiva</h3>
+        <p>Farmea, comercia y pelea con todos los jugadores dispuestos a hacer lo que sea por mejorar su kit.</p>
+      </div>
     </div>
+  </div>
+
+  <div id="info" class="section">
+    <h2>📘 Información del Servidor</h2>
+    <p>IP: <strong>fearmc.xyz</strong><br>Versión: <strong>1.20.x</strong><br>Discord: <a href="#" style="color:#e53935;">¡Próximamente!</a></p>
+  </div>
+
+  <div class="footer">
+    &copy; 2025 FearMC - Todos los derechos reservados. | Dominio: fearmc.xyz
+  </div>
+
+  <script>
+    function showSection(id) {
+      document.querySelectorAll('.section').forEach(section => {
+        section.classList.remove('active');
+      });
+      document.getElementById(id).classList.add('active');
+    }
+  </script>
 </body>
 </html>
