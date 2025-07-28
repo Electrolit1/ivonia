@@ -79,7 +79,7 @@
 
   <script>
     // Sólo redirige si el mantenimiento está activado y no estás en esa página
-    const maintenanceMode = localStorage.getItem('maintenanceMode') === 'true';
+    const maintenanceMode = localStorage.getItem('maintenanceMode') === 'false';
     if (maintenanceMode && window.location.pathname !== '/mantenimiento.html') {
       window.location.href = '/mantenimiento.html';
     }
