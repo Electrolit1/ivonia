@@ -5,36 +5,124 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Servidor en Mantenimiento | FearMC</title>
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="/estilos.css" />
   <style>
     body {
       background-color: #111;
       color: #eee;
       font-family: 'Poppins', sans-serif;
+      margin: 0;
+      display: flex;
+      min-height: 100vh;
+    }
+    .sidebar {
+      background-color: #000;
+      padding: 20px;
+      width: 220px;
+      box-sizing: border-box;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      border-right: 2px solid #f00;
+    }
+    .sidebar img {
+      width: 100px;
+      margin-bottom: 1rem;
+    }
+    .sidebar h1 {
+      color: #f00;
+      margin-bottom: 1rem;
+      font-weight: 700;
+    }
+    .sidebar a {
+      color: #eee;
+      text-decoration: none;
+      margin: 8px 0;
+      font-weight: 600;
+      display: block;
+      width: 100%;
+      padding: 8px 10px;
+      border-radius: 6px;
+      transition: background-color 0.3s ease;
+    }
+    .sidebar a:hover {
+      background-color: #f00;
+      color: #fff;
+    }
+    #adminBtn {
+      margin-top: auto;
+      padding: 0.5rem 1rem;
+      background: #f00;
+      color: #fff;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      font-weight: 700;
+      width: 100%;
+    }
+    #adminBtn:hover {
+      background: #c00;
+    }
+    .footer {
+      margin-top: 1rem;
+      color: #777;
+      font-size: 0.8rem;
+      text-align: center;
+    }
+    .content {
+      flex: 1;
+      padding: 3rem 2rem;
       display: flex;
       flex-direction: column;
       justify-content: center;
       align-items: center;
-      height: 100vh;
-      margin: 0;
       text-align: center;
-      padding: 2rem;
     }
-    h1 {
+    .content h1 {
       font-size: 3rem;
       color: #f00;
       margin-bottom: 1rem;
     }
-    p {
-      font-size: 1.2rem;
-      max-width: 400px;
+    .content p {
+      font-size: 1.3rem;
+      max-width: 500px;
+      line-height: 1.5;
     }
   </style>
 </head>
 <body>
-  <h1>🚧 Servidor en Mantenimiento</h1>
-  <p>
-    Estamos realizando mejoras para ofrecerte una mejor experiencia.<br />
-    Por favor, vuelve más tarde. ¡Gracias por tu paciencia y comprensión!
-  </p>
+  <div class="sidebar">
+    <img src="/logo.webp" alt="FearMC Logo" />
+    <h1>FearMC</h1>
+    <a href="/">Inicio</a>
+    <a href="/survival/">SurvivalPvP</a>
+    <a href="/farmbox/">Farmbox</a>
+    <a href="/info/">Información</a>
+
+    <button id="adminBtn">Panel Admin</button>
+
+    <div class="footer">
+      <p>&copy; 2025 FearMC<br />IP: fearmc.xyz</p>
+    </div>
+  </div>
+
+  <div class="content">
+    <h1>🚧 Servidor en Mantenimiento</h1>
+    <p>
+      Estamos realizando mejoras para ofrecerte una mejor experiencia.<br />
+      Por favor, vuelve más tarde. ¡Gracias por tu paciencia y comprensión!
+    </p>
+  </div>
+
+  <script>
+    document.getElementById('adminBtn').addEventListener('click', () => {
+      const password = prompt('Ingresa la contraseña para acceder al panel de mantenimiento:');
+      if (password === 'fearmc12345@') { // Cambia la contraseña aquí
+        window.location.href = '/admin.html';
+      } else if (password !== null) {
+        alert('Contraseña incorrecta');
+      }
+    });
+  </script>
 </body>
 </html>
