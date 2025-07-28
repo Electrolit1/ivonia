@@ -1,222 +1,63 @@
 <!DOCTYPE html>
 <html lang="es">
-
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>FearMC - Servidor Oficial</title>
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap" rel="stylesheet">
-  <style>
-    body {
-      margin: 0;
-      font-family: 'Poppins', sans-serif;
-      background-color: #0a0a0a;
-      color: #fff;
-      display: flex;
-    }
-
-    .sidebar {
-      width: 250px;
-      background: #111;
-      border-right: 2px solid #e53935;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      padding: 20px;
-    }
-
-    .sidebar img {
-      width: 100px;
-      margin-bottom: 10px;
-    }
-
-    .sidebar h1 {
-      color: #e53935;
-      font-size: 1.5em;
-      margin-bottom: 30px;
-    }
-
-    .sidebar button {
-      width: 100%;
-      padding: 10px;
-      margin: 5px 0;
-      border: none;
-      border-radius: 8px;
-      background: #2c2c2c;
-      color: white;
-      font-size: 1em;
-      cursor: pointer;
-      transition: background 0.3s;
-    }
-
-    .sidebar button:hover {
-      background: #e53935;
-    }
-
-    .sidebar .footer {
-      margin-top: auto;
-      font-size: 0.8em;
-      color: #999;
-      text-align: center;
-    }
-
-    .content {
-      flex: 1;
-      padding: 40px;
-      animation: fadeIn 1s ease-in-out;
-    }
-
-    @keyframes fadeIn {
-      from {
-        opacity: 0;
-        transform: translateY(20px);
-      }
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
-    }
-
-    h2 {
-      color: #fff;
-    }
-
-    .gallery {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 20px;
-      margin-top: 20px;
-    }
-
-    .gallery img {
-      width: 100%;
-      max-width: 400px;
-      border-radius: 12px;
-      border: 2px solid #e53935;
-      transition: transform 0.3s;
-    }
-
-    .gallery img:hover {
-      transform: scale(1.05);
-    }
-
-    .gallery div {
-      text-align: center;
-    }
-
-    .gallery p {
-      margin-top: 8px;
-      color: #ccc;
-    }
-
-    .noticias, .tutoriales {
-      margin-top: 40px;
-    }
-  </style>
+  <title>FearMC - Inicio</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="estilos.css" />
 </head>
-
 <body>
   <div class="sidebar">
     <img src="logo.webp" alt="FearMC Logo">
     <h1>FearMC</h1>
-    <button onclick="mostrar('inicio')">Inicio</button>
-    <button onclick="mostrar('survival')">SurvivalPvP</button>
-    <button onclick="mostrar('farmbox')">Farmbox</button>
-    <button onclick="mostrar('info')">Información</button>
+    <a href="index.html">Inicio</a>
+    <a href="survival.html">SurvivalPvP</a>
+    <a href="farmbox.html">Farmbox</a>
+    <a href="info.html">Información</a>
     <div class="footer">
       <p>&copy; 2025 FearMC<br>IP: fearmc.xyz</p>
     </div>
   </div>
 
-  <div class="content" id="contenido"></div>
+  <div class="content">
+    <h2>Bienvenido a FearMC</h2>
+    <p>FearMC es una comunidad enfocada en ofrecer experiencias inolvidables en Minecraft.</p>
+    <p>Servidor Java y Bedrock | Más de 3 meses en línea | Comunidad activa | Eventos semanales</p>
 
-  <script>
-    const mantenimiento = false; // Cambia esto a true para activar el modo mantenimiento
+    <div class="noticias">
+      <h3>📰 Noticias Recientes</h3>
+      <ul>
+        <li>Nuevo mapa PvP añadido el 25 de julio</li>
+        <li>Actualización de economía y mejoras visuales</li>
+        <li>Próximo torneo PvP el 3 de agosto</li>
+      </ul>
+    </div>
 
-    const contenido = document.getElementById('contenido');
+    <div class="tutoriales">
+      <h3>📘 Tutoriales</h3>
+      <ul>
+        <li>Cómo proteger tu terreno con /claim</li>
+        <li>Guía rápida para crear tu clan</li>
+        <li>Primeros pasos en Farmbox</li>
+      </ul>
+    </div>
 
-    const secciones = {
-      inicio: `
-        <h2>Bienvenido a FearMC</h2>
-        <p>
-          FearMC es una comunidad única enfocada en ofrecer experiencias inolvidables en Minecraft. Contamos con una red estable, administradores activos, eventos semanales, y dos modalidades únicas: <strong>SurvivalPvP</strong> y <strong>Farmbox</strong>.
-        </p>
-        <p>
-          Nuestro servidor es completamente compatible con <strong>Java y Bedrock</strong>, permitiendo que todos los jugadores disfruten juntos sin importar su plataforma. Ya llevamos más de <strong>3 meses en funcionamiento</strong> y seguimos creciendo gracias a nuestra dedicada comunidad.
-        </p>
-        <p>
-          Nos enorgullece tener una comunidad activa, participativa y amigable. Celebramos eventos, torneos PvP y actividades especiales donde puedes demostrar tus habilidades y ganar recompensas únicas.
-        </p>
-        <p>
-          🔥 Características principales:<br>
-          ➤ Sistema de rangos personalizables y logros<br>
-          ➤ Tienda online con cosméticos y mejoras<br>
-          ➤ Sistema de clanes y alianzas<br>
-          ➤ Economía equilibrada y comercio entre jugadores<br>
-          ➤ Protección de terrenos y sistema anti-griefing<br>
-          ➤ Modo crossplay entre Java y Bedrock 1.20.x<br>
-          ➤ Staff amigable, soporte 24/7 y comunidad activa en Discord
-        </p>
-        <div class="noticias">
-          <h3>📰 Noticias Recientes</h3>
-          <ul>
-            <li>¡Nuevo mapa PvP añadido el 25 de julio!</li>
-            <li>Actualización de economía y mejoras visuales - julio 2025</li>
-            <li>¡Próximo torneo PvP el 3 de agosto!</li>
-          </ul>
-        </div>
-        <div class="tutoriales">
-          <h3>📘 Tutoriales y Guías</h3>
-          <ul>
-            <li>Cómo proteger tu terreno usando /claim</li>
-            <li>Comenzando en Farmbox: tus primeros pasos</li>
-            <li>Guía rápida para crear tu clan</li>
-          </ul>
-        </div>
-        <h3 style="margin-top: 40px;">📈 Evolución del servidor</h3>
-        <div class="gallery">
-          <div>
-            <img src="crecimiento1.webp" alt="Jugadores conectados">
-            <p>¡Más de 85 jugadores activos al mismo tiempo!</p>
-          </div>
-          <div>
-            <img src="crecimiento2.webp" alt="Banner del servidor">
-            <p>FearMC se posiciona como una de las mejores redes hispanas. ¡Únete!</p>
-          </div>
-          <div>
-            <img src="crecimiento3.webp" alt="Evolución del servidor">
-            <p>Más de 3 meses de progreso y comunidad creciente día a día.</p>
-          </div>
-        </div>
-      `,
-      survival: `
-        <h2>SurvivalPvP</h2>
-        <p>Modo clásico con PvP activo. Enfrenta a otros jugadores, conquista territorios y mejora tu equipo para ser el número uno.</p>
-      `,
-      farmbox: `
-        <h2>Farmbox</h2>
-        <p>Farmea recursos, comercia y sobrevive en un entorno competitivo. ¡Demuestra tu habilidad económica y estratégica!</p>
-      `,
-      info: `
-        <h2>Información del Servidor</h2>
-        <p>
-          IP: <strong>fearmc.xyz</strong><br>
-          Discord: <a href="https://discord.fearmc.xyz" target="_blank">discord.fearmc.xyz</a><br>
-          Tienda: <a href="https://tienda.fearmc.xyz" target="_blank">tienda.fearmc.xyz</a>
-        </p>
-      `
-    };
-
-    function mostrar(seccion) {
-      if (mantenimiento) {
-        contenido.innerHTML = '<h2>🚧 Mantenimiento en progreso</h2><p>El sitio web se encuentra en mantenimiento. Pronto estaremos de vuelta. Gracias por tu paciencia.</p>';
-      } else {
-        contenido.innerHTML = secciones[seccion];
-      }
-    }
-
-    mostrar('inicio');
-  </script>
+    <h3 style="margin-top: 40px;">📈 Evolución del servidor</h3>
+    <div class="gallery">
+      <div>
+        <img src="crecimiento1.webp" alt="Jugadores conectados">
+        <p>¡Más de 85 jugadores activos!</p>
+      </div>
+      <div>
+        <img src="crecimiento2.webp" alt="Banner del servidor">
+        <p>FearMC crece cada día más. ¡Gracias!</p>
+      </div>
+      <div>
+        <img src="crecimiento3.webp" alt="Evolución del servidor">
+        <p>Más de 3 meses de evolución constante.</p>
+      </div>
+    </div>
+  </div>
 </body>
-
 </html>
