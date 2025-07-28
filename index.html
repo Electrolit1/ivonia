@@ -78,7 +78,7 @@
   </div>
 
   <script>
-    const maintenanceMode = localStorage.getItem('maintenanceMode') === 'true';
+    const maintenanceMode = localStorage.getItem('maintenanceMode') === 'false';
     const mantenimientoURL = 'https://fearmc.vercel.app/mantenimiento';
 
     if (maintenanceMode && window.location.href !== mantenimientoURL) {
