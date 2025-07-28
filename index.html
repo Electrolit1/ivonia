@@ -83,19 +83,21 @@
   </div>
 
   <script>
-    // Script para modo mantenimiento
+    // Redirige a mantenimiento si está activo y no estamos en páginas admin o mantenimiento
+    const maintenanceMode = localStorage.getItem('maintenanceMode') === 'true';
+    const currentPath = window.location.pathname;
+
     if (
-      localStorage.getItem('maintenanceMode') === 'true' &&
-      window.location.pathname !== '/mantenimiento' &&
-      window.location.pathname !== '/admin.html'
+      maintenanceMode &&
+      !['/mantenimiento', '/mantenimiento/', '/admin.html'].includes(currentPath)
     ) {
-      window.location.href = '/mantenimiento';
+      window.location.href = '/mantenimiento/';
     }
 
-    // Script botón admin con contraseña
+    // Botón admin con prompt para ingresar contraseña
     document.getElementById('adminBtn').addEventListener('click', () => {
       const password = prompt('Ingresa la contraseña para acceder al panel:');
-      if (password === 'fearmc12345@') {  // Cambia aquí la contraseña
+      if (password === 'fearmc12345@') {  // Cambia esta contraseña aquí
         window.location.href = '/admin.html';
       } else if (password !== null) {
         alert('Contraseña incorrecta');
