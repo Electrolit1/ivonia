@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Servidor Minecraft</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      margin: 0;
+      background: #1e1e1e;
+      color: #fff;
+    }
+
+    header {
+      background: url('banner.jpg') no-repeat center center/cover;
+      height: 300px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+    }
+
+    header h1 {
+      font-size: 3rem;
+      background: rgba(0, 0, 0, 0.5);
+      padding: 20px;
+      border-radius: 12px;
+    }
+
+    .content {
+      padding: 20px;
+      max-width: 1000px;
+      margin: auto;
+    }
+
+    .info-box {
+      background: #2a2a2a;
+      padding: 20px;
+      margin: 20px 0;
+      border-radius: 12px;
+      box-shadow: 0 0 10px #000;
+    }
+
+    button {
+      background: #4caf50;
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      margin-top: 10px;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+
+    button:hover {
+      background: #45a049;
+    }
+
+    .server-ip {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    @media (max-width: 600px) {
+      header h1 {
+        font-size: 2rem;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1>Bienvenido a Mi Servidor de Minecraft</h1>
+  </header>
+
+  <div class="content">
+
+    <div class="info-box">
+      <h2>🌍 IP del Servidor</h2>
+      <div class="server-ip">
+        <span id="server-ip">mi-servidor.mc</span>
+        <button onclick="copiarIP()">Copiar IP</button>
+      </div>
+    </div>
+
+    <div class="info-box">
+      <h2>📌 Sobre el Servidor</h2>
+      <p>Este es un servidor survival con economía, clanes, y eventos semanales. ¡Únete y construye tu aventura!</p>
+    </div>
+
+    <div class="info-box">
+      <h2>📜 Reglas</h2>
+      <ul>
+        <li>No hacer trampa (no hacks, no x-ray)</li>
+        <li>Respeta a otros jugadores</li>
+        <li>No spam ni publicidad</li>
+      </ul>
+    </div>
+
+    <div class="info-box">
+      <h2>💬 Únete al Discord</h2>
+      <button onclick="window.open('https://discord.gg/tuenlace', '_blank')">Entrar al Discord</button>
+    </div>
+
+  </div>
+
+  <script>
+    function copiarIP() {
+      const ip = document.getElementById("server-ip").innerText;
+      navigator.clipboard.writeText(ip);
+      alert("IP copiada: " + ip);
+    }
+  </script>
+
+</body>
+</html>
