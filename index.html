@@ -112,6 +112,81 @@
       line-height: 1.5;
     }
 
+    /* NUEVA SECCIÓN GUIAS */
+    #guias {
+      padding: 60px 20px;
+      background: #0b1e2d;
+      color: white;
+      max-width: 1200px;
+      margin: 0 auto 60px;
+      border-radius: 10px;
+      box-shadow: 0 0 20px rgba(255, 46, 46, 0.3);
+    }
+
+    #guias h2 {
+      text-align: center;
+      font-size: 2.4rem;
+      margin-bottom: 40px;
+      font-weight: 900;
+      color: #ff2e2e;
+      text-shadow: 0 0 5px rgba(255, 46, 46, 0.8);
+    }
+
+    .guias-container {
+      display: flex;
+      gap: 25px;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+
+    .guia-card {
+      background: #142c47;
+      border-radius: 12px;
+      padding: 25px 20px;
+      width: 280px;
+      box-shadow: 0 6px 12px rgba(0, 0, 0, 0.6);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .guia-card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 12px 24px rgba(255, 46, 46, 0.6);
+    }
+
+    .guia-card h3 {
+      font-size: 1.5rem;
+      margin-bottom: 12px;
+      color: #ff6363;
+      font-weight: 700;
+    }
+
+    .guia-card p {
+      font-size: 1rem;
+      color: #d0d0d0;
+      flex-grow: 1;
+      line-height: 1.4;
+    }
+
+    .guia-card a {
+      margin-top: 18px;
+      padding: 10px 18px;
+      background: #ff2e2e;
+      color: white;
+      border-radius: 30px;
+      font-weight: 700;
+      text-decoration: none;
+      text-align: center;
+      box-shadow: 0 4px 10px rgba(255, 46, 46, 0.5);
+      transition: background 0.3s ease;
+    }
+
+    .guia-card a:hover {
+      background: #ff5959;
+    }
+
     footer {
       background: #1b263b;
       padding: 20px;
@@ -163,6 +238,21 @@
         width: 100%;
         text-align: center;
       }
+
+      /* Ajuste para las guías */
+      #guias {
+        padding: 40px 10px;
+      }
+
+      .guias-container {
+        flex-direction: column;
+        gap: 20px;
+        align-items: center;
+      }
+
+      .guia-card {
+        width: 90%;
+      }
     }
   </style>
 </head>
@@ -195,6 +285,33 @@
       Únete a un equipo de staff comprometido y disfruta de una comunidad respetuosa y activa que hace de FearMC un lugar único.<br>
       ¡No esperes más y forma parte de la aventura más emocionante de Minecraft!
     </p>
+  </section>
+
+  <!-- Sección Guías -->
+  <section id="guias">
+    <h2>Guías útiles para jugar en FearMC</h2>
+    <div class="guias-container">
+      <div class="guia-card">
+        <h3>¿Cómo proteger mi casa?</h3>
+        <p>Aprende a usar ProtectionStones y evitar que otros destruyan tu base.</p>
+        <a href="guia-protecciones.html">Ver guía</a>
+      </div>
+      <div class="guia-card">
+        <h3>¿Cómo ganar dinero?</h3>
+        <p>Consejos para conseguir dinero vendiendo ítems, minando o con trabajos.</p>
+        <a href="guia-economia.html">Ver guía</a>
+      </div>
+      <div class="guia-card">
+        <h3>Reglas del servidor</h3>
+        <p>Mantente al tanto de las normas para evitar sanciones innecesarias.</p>
+        <a href="reglas.html">Ver guía</a>
+      </div>
+      <div class="guia-card">
+        <h3>Comandos básicos</h3>
+        <p>Lista de comandos más usados en FearMC para una mejor experiencia.</p>
+        <a href="comandos.html">Ver guía</a>
+      </div>
+    </div>
   </section>
 
   <footer>
