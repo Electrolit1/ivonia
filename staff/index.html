@@ -16,14 +16,32 @@
       font-family: 'Montserrat', sans-serif;
       background: #0d1b2a;
       color: white;
-      padding: 20px;
+      padding: 0;
+    }
+
+    .navbar {
+      background: #0b1e2d;
+      padding: 15px 30px;
+      border-bottom: 2px solid #ff2e2e;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .navbar a {
+      color: #ffffff;
+      text-decoration: none;
+      margin-right: 20px;
+      font-weight: 700;
+      transition: color 0.2s ease;
+    }
+
+    .navbar a:hover {
+      color: #ff2e2e;
     }
 
     header {
-      background: #0b1e2d;
-      padding: 20px 30px;
-      border-bottom: 2px solid #ff2e2e;
-      margin-bottom: 40px;
+      padding: 40px 30px 20px;
       text-align: center;
     }
 
@@ -34,7 +52,7 @@
     }
 
     section {
-      margin-bottom: 60px;
+      margin: 40px 20px;
     }
 
     .staff-section h2 {
@@ -104,11 +122,31 @@
       .staff-card {
         max-width: 90%;
       }
+
+      .navbar {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      .navbar a {
+        margin-bottom: 10px;
+      }
     }
   </style>
 </head>
 <body>
 
+  <!-- Barra de navegación -->
+  <div class="navbar">
+    <div class="nav-links">
+      <a href="/">INICIO</a>
+      <a href="/reglas">REGLAS</a>
+      <a href="/staff">STAFFS</a>
+      <a href="/tienda">TIENDA</a>
+    </div>
+  </div>
+
+  <!-- Título principal -->
   <header>
     <h1>Equipo de Staff - FearMC</h1>
   </header>
@@ -118,7 +156,7 @@
     <h2>DUEÑOS</h2>
     <div class="staff-cards">
       <div class="staff-card">
-        <img src="destras.webp" alt="Dueño 1">
+        <img src="destras.webp" alt="Destras">
         <h3>Destras</h3>
         <p>Se persistente, no perfecto.</p>
       </div>
@@ -171,6 +209,7 @@
     </div>
   </section>
 
+  <!-- Footer -->
   <footer>
     © 2025 FearMC - Todos los derechos reservados.
   </footer>
