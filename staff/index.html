@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>FearMC - Staffs</title>
+  <title>Staff - FearMC</title>
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;700;900&display=swap" rel="stylesheet">
   <style>
     * {
@@ -16,146 +16,82 @@
       font-family: 'Montserrat', sans-serif;
       background: #0d1b2a;
       color: white;
-      scroll-behavior: smooth;
+      padding: 20px;
     }
 
     header {
       background: #0b1e2d;
-      padding: 15px 30px;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      flex-wrap: wrap;
+      padding: 20px 30px;
       border-bottom: 2px solid #ff2e2e;
-      position: sticky;
-      top: 0;
-      z-index: 100;
-    }
-
-    .logo-container {
-      display: flex;
-      align-items: center;
-    }
-
-    .logo-container img {
-      height: 45px;
-      margin-right: 10px;
-    }
-
-    .logo-container span {
-      font-size: 1.8rem;
-      font-weight: 900;
-      color: white;
-    }
-
-    .nav-left {
-      display: flex;
-      align-items: center;
-      gap: 15px;
-      flex-wrap: wrap;
-    }
-
-    .nav-left a {
-      text-decoration: none;
-      color: white;
-      font-weight: bold;
-      padding: 10px 16px;
-      border-radius: 6px;
-      transition: 0.3s ease;
-    }
-
-    .nav-left a:hover {
-      background-color: rgba(255, 255, 255, 0.1);
-    }
-
-    /* Staff section styles */
-    main {
-      padding: 60px 20px;
-      max-width: 1200px;
-      margin: 0 auto;
+      margin-bottom: 40px;
       text-align: center;
     }
 
-    main h1 {
-      color: #ff2e2e;
+    header h1 {
+      font-size: 2.5rem;
       font-weight: 900;
-      font-size: 3rem;
-      margin-bottom: 40px;
+      color: #ffffff;
     }
 
-    .staff-list {
+    section {
+      margin-bottom: 60px;
+    }
+
+    .staff-section h2 {
+      font-size: 2rem;
+      margin-bottom: 20px;
+      border-left: 6px solid #ff2e2e;
+      padding-left: 15px;
+      color: #ff5555;
+    }
+
+    .staff-cards {
       display: flex;
-      justify-content: center;
       flex-wrap: wrap;
-      gap: 30px;
+      gap: 20px;
+      margin-left: 15px;
     }
 
     .staff-card {
-      background: #142f4c;
-      border-radius: 12px;
+      background: #1b263b;
       padding: 20px;
-      width: 180px;
-      box-shadow: 0 4px 15px rgba(255, 46, 46, 0.3);
-      transition: transform 0.3s ease;
-    }
-
-    .staff-card:hover {
-      transform: translateY(-8px);
-      box-shadow: 0 8px 25px rgba(255, 46, 46, 0.6);
+      border-radius: 12px;
+      flex: 1 1 200px;
+      max-width: 240px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+      text-align: center;
     }
 
     .staff-card img {
-      width: 100px;
-      height: 100px;
+      width: 80px;
+      height: 80px;
       border-radius: 50%;
-      border: 3px solid #ff2e2e;
-      margin-bottom: 15px;
-      object-fit: cover;
+      margin-bottom: 10px;
     }
 
     .staff-card h3 {
       font-size: 1.2rem;
-      margin-bottom: 5px;
-      color: white;
+      color: #fff;
     }
 
     .staff-card p {
-      font-size: 1rem;
+      font-size: 0.95rem;
       color: #ccc;
     }
 
     footer {
-      background: #1b263b;
+      margin-top: 60px;
       padding: 20px;
       text-align: center;
       color: #aaa;
       font-size: 0.9rem;
-      margin-top: 60px;
+      border-top: 1px solid #2c3e50;
     }
 
     @media screen and (max-width: 768px) {
-      .nav-left {
-        justify-content: center;
-        width: 100%;
-        margin-top: 10px;
-      }
-
-      main h1 {
-        font-size: 2.2rem;
-      }
-
-      .staff-list {
-        gap: 20px;
-      }
-
-      .staff-card {
-        width: 140px;
-        padding: 15px;
-      }
-
-      .staff-card img {
-        width: 80px;
-        height: 80px;
+      .staff-cards {
+        flex-direction: column;
+        align-items: center;
       }
     }
   </style>
@@ -163,45 +99,56 @@
 <body>
 
   <header>
-    <div class="logo-container">
-      <a href="/" style="display:flex; align-items:center; text-decoration:none;">
-        <img src="/logo.webp" alt="Logo FearMC">
-        <span>FearMC</span>
-      </a>
-    </div>
-    <nav class="nav-left">
-      <a href="/">INICIO</a>
-      <a href="/staff/" aria-current="page" style="background-color: rgba(255,46,46,0.2); border-radius: 6px;">STAFFS</a>
-      <a href="/reglas/">REGLAS</a>
-      <a href="/requisitos/">REQUISITOS</a>
-    </nav>
+    <h1>Equipo de Staff - FearMC</h1>
   </header>
 
-  <main>
-    <h1>Conoce a nuestro Staff</h1>
-    <div class="staff-list">
+  <section class="staff-section">
+    <h2>DUEÑOS</h2>
+    <div class="staff-cards">
       <div class="staff-card">
-        <img src="https://i.pravatar.cc/100?img=1" alt="Juan Pérez">
-        <h3>Juan Pérez</h3>
-        <p>Administrador</p>
+        <img src="../logo.webp" alt="Dueño">
+        <h3>Usuario1</h3>
+        <p>Fundador y desarrollador principal</p>
       </div>
-      <div class="staff-card">
-        <img src="https://i.pravatar.cc/100?img=2" alt="María Gómez">
-        <h3>María Gómez</h3>
-        <p>Moderadora</p>
-      </div>
-      <div class="staff-card">
-        <img src="https://i.pravatar.cc/100?img=3" alt="Carlos Ruiz">
-        <h3>Carlos Ruiz</h3>
-        <p>Soporte Técnico</p>
-      </div>
-      <div class="staff-card">
-        <img src="https://i.pravatar.cc/100?img=4" alt="Ana Torres">
-        <h3>Ana Torres</h3>
-        <p>Community Manager</p>
-      </div>
+      <!-- Agrega más dueños aquí -->
     </div>
-  </main>
+  </section>
+
+  <section class="staff-section">
+    <h2>MANAGERS</h2>
+    <div class="staff-cards">
+      <div class="staff-card">
+        <img src="../logo.webp" alt="Manager">
+        <h3>Usuario2</h3>
+        <p>Encargado de moderación y eventos</p>
+      </div>
+      <!-- Agrega más managers aquí -->
+    </div>
+  </section>
+
+  <section class="staff-section">
+    <h2>MODERADORES</h2>
+    <div class="staff-cards">
+      <div class="staff-card">
+        <img src="../logo.webp" alt="Moderador">
+        <h3>Usuario3</h3>
+        <p>Soporte y vigilancia del servidor</p>
+      </div>
+      <!-- Agrega más moderadores aquí -->
+    </div>
+  </section>
+
+  <section class="staff-section">
+    <h2>AYUDANTES</h2>
+    <div class="staff-cards">
+      <div class="staff-card">
+        <img src="../logo.webp" alt="Ayudante">
+        <h3>Usuario4</h3>
+        <p>Responde preguntas básicas y guía a nuevos</p>
+      </div>
+      <!-- Agrega más ayudantes aquí -->
+    </div>
+  </section>
 
   <footer>
     © 2025 FearMC - Todos los derechos reservados.
