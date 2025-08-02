@@ -56,17 +56,24 @@
       background: #1b263b;
       padding: 20px;
       border-radius: 12px;
-      flex: 1 1 200px;
+      flex: 1 1 240px;
       max-width: 240px;
       box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
       text-align: center;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .staff-card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 8px 20px rgba(255, 94, 94, 0.4);
     }
 
     .staff-card img {
-      width: 80px;
-      height: 80px;
+      width: 90px;
+      height: 90px;
       border-radius: 50%;
-      margin-bottom: 10px;
+      margin-bottom: 12px;
+      border: 3px solid #ff2e2e;
     }
 
     .staff-card h3 {
@@ -93,6 +100,10 @@
         flex-direction: column;
         align-items: center;
       }
+
+      .staff-card {
+        max-width: 90%;
+      }
     }
   </style>
 </head>
@@ -102,51 +113,61 @@
     <h1>Equipo de Staff - FearMC</h1>
   </header>
 
+  <!-- Dueños -->
   <section class="staff-section">
     <h2>DUEÑOS</h2>
     <div class="staff-cards">
       <div class="staff-card">
-        <img src="../logo.webp" alt="Dueño">
+        <img src="logo.webp" alt="Dueño 1">
         <h3>Usuario1</h3>
-        <p>Fundador y desarrollador principal</p>
+        <p>Fundador y desarrollador</p>
       </div>
-      <!-- Agrega más dueños aquí -->
+      <div class="staff-card">
+        <img src="logo.webp" alt="Dueño 2">
+        <h3>Usuario2</h3>
+        <p>Administrador general</p>
+      </div>
+      <div class="staff-card">
+        <img src="logo.webp" alt="Dueño 3">
+        <h3>Usuario3</h3>
+        <p>Soporte y comunidad</p>
+      </div>
     </div>
   </section>
 
+  <!-- Managers -->
   <section class="staff-section">
     <h2>MANAGERS</h2>
     <div class="staff-cards">
       <div class="staff-card">
-        <img src="../logo.webp" alt="Manager">
-        <h3>Usuario2</h3>
-        <p>Encargado de moderación y eventos</p>
+        <img src="logo.webp" alt="Manager">
+        <h3>Usuario4</h3>
+        <p>Eventos y moderación</p>
       </div>
-      <!-- Agrega más managers aquí -->
     </div>
   </section>
 
+  <!-- Moderadores -->
   <section class="staff-section">
     <h2>MODERADORES</h2>
     <div class="staff-cards">
       <div class="staff-card">
-        <img src="../logo.webp" alt="Moderador">
-        <h3>Usuario3</h3>
-        <p>Soporte y vigilancia del servidor</p>
+        <img src="logo.webp" alt="Moderador">
+        <h3>Usuario5</h3>
+        <p>Vigilancia del servidor</p>
       </div>
-      <!-- Agrega más moderadores aquí -->
     </div>
   </section>
 
+  <!-- Ayudantes -->
   <section class="staff-section">
     <h2>AYUDANTES</h2>
     <div class="staff-cards">
       <div class="staff-card">
-        <img src="../logo.webp" alt="Ayudante">
-        <h3>Usuario4</h3>
-        <p>Responde preguntas básicas y guía a nuevos</p>
+        <img src="logo.webp" alt="Ayudante">
+        <h3>Usuario6</h3>
+        <p>Guía a los nuevos usuarios</p>
       </div>
-      <!-- Agrega más ayudantes aquí -->
     </div>
   </section>
 
