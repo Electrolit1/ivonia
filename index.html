@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>FearMC - Inicio</title>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;700;900&display=swap" rel="stylesheet">
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Montserrat', sans-serif;
+      background: #0d1b2a;
+      color: white;
+    }
+
+    header {
+      background: #0b1e2d;
+      padding: 15px 30px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      border-bottom: 2px solid #ff2e2e;
+    }
+
+    .logo-container {
+      display: flex;
+      align-items: center;
+    }
+
+    .logo-container img {
+      height: 45px;
+      margin-right: 10px;
+    }
+
+    .logo-container span {
+      font-size: 1.8rem;
+      font-weight: 900;
+      color: white;
+    }
+
+    .nav-left,
+    .nav-right {
+      display: flex;
+      align-items: center;
+      gap: 15px;
+      flex-wrap: wrap;
+    }
+
+    .nav-left a {
+      text-decoration: none;
+      color: white;
+      font-weight: bold;
+      padding: 10px 16px;
+      border-radius: 6px;
+      transition: 0.3s ease;
+    }
+
+    .nav-left a:hover {
+      background-color: rgba(255, 255, 255, 0.1);
+    }
+
+    .btn-tienda {
+      background: #ffffff;
+      color: #ff2e2e;
+      font-weight: bold;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 50px;
+      box-shadow: 0 4px 15px rgba(255, 46, 46, 0.4);
+      text-decoration: none;
+      transition: 0.3s ease;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .btn-tienda:hover {
+      background: #ffecec;
+      transform: translateY(-2px);
+    }
+
+    .hero {
+      padding: 80px 20px 60px;
+      text-align: center;
+      background: linear-gradient(to bottom, #0b1e2d, #0d1b2a);
+    }
+
+    .hero h1 {
+      font-size: 3rem;
+      color: white;
+      margin-bottom: 20px;
+    }
+
+    .hero p {
+      font-size: 1.2rem;
+      color: #cccccc;
+    }
+
+    .hero .extra-info {
+      margin-top: 30px;
+      font-size: 1rem;
+      color: #bbb;
+      max-width: 600px;
+      margin-left: auto;
+      margin-right: auto;
+      line-height: 1.5;
+    }
+
+    footer {
+      background: #1b263b;
+      padding: 20px;
+      text-align: center;
+      color: #aaa;
+      font-size: 0.9rem;
+    }
+
+    /* COMPATIBILIDAD MÓVIL */
+    @media screen and (max-width: 768px) {
+      header {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      .logo-container {
+        justify-content: center;
+        width: 100%;
+        margin-bottom: 10px;
+      }
+
+      .nav-left, .nav-right {
+        justify-content: center;
+        width: 100%;
+        margin-top: 10px;
+        flex-wrap: wrap;
+      }
+
+      .hero h1 {
+        font-size: 2.2rem;
+      }
+
+      .hero p {
+        font-size: 1rem;
+      }
+
+      .logo-container span {
+        font-size: 1.4rem;
+      }
+
+      .btn-tienda {
+        width: 100%;
+        justify-content: center;
+        padding: 12px;
+        font-size: 1rem;
+      }
+
+      .nav-left a {
+        width: 100%;
+        text-align: center;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <div class="logo-container">
+      <a href="/" style="display:flex; align-items:center; text-decoration:none;">
+        <img src="logo.webp" alt="Logo FearMC" />
+        <span>FearMC</span>
+      </a>
+    </div>
+    <div class="nav-left">
+      <a href="/">INICIO</a>
+      <a href="/staff/">STAFFS</a>
+      <a href="/reglas/">REGLAS</a>
+      <a href="/requisitos/">REQUISITOS</a>
+    </div>
+    <div class="nav-right">
+      <a href="/tienda/" class="btn-tienda">🛒 TIENDA</a>
+    </div>
+  </header>
+
+  <section class="hero" id="inicio">
+    <h1>¿Buscas diversión en Minecraft?</h1>
+    <p>En <strong>FearMC</strong>, te esperan modos únicos, tienda exclusiva<br> y una comunidad vibrante de jugadores.</p>
+    <p class="extra-info">
+      Sumérgete en una experiencia Survival optimizada con eventos semanales, concursos, y soporte 24/7.<br>
+      Nuestra tienda ofrece artículos exclusivos para mejorar tu juego, desde skins personalizadas hasta kits especiales.<br>
+      Únete a un equipo de staff comprometido y disfruta de una comunidad respetuosa y activa que hace de FearMC un lugar único.<br>
+      ¡No esperes más y forma parte de la aventura más emocionante de Minecraft!
+    </p>
+  </section>
+
+  <footer>
+    © 2025 FearMC - Todos los derechos reservados.
+  </footer>
+
+</body>
+</html>
