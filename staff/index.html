@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>FearMC - Staff</title>
+  <title>FearMC - Inicio</title>
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;700;900&display=swap" rel="stylesheet">
   <style>
     * {
@@ -16,6 +16,7 @@
       font-family: 'Montserrat', sans-serif;
       background: #0d1b2a;
       color: white;
+      scroll-behavior: smooth;
     }
 
     header {
@@ -73,91 +74,90 @@
       border-radius: 50px;
       box-shadow: 0 4px 15px rgba(255, 46, 46, 0.4);
       text-decoration: none;
-      transition: 0.3s ease;
+    }
+
+    .hero {
       display: flex;
+      flex-direction: column;
       align-items: center;
-      gap: 8px;
+      justify-content: center;
+      min-height: 90vh;
+      background: url('fondo-medellin.jpg') center/cover no-repeat;
+      text-align: center;
+      padding: 0 20px;
     }
 
-    .btn-tienda:hover {
-      background: #ffecec;
-      transform: translateY(-2px);
+    .hero h1 {
+      font-size: 3rem;
+      font-weight: 900;
+      color: #fff;
+      text-shadow: 0 4px 10px rgba(0, 0, 0, 0.6);
+      margin-bottom: 15px;
     }
 
-    .seccion-staff {
-      padding: 40px 20px;
+    .hero p {
+      font-size: 1.2rem;
+      color: #ddd;
+      max-width: 700px;
+    }
+
+    .scroll-down {
+      margin-top: 30px;
+      font-size: 2rem;
+      color: #ff2e2e;
+      animation: bounce 2s infinite;
+      cursor: pointer;
+    }
+
+    @keyframes bounce {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(10px); }
+    }
+
+    .info-section {
+      padding: 60px 30px;
+      background: #1b263b;
       text-align: center;
     }
 
-    .seccion-staff h2 {
-      font-size: 2rem;
+    .info-section h2 {
+      font-size: 2.5rem;
       color: #ff2e2e;
-      margin-bottom: 25px;
+      margin-bottom: 20px;
     }
 
-    .miembros {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      gap: 30px;
-    }
-
-    .staff-card {
-      background: #1b263b;
-      border-radius: 15px;
-      padding: 20px;
-      width: 180px;
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
-    }
-
-    .staff-card:hover {
-      transform: translateY(-5px);
-      box-shadow: 0 10px 20px rgba(255, 255, 255, 0.1);
-    }
-
-    .staff-card img {
-      width: 100px;
-      height: 100px;
-      border-radius: 50%;
-      object-fit: cover;
-      margin-bottom: 10px;
-      border: 3px solid #ff2e2e;
-    }
-
-    .staff-card .nombre {
-      font-weight: bold;
-      color: #fff;
+    .info-section p {
       font-size: 1.1rem;
-    }
-
-    .staff-card .rol {
-      color: #aaa;
-      font-size: 0.9rem;
+      max-width: 800px;
+      margin: auto;
+      color: #ccc;
     }
 
     footer {
-      background: #1b263b;
+      background: #0b1e2d;
       padding: 20px;
       text-align: center;
       color: #aaa;
       font-size: 0.9rem;
-      margin-top: 50px;
     }
 
     @media screen and (max-width: 768px) {
+      .logo-container span {
+        font-size: 1.4rem;
+      }
+
       .nav-left, .nav-right {
         justify-content: center;
         width: 100%;
         margin-top: 10px;
       }
 
-      .logo-container span {
-        font-size: 1.4rem;
+      .hero h1 {
+        font-size: 2rem;
       }
 
-      .staff-card {
-        width: 100%;
-        max-width: 300px;
+      .hero p {
+        font-size: 1rem;
       }
     }
   </style>
@@ -167,7 +167,7 @@
   <header>
     <div class="logo-container">
       <a href="/" style="display:flex; align-items:center; text-decoration:none;">
-        <img src="../logo.webp" alt="Logo FearMC" />
+        <img src="logo.webp" alt="Logo FearMC" />
         <span>FearMC</span>
       </a>
     </div>
@@ -182,42 +182,16 @@
     </div>
   </header>
 
-  <!-- Sección Dueños -->
-  <section class="seccion-staff">
-    <h2>DUEÑOS</h2>
-    <div class="miembros">
-      <div class="staff-card">
-        <img src="destras.webp" alt="Dueño 1" />
-        <div class="nombre">Destras</div>
-        <div class="rol">Se constante, no perfecto.</div>
-      </div>
-      <div class="staff-card">
-        <img src="logo.webp" alt="Dueño 2" />
-        <div class="nombre">Javier</div>
-        <div class="rol">Esperando desripcion.</div>
-      </div>
-      <div class="staff-card">
-        <img src="logo.webp" alt="Dueño 3" />
-        <div class="nombre">Kayneeh</div>
-        <div class="rol">Esperando desripcion.</div>
-      </div>
-    </div>
+  <section class="hero">
+    <h1>Bienvenido a FearMC</h1>
+    <p>Servidor colombiano de Minecraft donde la creatividad y el PvP se encuentran. Creamos experiencias únicas con sistemas personalizados, staff dedicado y una comunidad que crece contigo.</p>
+    <div class="scroll-down" onclick="document.getElementById('mas-info').scrollIntoView()">⬇</div>
   </section>
 
-  <!-- Sección Managers -->
-  <section class="seccion-staff">
-    <h2>MANAGER</h2>
-    <div class="miembros">
-      <div class="staff-card">
-        <img src="sonicespro.webp" alt="Manager 1" />
-        <div class="nombre">Sonicespro</div>
-        <div class="rol">Perfeccionar, no cobrar.</div>
-      </div>
-      <!-- Agrega más managers aquí -->
-    </div>
+  <section class="info-section" id="mas-info">
+    <h2>¿Qué es FearMC?</h2>
+    <p>FearMC es más que un servidor, es un proyecto profesional con visión a largo plazo. Contamos con sistemas únicos como tiendas personalizadas, staff capacitado, y soporte continuo. Ya sea que te guste sobrevivir, construir, competir o socializar, aquí hay espacio para ti.</p>
   </section>
-
-  <!-- Puedes seguir agregando más secciones como ADMINISTRADORES, MODERADORES, HELPERS, etc. -->
 
   <footer>
     © 2025 FearMC - Todos los derechos reservados.
