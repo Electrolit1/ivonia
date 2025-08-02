@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>FearMC - Staffs</title>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;700;900&display=swap" rel="stylesheet">
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Montserrat', sans-serif;
+      background: #0d1b2a;
+      color: white;
+      scroll-behavior: smooth;
+    }
+
+    header {
+      background: #0b1e2d;
+      padding: 15px 30px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      border-bottom: 2px solid #ff2e2e;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+
+    .logo-container {
+      display: flex;
+      align-items: center;
+    }
+
+    .logo-container img {
+      height: 45px;
+      margin-right: 10px;
+    }
+
+    .logo-container span {
+      font-size: 1.8rem;
+      font-weight: 900;
+      color: white;
+    }
+
+    .nav-left {
+      display: flex;
+      align-items: center;
+      gap: 15px;
+      flex-wrap: wrap;
+    }
+
+    .nav-left a {
+      text-decoration: none;
+      color: white;
+      font-weight: bold;
+      padding: 10px 16px;
+      border-radius: 6px;
+      transition: 0.3s ease;
+    }
+
+    .nav-left a:hover {
+      background-color: rgba(255, 255, 255, 0.1);
+    }
+
+    /* Staff section styles */
+    main {
+      padding: 60px 20px;
+      max-width: 1200px;
+      margin: 0 auto;
+      text-align: center;
+    }
+
+    main h1 {
+      color: #ff2e2e;
+      font-weight: 900;
+      font-size: 3rem;
+      margin-bottom: 40px;
+    }
+
+    .staff-list {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 30px;
+    }
+
+    .staff-card {
+      background: #142f4c;
+      border-radius: 12px;
+      padding: 20px;
+      width: 180px;
+      box-shadow: 0 4px 15px rgba(255, 46, 46, 0.3);
+      transition: transform 0.3s ease;
+    }
+
+    .staff-card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 8px 25px rgba(255, 46, 46, 0.6);
+    }
+
+    .staff-card img {
+      width: 100px;
+      height: 100px;
+      border-radius: 50%;
+      border: 3px solid #ff2e2e;
+      margin-bottom: 15px;
+      object-fit: cover;
+    }
+
+    .staff-card h3 {
+      font-size: 1.2rem;
+      margin-bottom: 5px;
+      color: white;
+    }
+
+    .staff-card p {
+      font-size: 1rem;
+      color: #ccc;
+    }
+
+    footer {
+      background: #1b263b;
+      padding: 20px;
+      text-align: center;
+      color: #aaa;
+      font-size: 0.9rem;
+      margin-top: 60px;
+    }
+
+    @media screen and (max-width: 768px) {
+      .nav-left {
+        justify-content: center;
+        width: 100%;
+        margin-top: 10px;
+      }
+
+      main h1 {
+        font-size: 2.2rem;
+      }
+
+      .staff-list {
+        gap: 20px;
+      }
+
+      .staff-card {
+        width: 140px;
+        padding: 15px;
+      }
+
+      .staff-card img {
+        width: 80px;
+        height: 80px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <div class="logo-container">
+      <a href="/" style="display:flex; align-items:center; text-decoration:none;">
+        <img src="/logo.webp" alt="Logo FearMC">
+        <span>FearMC</span>
+      </a>
+    </div>
+    <nav class="nav-left">
+      <a href="/">INICIO</a>
+      <a href="/staff/" aria-current="page" style="background-color: rgba(255,46,46,0.2); border-radius: 6px;">STAFFS</a>
+      <a href="/reglas/">REGLAS</a>
+      <a href="/requisitos/">REQUISITOS</a>
+    </nav>
+  </header>
+
+  <main>
+    <h1>Conoce a nuestro Staff</h1>
+    <div class="staff-list">
+      <div class="staff-card">
+        <img src="https://i.pravatar.cc/100?img=1" alt="Juan Pérez">
+        <h3>Juan Pérez</h3>
+        <p>Administrador</p>
+      </div>
+      <div class="staff-card">
+        <img src="https://i.pravatar.cc/100?img=2" alt="María Gómez">
+        <h3>María Gómez</h3>
+        <p>Moderadora</p>
+      </div>
+      <div class="staff-card">
+        <img src="https://i.pravatar.cc/100?img=3" alt="Carlos Ruiz">
+        <h3>Carlos Ruiz</h3>
+        <p>Soporte Técnico</p>
+      </div>
+      <div class="staff-card">
+        <img src="https://i.pravatar.cc/100?img=4" alt="Ana Torres">
+        <h3>Ana Torres</h3>
+        <p>Community Manager</p>
+      </div>
+    </div>
+  </main>
+
+  <footer>
+    © 2025 FearMC - Todos los derechos reservados.
+  </footer>
+
+</body>
+</html>
