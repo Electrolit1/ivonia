@@ -2,200 +2,201 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>FearMC - Inicio</title>
-  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;700;900&display=swap" rel="stylesheet">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Staff - FearMC</title>
+  <link rel="stylesheet" href="/estilos.css" /> <!-- Asegúrate de tener esto igual que el index -->
   <style>
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
-
     body {
-      font-family: 'Montserrat', sans-serif;
-      background: #0d1b2a;
+      margin: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background: linear-gradient(to bottom right, #1b1c1f, #2e2f33);
       color: white;
-      scroll-behavior: smooth;
     }
 
     header {
-      background: #0b1e2d;
-      padding: 15px 30px;
+      background: #111;
       display: flex;
       justify-content: space-between;
       align-items: center;
-      flex-wrap: wrap;
-      border-bottom: 2px solid #ff2e2e;
+      padding: 15px 30px;
     }
 
-    .logo-container {
+    .logo {
+      height: 40px;
+    }
+
+    nav {
       display: flex;
-      align-items: center;
+      gap: 20px;
     }
 
-    .logo-container img {
-      height: 45px;
-      margin-right: 10px;
-    }
-
-    .logo-container span {
-      font-size: 1.8rem;
-      font-weight: 900;
+    nav a {
       color: white;
-    }
-
-    .nav-left, .nav-right {
-      display: flex;
-      align-items: center;
-      gap: 15px;
-      flex-wrap: wrap;
-    }
-
-    .nav-left a {
       text-decoration: none;
-      color: white;
       font-weight: bold;
-      padding: 10px 16px;
-      border-radius: 6px;
-      transition: 0.3s ease;
+      transition: color 0.3s;
     }
 
-    .nav-left a:hover {
-      background-color: rgba(255, 255, 255, 0.1);
+    nav a:hover {
+      color: yellow;
     }
 
-    .btn-tienda {
-      background: #ffffff;
-      color: #ff2e2e;
-      font-weight: bold;
-      border: none;
-      padding: 10px 20px;
-      border-radius: 50px;
-      box-shadow: 0 4px 15px rgba(255, 46, 46, 0.4);
-      text-decoration: none;
-    }
-
-    .hero {
-      display: flex;
+    .hamburger {
+      display: none;
       flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      min-height: 90vh;
-      background: url('fondo-medellin.jpg') center/cover no-repeat;
-      text-align: center;
-      padding: 0 20px;
-    }
-
-    .hero h1 {
-      font-size: 3rem;
-      font-weight: 900;
-      color: #fff;
-      text-shadow: 0 4px 10px rgba(0, 0, 0, 0.6);
-      margin-bottom: 15px;
-    }
-
-    .hero p {
-      font-size: 1.2rem;
-      color: #ddd;
-      max-width: 700px;
-    }
-
-    .scroll-down {
-      margin-top: 30px;
-      font-size: 2rem;
-      color: #ff2e2e;
-      animation: bounce 2s infinite;
       cursor: pointer;
     }
 
-    @keyframes bounce {
-      0%, 100% { transform: translateY(0); }
-      50% { transform: translateY(10px); }
+    .hamburger div {
+      width: 25px;
+      height: 3px;
+      background: white;
+      margin: 4px 0;
     }
 
-    .info-section {
-      padding: 60px 30px;
-      background: #1b263b;
+    .mobile-menu {
+      display: none;
+      flex-direction: column;
+      background: #111;
+      padding: 10px;
+    }
+
+    .mobile-menu a {
+      margin: 10px 0;
+    }
+
+    @media (max-width: 768px) {
+      nav {
+        display: none;
+      }
+
+      .hamburger {
+        display: flex;
+      }
+
+      .mobile-menu {
+        display: none;
+      }
+
+      .mobile-menu.active {
+        display: flex;
+      }
+    }
+
+    .staff-section {
+      padding: 40px 20px;
       text-align: center;
     }
 
-    .info-section h2 {
-      font-size: 2.5rem;
-      color: #ff2e2e;
+    .staff-title {
+      font-size: 28px;
       margin-bottom: 20px;
+      color: yellow;
     }
 
-    .info-section p {
-      font-size: 1.1rem;
-      max-width: 800px;
-      margin: auto;
-      color: #ccc;
+    .staff-row {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 20px;
+    }
+
+    .staff-card {
+      background: #222;
+      padding: 15px;
+      border-radius: 10px;
+      width: 150px;
+      transition: transform 0.3s, box-shadow 0.3s;
+    }
+
+    .staff-card:hover {
+      transform: scale(1.05);
+      box-shadow: 0 0 15px yellow;
+    }
+
+    .staff-card img {
+      width: 100px;
+      height: 100px;
+      object-fit: contain;
+      border-radius: 50%;
+      margin-bottom: 10px;
+    }
+
+    .staff-name {
+      font-weight: bold;
     }
 
     footer {
-      background: #0b1e2d;
-      padding: 20px;
       text-align: center;
-      color: #aaa;
-      font-size: 0.9rem;
-    }
-
-    @media screen and (max-width: 768px) {
-      .logo-container span {
-        font-size: 1.4rem;
-      }
-
-      .nav-left, .nav-right {
-        justify-content: center;
-        width: 100%;
-        margin-top: 10px;
-      }
-
-      .hero h1 {
-        font-size: 2rem;
-      }
-
-      .hero p {
-        font-size: 1rem;
-      }
+      padding: 20px;
+      color: gray;
     }
   </style>
 </head>
 <body>
-
   <header>
-    <div class="logo-container">
-      <a href="/" style="display:flex; align-items:center; text-decoration:none;">
-        <img src="logo.webp" alt="Logo FearMC" />
-        <span>FearMC</span>
-      </a>
-    </div>
-    <div class="nav-left">
+    <img src="/logo.webp" alt="FearMC Logo" class="logo" />
+    <nav>
       <a href="/">INICIO</a>
-      <a href="/staff/">STAFFS</a>
       <a href="/reglas/">REGLAS</a>
-      <a href="/requisitos/">REQUISITOS</a>
-    </div>
-    <div class="nav-right">
-      <a href="/tienda/" class="btn-tienda">🛒 TIENDA</a>
+      <a href="/staff/">STAFFS</a>
+      <a href="/tienda/">TIENDA</a>
+    </nav>
+    <div class="hamburger" onclick="toggleMenu()">
+      <div></div>
+      <div></div>
+      <div></div>
     </div>
   </header>
 
-  <section class="hero">
-    <h1>Bienvenido a FearMC</h1>
-    <p>Servidor colombiano de Minecraft donde la creatividad y el PvP se encuentran. Creamos experiencias únicas con sistemas personalizados, staff dedicado y una comunidad que crece contigo.</p>
-    <div class="scroll-down" onclick="document.getElementById('mas-info').scrollIntoView()">⬇</div>
+  <div class="mobile-menu" id="mobileMenu">
+    <a href="/">INICIO</a>
+    <a href="/reglas/">REGLAS</a>
+    <a href="/staff/">STAFFS</a>
+    <a href="/tienda/">TIENDA</a>
+  </div>
+
+  <section class="staff-section">
+    <h2 class="staff-title">DUEÑOS</h2>
+    <div class="staff-row">
+      <div class="staff-card">
+        <img src="logo.webp" alt="Dueño 1" />
+        <div class="staff-name">FearMC</div>
+      </div>
+      <div class="staff-card">
+        <img src="logo.webp" alt="Dueño 2" />
+        <div class="staff-name">DarkSoul</div>
+      </div>
+      <div class="staff-card">
+        <img src="logo.webp" alt="Dueño 3" />
+        <div class="staff-name">AdminPro</div>
+      </div>
+    </div>
   </section>
 
-  <section class="info-section" id="mas-info">
-    <h2>¿Qué es FearMC?</h2>
-    <p>FearMC es más que un servidor, es un proyecto profesional con visión a largo plazo. Contamos con sistemas únicos como tiendas personalizadas, staff capacitado, y soporte continuo. Ya sea que te guste sobrevivir, construir, competir o socializar, aquí hay espacio para ti.</p>
+  <section class="staff-section">
+    <h2 class="staff-title">MANAGERS</h2>
+    <div class="staff-row">
+      <div class="staff-card">
+        <img src="logo.webp" alt="Manager 1" />
+        <div class="staff-name">CamiCraft</div>
+      </div>
+      <div class="staff-card">
+        <img src="logo.webp" alt="Manager 2" />
+        <div class="staff-name">Hexor</div>
+      </div>
+    </div>
   </section>
 
   <footer>
-    © 2025 FearMC - Todos los derechos reservados.
+    © FearMC 2025. Todos los derechos reservados.
   </footer>
 
+  <script>
+    function toggleMenu() {
+      const menu = document.getElementById("mobileMenu");
+      menu.classList.toggle("active");
+    }
+  </script>
 </body>
 </html>
