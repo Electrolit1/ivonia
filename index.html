@@ -1,75 +1,140 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>FearMC - Inicio</title>
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="/estilos.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;800&display=swap" rel="stylesheet">
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Montserrat', sans-serif;
+      background: #0d1b2a;
+      color: white;
+    }
+
+    header {
+      background: #0b1e2d;
+      padding: 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .logo-container {
+      display: flex;
+      align-items: center;
+    }
+
+    .logo-container img {
+      height: 40px;
+      margin-right: 10px;
+    }
+
+    .logo-container span {
+      font-size: 1.5rem;
+      font-weight: bold;
+      color: white;
+    }
+
+    .btn-tienda {
+      background: #ff2e2e;
+      color: white;
+      padding: 10px 20px;
+      border-radius: 10px;
+      text-decoration: none;
+      font-weight: bold;
+      border: 2px solid white;
+      box-shadow: 0 0 10px #ff2e2e;
+      transition: background 0.3s;
+    }
+
+    .btn-tienda:hover {
+      background: #e60000;
+    }
+
+    .hero {
+      padding: 60px 20px;
+      text-align: center;
+      background: linear-gradient(to bottom, #1b263b, #0d1b2a);
+    }
+
+    .hero h1 {
+      font-size: 2.8rem;
+      margin-bottom: 15px;
+    }
+
+    .hero p {
+      font-size: 1.2rem;
+      color: #ccc;
+    }
+
+    .copiar-ip {
+      margin-top: 30px;
+    }
+
+    .btn-copiar {
+      background: yellow;
+      color: #111;
+      padding: 12px 24px;
+      font-weight: bold;
+      border-radius: 10px;
+      border: none;
+      cursor: pointer;
+      transition: transform 0.2s ease;
+    }
+
+    .btn-copiar:hover {
+      transform: scale(1.05);
+    }
+
+    footer {
+      background: #1b263b;
+      padding: 20px;
+      text-align: center;
+      color: #aaa;
+    }
+  </style>
 </head>
 <body>
-  <div class="sidebar">
-    <img src="/logo.webp" alt="FearMC Logo" />
-    <h1>FearMC</h1>
-    <a href="/">Inicio</a>
-    <a href="/survival/">SurvivalPvP</a>
-    <a href="/farmbox/">Farmbox</a>
-    <a href="/info/">Información</a>
 
-    <div class="footer">
-      <p>&copy; 2025 FearMC<br />IP: fearmc.xyz</p>
+  <!-- ENCABEZADO -->
+  <header>
+    <div class="logo-container">
+      <img src="logo.webp" alt="Logo FearMC">
+      <span>FearMC</span>
     </div>
-  </div>
+    <a href="#tienda" class="btn-tienda">🛒 Tienda</a>
+  </header>
 
-  <div class="content">
-    <h2>Bienvenido a FearMC</h2>
-    <p>
-      FearMC es una comunidad única enfocada en ofrecer experiencias inolvidables en Minecraft. Contamos con una red estable, administradores activos, eventos semanales, y dos modalidades únicas: <strong>SurvivalPvP</strong> y <strong>Farmbox</strong>.
-    </p>
-    <p>
-      Nuestro servidor es completamente compatible con <strong>Java y Bedrock</strong>, permitiendo que todos los jugadores disfruten juntos sin importar su plataforma. Ya llevamos más de <strong>3 meses en funcionamiento</strong> y seguimos creciendo gracias a nuestra dedicada comunidad.
-    </p>
-    <p>
-      Nos enorgullece tener una comunidad activa, participativa y amigable. Celebramos eventos, torneos PvP y actividades especiales donde puedes demostrar tus habilidades y ganar recompensas únicas.
-    </p>
-    <p>
-      🔥 Características principales:<br />
-      ➤ Sistema de rangos personalizables y logros<br />
-      ➤ Sistema de clanes y alianzas<br />
-      ➤ Economía equilibrada y comercio entre jugadores<br />
-      ➤ Protección de terrenos y sistema anti-griefing<br />
-      ➤ Modo crossplay entre Java y Bedrock 1.20.x<br />
-      ➤ Staff amigable, soporte 24/7 y comunidad activa en Discord
-    </p>
+  <!-- HERO / BIENVENIDA -->
+  <section class="hero">
+    <h1>¿Buscas diversión en Minecraft?</h1>
+    <p>En <strong>FearMC</strong> encontrarás más de 5 modos de juego únicos, eventos diarios y una gran comunidad.</p>
 
-    <div class="noticias">
-      <h3>📰 Noticias Recientes</h3>
-      <ul>
-        <li>¡Abrimos nuevamente hace mas de 1 semana!</li>
-        <li>Traeremos nueva modalidad para nuestro servidor</li>
-      </ul>
+    <div class="copiar-ip">
+      <button class="btn-copiar" onclick="copiarIP()">📋 Copiar IP</button>
     </div>
+  </section>
 
-    <div class="tutoriales">
-      <h3>📘 Tutoriales y Guías</h3>
-      <ul>
-        <li>Estamos agregando mas informaciòn.</li>
-      </ul>
-    </div>
+  <!-- PIE DE PÁGINA -->
+  <footer>
+    © 2025 FearMC - Todos los derechos reservados.
+  </footer>
 
-    <h3 style="margin-top: 40px;">📈 Evolución del servidor</h3>
-    <div class="gallery">
-      <div>
-        <img src="/crecimiento1.webp" alt="Jugadores conectados" />
-        <p>¡Más de 10 jugadores activos al mismo tiempo!</p>
-      </div>
-      <div>
-        <img src="/crecimiento2.webp" alt="Banner del servidor" />
-        <p>FearMC está buscando ser uno de tus servidores favoritos. ¡Únete!</p>
-      </div>
-      <div>
-      </div>
-    </div>
-  </div>
+  <script>
+    function copiarIP() {
+      const ip = "play.fearmc.net"; // cambia esto por tu IP real
+      navigator.clipboard.writeText(ip).then(() => {
+        alert("IP copiada: " + ip);
+      });
+    }
+  </script>
+
 </body>
 </html>
