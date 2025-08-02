@@ -120,11 +120,24 @@
       font-size: 0.9rem;
     }
 
+    /* COMPATIBILIDAD MÓVIL */
     @media screen and (max-width: 768px) {
+      header {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      .logo-container {
+        justify-content: center;
+        width: 100%;
+        margin-bottom: 10px;
+      }
+
       .nav-left, .nav-right {
         justify-content: center;
         width: 100%;
         margin-top: 10px;
+        flex-wrap: wrap;
       }
 
       .hero h1 {
@@ -137,6 +150,18 @@
 
       .logo-container span {
         font-size: 1.4rem;
+      }
+
+      .btn-tienda {
+        width: 100%;
+        justify-content: center;
+        padding: 12px;
+        font-size: 1rem;
+      }
+
+      .nav-left a {
+        width: 100%;
+        text-align: center;
       }
     }
   </style>
