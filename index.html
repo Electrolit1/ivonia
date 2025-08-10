@@ -34,12 +34,24 @@
         <div class="hero-text">
             <h1>¿BUSCAS DIVERSIÓN EN MINECRAFT?</h1>
             <p>En <strong>FatalMC</strong>, ofrecemos más de 5 modos de juego increíblemente divertidos y una gran comunidad de jugadores apasionados.</p>
-            <a href="#" class="btn-copiar">📋 COPIAR IP</a>
+            <a href="#" class="btn-copiar" id="copyIpBtn">📋 COPIAR IP</a>
         </div>
         <div class="hero-img">
             <img src="logo.webp" alt="Logo FatalMC">
         </div>
     </section>
+
+    <!-- JavaScript para copiar la IP -->
+    <script>
+        document.getElementById('copyIpBtn').addEventListener('click', function(e) {
+            e.preventDefault();
+            navigator.clipboard.writeText('fatalmc.us').then(() => {
+                alert('✅ IP copiada: fatalmc.us');
+            }).catch(() => {
+                alert('❌ Error al copiar la IP');
+            });
+        });
+    </script>
 
 </body>
 </html>
