@@ -1,0 +1,128 @@
+/* RESET */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    background-color: #012d3c;
+    color: white;
+}
+
+/* HEADER */
+header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 15px 50px;
+    background-color: #004a5e;
+}
+
+.logo-img {
+    height: 45px; /* Tamaño igual al de VoxCraft */
+    transition: transform 0.3s ease;
+}
+
+.logo-img:hover {
+    transform: scale(1.05);
+}
+
+.nav-left {
+    display: flex;
+    gap: 25px;
+}
+
+.nav-left a {
+    color: white;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 14px;
+    transition: color 0.3s ease;
+}
+
+.nav-left a.active {
+    color: #ffeb3b;
+}
+
+.nav-left a:hover {
+    color: #ffeb3b;
+}
+
+.nav-right .btn-tienda {
+    background-color: #ffeb3b;
+    color: black;
+    padding: 8px 16px;
+    border-radius: 50px;
+    font-weight: 600;
+    text-decoration: none;
+    font-size: 14px;
+    border: 2px solid #ffd600;
+    transition: background-color 0.3s ease;
+}
+
+.nav-right .btn-tienda:hover {
+    background-color: #ffd600;
+}
+
+/* SECCIÓN PRINCIPAL */
+.hero {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 80px 10%;
+    background: linear-gradient(to right, rgba(0,0,0,0.6), rgba(0,0,0,0)) , url('fondo.jpg') no-repeat center center/cover;
+}
+
+.hero-text {
+    max-width: 50%;
+}
+
+.hero-text h1 {
+    font-size: 2.8rem;
+    font-weight: 800;
+    margin-bottom: 15px;
+}
+
+.hero-text p {
+    font-size: 1rem;
+    margin-bottom: 20px;
+}
+
+.btn-copiar {
+    display: inline-block;
+    background-color: #ffeb3b;
+    color: black;
+    padding: 10px 20px;
+    border-radius: 50px;
+    font-weight: 600;
+    text-decoration: none;
+    border: 2px solid #ffd600;
+    transition: background-color 0.3s ease;
+}
+
+.btn-copiar:hover {
+    background-color: #ffd600;
+}
+
+.hero-img img {
+    max-width: 350px;
+}
+
+/* RESPONSIVE */
+@media (max-width: 900px) {
+    .hero {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .hero-text {
+        max-width: 100%;
+    }
+
+    .hero-img img {
+        margin-top: 20px;
+        max-width: 250px;
+    }
+}
