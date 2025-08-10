@@ -21,7 +21,7 @@ header {
 }
 
 .logo-img {
-    height: 45px; /* Tamaño igual al de VoxCraft */
+    height: 45px;
     transition: transform 0.3s ease;
 }
 
@@ -43,27 +43,28 @@ header {
 }
 
 .nav-left a.active {
-    color: #ffeb3b;
+    color: #b84dff; /* Morado */
 }
 
 .nav-left a:hover {
-    color: #ffeb3b;
+    color: #b84dff;
 }
 
+/* Botón tienda */
 .nav-right .btn-tienda {
-    background-color: #ffeb3b;
-    color: black;
+    background-color: #b84dff;
+    color: white;
     padding: 8px 16px;
     border-radius: 50px;
     font-weight: 600;
     text-decoration: none;
     font-size: 14px;
-    border: 2px solid #ffd600;
+    border: 2px solid #9b3dd9;
     transition: background-color 0.3s ease;
 }
 
 .nav-right .btn-tienda:hover {
-    background-color: #ffd600;
+    background-color: #9b3dd9;
 }
 
 /* SECCIÓN PRINCIPAL */
@@ -90,20 +91,21 @@ header {
     margin-bottom: 20px;
 }
 
+/* Botón copiar IP */
 .btn-copiar {
     display: inline-block;
-    background-color: #ffeb3b;
-    color: black;
+    background-color: #b84dff;
+    color: white;
     padding: 10px 20px;
     border-radius: 50px;
     font-weight: 600;
     text-decoration: none;
-    border: 2px solid #ffd600;
+    border: 2px solid #9b3dd9;
     transition: background-color 0.3s ease;
 }
 
 .btn-copiar:hover {
-    background-color: #ffd600;
+    background-color: #9b3dd9;
 }
 
 .hero-img img {
