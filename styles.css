@@ -91,23 +91,6 @@ header {
     margin-bottom: 20px;
 }
 
-/* Botón copiar IP */
-.btn-copiar {
-    display: inline-block;
-    background-color: #b84dff;
-    color: white;
-    padding: 10px 20px;
-    border-radius: 50px;
-    font-weight: 600;
-    text-decoration: none;
-    border: 2px solid #9b3dd9;
-    transition: background-color 0.3s ease;
-}
-
-.btn-copiar:hover {
-    background-color: #9b3dd9;
-}
-
 .hero-img img {
     max-width: 350px;
 }
@@ -127,4 +110,18 @@ header {
         margin-top: 20px;
         max-width: 250px;
     }
+}
+
+/* ANIMACIÓN LOGO FLOTANTE */
+@keyframes floatUpDown {
+    0%, 100% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-15px);
+    }
+}
+
+.floating-logo {
+    animation: floatUpDown 4s ease-in-out infinite;
 }
