@@ -18,11 +18,7 @@
       padding: 15px 40px;
       display: flex;
       align-items: center;
-      justify-content: space-between;
-    }
-
-    header img {
-      height: 50px;
+      justify-content: center;
     }
 
     nav {
@@ -40,16 +36,6 @@
     nav a:hover,
     nav a.active {
       color: #ffef00;
-    }
-
-    .btn-tienda {
-      background: #ffef00;
-      padding: 10px 20px;
-      border-radius: 50px;
-      font-weight: 700;
-      color: #000;
-      text-decoration: none;
-      box-shadow: 0 3px 6px rgba(0,0,0,0.4);
     }
 
     .hero {
@@ -70,52 +56,6 @@
       color: #ddd;
     }
 
-    .rules-category {
-      margin: 40px auto;
-      max-width: 900px;
-      background: #ffef00;
-      border-radius: 8px 8px 0 0;
-      padding: 15px 20px;
-      font-weight: 700;
-      color: #000;
-      display: flex;
-      align-items: center;
-      gap: 10px;
-    }
-
-    .rules-list {
-      max-width: 900px;
-      margin: 0 auto;
-      background: #00394a;
-      border-radius: 0 0 8px 8px;
-      overflow: hidden;
-    }
-
-    .rule {
-      padding: 15px 20px;
-      border-bottom: 1px solid rgba(255,255,255,0.1);
-      display: flex;
-      align-items: flex-start;
-      gap: 15px;
-    }
-
-    .rule:last-child {
-      border-bottom: none;
-    }
-
-    .rule-number {
-      background: #0099cc;
-      color: white;
-      font-weight: 700;
-      border-radius: 50%;
-      width: 35px;
-      height: 35px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      flex-shrink: 0;
-    }
-
     footer {
       background: #004b60;
       text-align: center;
@@ -128,14 +68,12 @@
 </head>
 <body>
   <header>
-    <img src="/logo.png" alt="Logo Nova">
     <nav>
       <a href="/" >INICIO</a>
       <a href="/staff/">STAFFS</a>
       <a href="/reglas/" class="active">REGLAS</a>
       <a href="/requisitos/">REQUISITOS</a>
     </nav>
-    <a href="/tienda/" class="btn-tienda">🛒 TIENDA</a>
   </header>
 
   <section class="hero">
@@ -146,23 +84,6 @@
       EL STAFF ADMINISTRATIVO <strong> PUEDE MODIFICAR </strong> ESTE REGLAMENTO CUANDO SEA NECESARIO Y SIN UN AVISO PREVIO.
     </p>
   </section>
-
-  <!-- CATEGORÍA DE EJEMPLO -->
-  <div class="rules-category">💬 LENGUAJE Y ORDEN EN EL CHAT.</div>
-  <div class="rules-list">
-    <div class="rule">
-      <div class="rule-number">1.1</div>
-      <div>Está totalmente prohibido utilizar cualquier tipo de insultos contra algún jugador o staff.</div>
-    </div>
-    <div class="rule">
-      <div class="rule-number">1.2</div>
-      <div>Está totalmente prohibido utilizar nombres que contengan insultos o sean considerados obscenos.</div>
-    </div>
-    <div class="rule">
-      <div class="rule-number">1.3</div>
-      <div>Está totalmente prohibido el mal uso de los comandos de soporte/ayuda en nuestros servidores. Así como ignorar o rechazar el servicio de un staff en particular por no estar satisfecho con el mismo.</div>
-    </div>
-  </div>
 
   <footer>
     © 2025 Nova - Todos los derechos reservados.
