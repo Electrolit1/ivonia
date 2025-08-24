@@ -25,36 +25,13 @@
     header {
       display: flex;
       align-items: center;
-      justify-content: space-between;
+      justify-content: center;
       padding: 15px 50px;
       background-color: #004a5e;
       flex-wrap: wrap;
     }
 
-    .logo-container {
-      display: flex;
-      align-items: center;
-    }
-
-    .logo-container img {
-      height: 45px;
-      margin-right: 10px;
-      animation: floatUpDown 4s ease-in-out infinite;
-      transition: transform 0.3s ease;
-    }
-
-    .logo-container img:hover {
-      transform: scale(1.05);
-    }
-
-    .logo-container span {
-      font-weight: 700;
-      font-size: 1.8rem;
-      color: white;
-    }
-
-    .nav-left,
-    .nav-right {
+    .nav-left {
       display: flex;
       align-items: center;
       gap: 25px;
@@ -75,23 +52,6 @@
     .nav-left a:hover {
       color: #b84dff;
       background-color: rgba(184, 77, 255, 0.15);
-    }
-
-    .btn-tienda {
-      background-color: #b84dff;
-      color: white;
-      padding: 8px 20px;
-      border-radius: 50px;
-      font-weight: 600;
-      text-decoration: none;
-      font-size: 14px;
-      border: 2px solid #9b3dd9;
-      box-shadow: 0 4px 12px rgba(184, 77, 255, 0.4);
-      transition: background-color 0.3s ease;
-    }
-
-    .btn-tienda:hover {
-      background-color: #9b3dd9;
     }
 
     .staff-section {
@@ -163,15 +123,11 @@
     @media (max-width: 900px) {
       header {
         flex-direction: column;
-        align-items: flex-start;
+        align-items: center;
         padding: 15px 20px;
       }
 
-      .logo-container {
-        margin-bottom: 15px;
-      }
-
-      .nav-left, .nav-right {
+      .nav-left {
         gap: 15px;
         width: 100%;
         justify-content: center;
@@ -187,35 +143,15 @@
         width: 90%;
       }
     }
-
-    /* ANIMACIÓN LOGO FLOTANTE */
-    @keyframes floatUpDown {
-      0%, 100% {
-        transform: translateY(0);
-      }
-      50% {
-        transform: translateY(-15px);
-      }
-    }
   </style>
 </head>
 <body>
   <header>
-    <div class="logo-container">
-      <a href="/" style="display:flex; align-items:center; text-decoration:none;">
-        <img src="/staff/logo.png" alt="Logo Nova" />
-        <span>Nova</span>
-      </a>
-    </div>
     <div class="nav-left">
       <a href="/" >INICIO</a>
       <a href="/staff/" class="active">STAFFS</a>
       <a href="/reglas/">REGLAS</a>
       <a href="/requisitos/">REQUISITOS</a>
-    </div>
-    <!-- Eliminado el logo/flotante de la derecha, solo queda la tienda -->
-    <div class="nav-right">
-      <a href="/tienda/" class="btn-tienda">🛒 TIENDA</a>
     </div>
   </header>
 
