@@ -7,8 +7,8 @@
 
 body {
     font-family: 'Poppins', sans-serif;
-    background-color: #012d3c;
-    color: white;
+    background-color: #111111; /* Fondo oscuro */
+    color: #FFF6E5; /* Texto claro */
 }
 
 /* HEADER */
@@ -17,7 +17,7 @@ header {
     align-items: center;
     justify-content: space-between;
     padding: 15px 50px;
-    background-color: #004a5e;
+    background-color: #1a1a1a; /* Fondo del header */
 }
 
 .logo-img {
@@ -35,7 +35,7 @@ header {
 }
 
 .nav-left a {
-    color: white;
+    color: #FFB400; /* Naranja-amarillo */
     text-decoration: none;
     font-weight: 600;
     font-size: 14px;
@@ -43,28 +43,29 @@ header {
 }
 
 .nav-left a.active {
-    color: #b84dff; /* Morado */
+    color: #FF8C00; /* Acento */
 }
 
 .nav-left a:hover {
-    color: #b84dff;
+    color: #FF8C00;
 }
 
 /* Botón tienda */
 .nav-right .btn-tienda {
-    background-color: #b84dff;
-    color: white;
+    background-color: #FFB400;
+    color: #111111;
     padding: 8px 16px;
     border-radius: 50px;
     font-weight: 600;
     text-decoration: none;
     font-size: 14px;
-    border: 2px solid #9b3dd9;
-    transition: background-color 0.3s ease;
+    border: 2px solid #FF8C00;
+    transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 .nav-right .btn-tienda:hover {
-    background-color: #9b3dd9;
+    background-color: #FF8C00;
+    color: white;
 }
 
 /* SECCIÓN PRINCIPAL */
@@ -73,7 +74,7 @@ header {
     align-items: center;
     justify-content: space-between;
     padding: 80px 10%;
-    background: linear-gradient(to right, rgba(0,0,0,0.6), rgba(0,0,0,0)) , url('fondo.jpg') no-repeat center center/cover;
+    background: linear-gradient(to right, rgba(0,0,0,0.7), rgba(0,0,0,0)) , url('fondo.jpg') no-repeat center center/cover;
 }
 
 .hero-text {
@@ -84,11 +85,13 @@ header {
     font-size: 2.8rem;
     font-weight: 800;
     margin-bottom: 15px;
+    color: #FFB400; /* Título principal */
 }
 
 .hero-text p {
     font-size: 1rem;
     margin-bottom: 20px;
+    color: #FFF6E5;
 }
 
 .hero-img img {
