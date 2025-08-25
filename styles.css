@@ -81,23 +81,23 @@ header {
     max-width: 50%;
 }
 
-/* TITULO BONITO */
+/* TÍTULO NORMAL */
 .hero-text h1 {
-    font-family: 'Cinzel Decorative', cursive;
-    font-size: 3.5rem;
+    font-family: 'Poppins', sans-serif;
+    font-size: 2.8rem;
     font-weight: 700;
     margin-bottom: 15px;
     color: #FFB400;
-    text-shadow: 0 0 10px #FF8C00, 0 0 20px #FFB400, 0 0 30px rgba(255, 140, 0, 0.6);
-    letter-spacing: 3px;
 }
 
+/* Párrafo */
 .hero-text p {
     font-size: 1rem;
     margin-bottom: 20px;
     color: #FFF6E5;
 }
 
+/* Imagen principal */
 .hero-img img {
     max-width: 350px;
 }
