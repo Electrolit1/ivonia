@@ -21,49 +21,49 @@
 
     /* HEADER */
     header {
-      display: flex;
-      align-items: center;
-      justify-content: flex-start; /* alineado a la izquierda */
-      padding: 15px 40px;
       background-color: #1a1a1a;
+      padding: 15px 40px;
     }
 
-    nav {
+    .nav-left {
       display: flex;
-      gap: 18px;
+      gap: 25px;
     }
 
-    nav a {
+    .nav-left a {
       color: #FFB400;
       text-decoration: none;
-      font-weight: 500;
-      font-size: 13px; /* más pequeño */
+      font-weight: 600;
+      font-size: 14px; /* igual que el index principal */
       transition: color 0.3s ease;
     }
 
-    nav a.active,
-    nav a:hover {
+    .nav-left a:hover,
+    .nav-left a.active {
       color: #FF8C00;
     }
 
-    /* HERO / SECCIÓN PRINCIPAL */
+    /* SECCIÓN HERO */
     .hero {
       text-align: center;
-      padding: 70px 20px 40px;
+      padding: 60px 20px 30px;
     }
 
     .hero h1 {
-      font-size: 2.3rem; /* un poco más pequeño */
-      margin-bottom: 18px;
+      font-family: 'Cinzel Decorative', cursive;
+      font-size: 2rem; /* igual de proporcional que el index */
+      font-weight: 700;
+      margin-bottom: 15px;
       color: #FFB400;
-      text-shadow: 0 0 8px #FF8C00, 0 0 15px rgba(255, 180, 0, 0.6);
+      text-shadow: 0 0 10px #FF8C00, 0 0 20px #FFB400, 0 0 30px rgba(255, 140, 0, 0.6);
+      letter-spacing: 2px;
     }
 
     .hero p {
-      max-width: 850px;
+      max-width: 800px;
       margin: 0 auto;
       line-height: 1.6;
-      font-size: 0.95rem; /* texto general un poco más chico */
+      font-size: 0.95rem; /* texto igual al index */
       color: #FFF6E5;
     }
 
@@ -73,33 +73,30 @@
       text-align: center;
       padding: 20px;
       color: #aaa;
-      font-size: 0.85rem;
-      margin-top: 50px;
+      font-size: 0.9rem;
+      margin-top: 40px;
     }
   </style>
 </head>
 <body>
-  <!-- HEADER -->
   <header>
-    <nav>
+    <nav class="nav-left">
       <a href="/index.html">INICIO</a>
-      <a href="/staff/">STAFFS</a>
-      <a href="/reglas/" class="active">REGLAS</a>
-      <a href="/requisitos/">REQUISITOS</a>
+      <a href="/staff/index.html">STAFFS</a>
+      <a href="/reglas/index.html" class="active">REGLAS</a>
+      <a href="/requisitos/index.html">REQUISITOS</a>
     </nav>
   </header>
 
-  <!-- HERO -->
   <section class="hero">
     <h1>REGLAMENTO</h1>
     <p>
-      LE RECORDAMOS QUE NO SABER LAS REGLAS, NO TE HACE INMUNE A ELLAS. <br>
-      EN CASO DE NO CUMPLIR DICHAS NORMAS, SE TE PODRÁ SANCIONAR SIN ADVERTENCIA. <br><br>
-      EL STAFF ADMINISTRATIVO <strong> PUEDE MODIFICAR </strong> ESTE REGLAMENTO CUANDO SEA NECESARIO Y SIN UN AVISO PREVIO.
+      LE RECORDAMOS QUE NO SABER LAS REGLAS, NO TE HACE INMUNE A ELLAS.<br>
+      EN CASO DE NO CUMPLIR DICHAS NORMAS, SE TE PODRÁ SANCIONAR SIN ADVERTENCIA.<br><br>
+      EL STAFF ADMINISTRATIVO <strong>PUEDE MODIFICAR</strong> ESTE REGLAMENTO CUANDO SEA NECESARIO Y SIN UN AVISO PREVIO.
     </p>
   </section>
 
-  <!-- FOOTER -->
   <footer>
     © 2025 Ivonia - Todos los derechos reservados.
   </footer>
