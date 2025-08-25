@@ -3,90 +3,106 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Reglamento - Nova</title>
+  <title>Reglamento - Ivonia</title>
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet" />
   <style>
-    body {
+    /* RESET */
+    * {
       margin: 0;
-      font-family: 'Poppins', sans-serif;
-      background: #0b2a38;
-      color: #fff;
+      padding: 0;
+      box-sizing: border-box;
     }
 
+    body {
+      font-family: 'Poppins', sans-serif;
+      background-color: #111111; /* Fondo oscuro */
+      color: #FFF6E5; /* Texto claro */
+    }
+
+    /* HEADER */
     header {
-      background: #004b60;
-      padding: 15px 40px;
       display: flex;
       align-items: center;
       justify-content: center;
+      padding: 15px 40px;
+      background-color: #1a1a1a;
     }
 
     nav {
       display: flex;
-      gap: 20px;
+      gap: 25px;
     }
 
     nav a {
-      color: white;
+      color: #FFB400;
       text-decoration: none;
       font-weight: 600;
-      transition: color 0.3s;
+      font-size: 14px;
+      transition: color 0.3s ease;
     }
 
-    nav a:hover,
-    nav a.active {
-      color: #ffef00;
+    nav a.active,
+    nav a:hover {
+      color: #FF8C00;
     }
 
+    /* HERO / SECCIÓN PRINCIPAL */
     .hero {
       text-align: center;
-      padding: 60px 20px 30px;
-      background: #0b2a38;
+      padding: 80px 20px 40px;
+      background: linear-gradient(to bottom, rgba(0,0,0,0.7), rgba(0,0,0,0)), url('fondo.jpg') no-repeat center center/cover;
     }
 
     .hero h1 {
-      font-size: 2.5rem;
-      margin-bottom: 15px;
+      font-size: 2.8rem;
+      margin-bottom: 20px;
+      color: #FFB400;
+      text-shadow: 0 0 10px #FF8C00, 0 0 20px rgba(255, 180, 0, 0.6);
     }
 
     .hero p {
-      max-width: 800px;
+      max-width: 900px;
       margin: 0 auto;
-      line-height: 1.6;
-      color: #ddd;
+      line-height: 1.7;
+      font-size: 1rem;
+      color: #FFF6E5;
     }
 
+    /* FOOTER */
     footer {
-      background: #004b60;
+      background: #1a1a1a;
       text-align: center;
       padding: 20px;
       color: #aaa;
       font-size: 0.9rem;
-      margin-top: 40px;
+      margin-top: 50px;
     }
   </style>
 </head>
 <body>
+  <!-- HEADER -->
   <header>
     <nav>
-      <a href="/" >INICIO</a>
+      <a href="/index.html">INICIO</a>
       <a href="/staff/">STAFFS</a>
       <a href="/reglas/" class="active">REGLAS</a>
       <a href="/requisitos/">REQUISITOS</a>
     </nav>
   </header>
 
+  <!-- HERO -->
   <section class="hero">
     <h1>REGLAMENTO</h1>
     <p>
-      LE RECORDAMOS QUE NO SABER LAS REGLAS, NO TE HACE INMUNE A ELLAS.<br>
-      EN CASO DE NO CUMPLIR DICHAS NORMAS, SE TE PODRÁ SANCIONAR SIN ADVERTENCIA.<br><br>
+      LE RECORDAMOS QUE NO SABER LAS REGLAS, NO TE HACE INMUNE A ELLAS. <br>
+      EN CASO DE NO CUMPLIR DICHAS NORMAS, SE TE PODRÁ SANCIONAR SIN ADVERTENCIA. <br><br>
       EL STAFF ADMINISTRATIVO <strong> PUEDE MODIFICAR </strong> ESTE REGLAMENTO CUANDO SEA NECESARIO Y SIN UN AVISO PREVIO.
     </p>
   </section>
 
+  <!-- FOOTER -->
   <footer>
-    © 2025 Nova - Todos los derechos reservados.
+    © 2025 Ivonia - Todos los derechos reservados.
   </footer>
 </body>
 </html>
