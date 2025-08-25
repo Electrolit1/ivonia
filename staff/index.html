@@ -26,7 +26,7 @@
     header {
       display: flex;
       align-items: center;
-      justify-content: center;
+      justify-content: flex-start; /* Botones a la izquierda */
       padding: 15px 50px;
       background-color: #1a1a1a;
       flex-wrap: wrap;
@@ -128,15 +128,15 @@
     @media (max-width: 900px) {
       header {
         flex-direction: column;
-        align-items: center;
+        align-items: flex-start; /* Botones también a la izquierda en móvil */
         padding: 15px 20px;
       }
 
       .nav-left {
         gap: 15px;
         width: 100%;
-        justify-content: center;
         margin-bottom: 10px;
+        flex-wrap: wrap;
       }
 
       .staff-row {
@@ -183,7 +183,7 @@
   </section>
 
   <footer>
-    © 2025 Nova - Todos los derechos reservados.
+    © 2025 Ivonia - Todos los derechos reservados.
   </footer>
 </body>
 </html>
