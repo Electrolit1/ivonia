@@ -3,26 +3,29 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Ivonia</title>
-    <link rel="stylesheet" href="styles.css" />
+    <title>Ivonia - Reglas</title>
+    <link rel="stylesheet" href="../styles.css" />
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet" />
     <style>
-        /* Botón copiar IP */
-        .copy-btn {
-            display: inline-block;
-            margin-top: 20px;
-            padding: 12px 25px;
-            background-color: orange;
-            color: white;
-            font-weight: 600;
-            border: none;
-            border-radius: 8px;
+        details {
+            background: #111;
+            padding: 15px;
+            margin: 10px 0;
+            border-radius: 10px;
             cursor: pointer;
-            font-size: 16px;
-            transition: 0.3s ease;
         }
-        .copy-btn:hover {
-            background-color: #ff9d00;
+        summary {
+            font-weight: 600;
+            font-size: 18px;
+            color: orange;
+            outline: none;
+        }
+        details[open] summary {
+            color: #ff9d00;
+        }
+        details ul {
+            margin-top: 10px;
+            margin-left: 20px;
         }
     </style>
 </head>
@@ -31,9 +34,9 @@
     <!-- HEADER -->
     <header>
         <nav class="nav-left">
-            <a href="index.html" class="active">INICIO</a>
-            <a href="staff/index.html">STAFFS</a>
-            <a href="reglas/index.html">REGLAS</a>
+            <a href="../index.html">INICIO</a>
+            <a href="../staff/index.html">STAFFS</a>
+            <a href="index.html" class="active">REGLAS</a>
             <a href="https://tienda.ivonia.us" target="_blank">TIENDA</a>
             <a href="https://discord.ivonia.us" target="_blank">DISCORD</a>
         </nav>
@@ -42,38 +45,50 @@
     <!-- SECCIÓN PRINCIPAL -->
     <section class="hero">
         <div class="hero-text">
-            <h1>IVONIA NETWORK</h1>
+            <h1>📜 REGLAMENTO DE IVONIA</h1>
             <p>
-                En <strong>Ivonia</strong> te espera una aventura increíble con nuestra modalidad principal: 
-                <span style="color:orange; font-weight:700;">Survival 1.20</span>. <br><br>
-
-                Aquí podrás disfrutar de la experiencia clásica de Minecraft pero con un toque mejorado: 
-                economía, protección de terrenos, sistemas de clanes y eventos especiales que harán que 
-                tu aventura nunca sea aburrida. <br><br>
-
-                Además, contamos con una comunidad activa y amigable que siempre está dispuesta a ayudarte, 
-                y con eventos épicos que se realizan semana a semana para que tengas la mejor experiencia. <br><br>
-
-                ¡Conéctate ahora y comienza tu historia en <strong>Ivonia</strong>!
+                ⚠️ <strong>Importante:</strong> El desconocimiento de las normas no exime de su cumplimiento.<br>
+                El staff administrativo puede modificar este reglamento en cualquier momento sin previo aviso.
             </p>
 
-            <!-- Botón Copiar IP -->
-            <button class="copy-btn" onclick="copiarIP()">📋 Copiar IP</button>
-        </div>
-        <div class="hero-img">
-            <a href="https://discord.gg/AFvq5vERyQ" target="_blank">
-                <img src="ivonia.png" alt="Logo Ivonia" class="floating-logo" />
-            </a>
+            <!-- REGLAS -->
+            <details>
+                <summary>🚫 Normas Generales</summary>
+                <ul>
+                    <li>No se permite el uso de hacks, cheats o mods ilegales.</li>
+                    <li>No hacer spam ni publicidad de otros servidores.</li>
+                    <li>Respetar a todos los jugadores y al staff.</li>
+                </ul>
+            </details>
+
+            <details>
+                <summary>💬 Normas de Chat</summary>
+                <ul>
+                    <li>No usar lenguaje ofensivo, racista o discriminatorio.</li>
+                    <li>Evitar flood, spam y mensajes innecesarios.</li>
+                    <li>Respetar siempre las indicaciones del staff.</li>
+                </ul>
+            </details>
+
+            <details>
+                <summary>⚔️ Normas de Juego</summary>
+                <ul>
+                    <li>Prohibido destruir construcciones ajenas (griefing).</li>
+                    <li>No aprovecharse de bugs, deben reportarse al staff.</li>
+                    <li>Está prohibido el uso de duplicaciones o exploits.</li>
+                </ul>
+            </details>
+
+            <details>
+                <summary>📢 Discord & Comunidad</summary>
+                <ul>
+                    <li>Respetar a todos los miembros de la comunidad.</li>
+                    <li>No realizar spam de enlaces o servidores externos.</li>
+                    <li>Mantener un ambiente amigable y seguro.</li>
+                </ul>
+            </details>
         </div>
     </section>
-
-    <script>
-        function copiarIP() {
-            navigator.clipboard.writeText("ivonia.us").then(() => {
-                alert("✅ IP copiada: ivonia.us");
-            });
-        }
-    </script>
 
 </body>
 </html>
