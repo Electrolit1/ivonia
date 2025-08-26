@@ -34,7 +34,7 @@
       color: #FFB400;
       text-decoration: none;
       font-weight: 600;
-      font-size: 14px; /* igual que el index principal */
+      font-size: 14px;
       transition: color 0.3s ease;
     }
 
@@ -50,8 +50,7 @@
     }
 
     .hero h1 {
-      font-family: 'Poppins', sans-serif; /* Cambié a Poppins normal */
-      font-size: 2rem; /* igual de proporcional que el index */
+      font-size: 2rem;
       font-weight: 700;
       margin-bottom: 15px;
       color: #FFB400;
@@ -61,24 +60,56 @@
 
     .hero p {
       max-width: 800px;
-      margin: 0 auto;
+      margin: 0 auto 20px;
       line-height: 1.6;
-      font-size: 0.95rem; /* texto igual al index */
+      font-size: 0.95rem;
       color: #FFF6E5;
       text-align: left;
     }
 
-    .hero ul {
+    /* ACCORDION */
+    .accordion {
       max-width: 800px;
-      margin: 20px auto 0;
-      padding-left: 20px;
-      line-height: 1.6;
+      margin: 0 auto;
+      text-align: left;
+    }
+
+    .accordion-item {
+      background: #1a1a1a;
+      border-radius: 8px;
+      margin-bottom: 10px;
+      overflow: hidden;
+      border: 1px solid #333;
+    }
+
+    .accordion-header {
+      padding: 12px 18px;
+      cursor: pointer;
+      background: #222;
+      color: #FFB400;
+      font-weight: 600;
       font-size: 0.95rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      transition: background 0.3s ease;
+    }
+
+    .accordion-header:hover {
+      background: #2a2a2a;
+    }
+
+    .accordion-content {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.4s ease, padding 0.3s ease;
+      padding: 0 18px;
+      font-size: 0.9rem;
       color: #FFF6E5;
     }
 
-    .hero ul li {
-      margin-bottom: 10px;
+    .accordion-content.open {
+      padding: 12px 18px;
     }
 
     /* FOOTER */
@@ -111,22 +142,78 @@
       EL STAFF ADMINISTRATIVO <strong>PUEDE MODIFICAR</strong> ESTE REGLAMENTO CUANDO SEA NECESARIO Y SIN UN AVISO PREVIO.
     </p>
 
-    <ul>
-      <li>No se permite el uso de hacks, cheats o modificaciones que den ventaja injusta en el juego.</li>
-      <li>El racismo, discriminación o lenguaje ofensivo hacia otros jugadores no será tolerado.</li>
-      <li>No hacer spam ni publicidad de otros servidores o plataformas.</li>
-      <li>El respeto hacia el staff y demás jugadores es obligatorio en todo momento.</li>
-      <li>No destruir construcciones de otros jugadores sin su permiso (griefing).</li>
-      <li>Evitar el uso de exploits o bugs para beneficio propio, reportarlos al staff si los encuentras.</li>
-      <li>Proteger tus cuentas y contraseñas, el servidor no se hace responsable por robos externos.</li>
-      <li>Respetar las reglas de chat y comunicación dentro del servidor y Discord.</li>
-      <li>Seguir las indicaciones del staff, incumplirlas puede derivar en sanciones.</li>
-      <li>Diviértete y colabora con la comunidad para mantener un ambiente agradable.</li>
-    </ul>
+    <div class="accordion">
+      <div class="accordion-item">
+        <div class="accordion-header">🚫 No se permite el uso de hacks, cheats o modificaciones.</div>
+        <div class="accordion-content">Cualquier software externo que otorgue ventaja injusta resultará en sanción inmediata.</div>
+      </div>
+
+      <div class="accordion-item">
+        <div class="accordion-header">❌ Prohibido el racismo, discriminación o lenguaje ofensivo.</div>
+        <div class="accordion-content">Se espera respeto entre todos los jugadores. Actitudes tóxicas no serán toleradas.</div>
+      </div>
+
+      <div class="accordion-item">
+        <div class="accordion-header">📢 No hacer spam ni publicidad de otros servidores.</div>
+        <div class="accordion-content">Mensajes repetitivos o promocionar otros servidores resultará en sanciones.</div>
+      </div>
+
+      <div class="accordion-item">
+        <div class="accordion-header">🤝 Respeto hacia staff y jugadores.</div>
+        <div class="accordion-content">Insultar o desobedecer a la administración podrá derivar en sanciones.</div>
+      </div>
+
+      <div class="accordion-item">
+        <div class="accordion-header">🏠 No destruir construcciones ajenas (griefing).</div>
+        <div class="accordion-content">Debes respetar las construcciones de los demás, incluso si no están protegidas.</div>
+      </div>
+
+      <div class="accordion-item">
+        <div class="accordion-header">⚠️ Evitar exploits o bugs.</div>
+        <div class="accordion-content">Si encuentras un bug, repórtalo al staff. Aprovecharlo resultará en sanción.</div>
+      </div>
+
+      <div class="accordion-item">
+        <div class="accordion-header">🔐 Proteger tus cuentas y contraseñas.</div>
+        <div class="accordion-content">El servidor no se responsabiliza por accesos indebidos debido a contraseñas débiles.</div>
+      </div>
+
+      <div class="accordion-item">
+        <div class="accordion-header">💬 Reglas de chat y comunicación.</div>
+        <div class="accordion-content">No uses mayúsculas excesivas, flood o lenguaje inapropiado.</div>
+      </div>
+
+      <div class="accordion-item">
+        <div class="accordion-header">📜 Seguir indicaciones del staff.</div>
+        <div class="accordion-content">El incumplimiento de órdenes puede resultar en sanciones graves.</div>
+      </div>
+
+      <div class="accordion-item">
+        <div class="accordion-header">🎉 Diviértete y respeta la comunidad.</div>
+        <div class="accordion-content">El objetivo es disfrutar y mantener un ambiente agradable.</div>
+      </div>
+    </div>
   </section>
 
   <footer>
     © 2025 Ivonia - Todos los derechos reservados.
   </footer>
+
+  <script>
+    const headers = document.querySelectorAll(".accordion-header");
+
+    headers.forEach(header => {
+      header.addEventListener("click", () => {
+        const content = header.nextElementSibling;
+        content.classList.toggle("open");
+
+        if (content.style.maxHeight) {
+          content.style.maxHeight = null;
+        } else {
+          content.style.maxHeight = content.scrollHeight + "px";
+        }
+      });
+    });
+  </script>
 </body>
 </html>
