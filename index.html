@@ -6,6 +6,25 @@
     <title>Ivonia</title>
     <link rel="stylesheet" href="styles.css" />
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet" />
+    <style>
+        /* Botón copiar IP */
+        .copy-btn {
+            display: inline-block;
+            margin-top: 20px;
+            padding: 12px 25px;
+            background-color: orange;
+            color: white;
+            font-weight: 600;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: 0.3s ease;
+        }
+        .copy-btn:hover {
+            background-color: #ff9d00;
+        }
+    </style>
 </head>
 <body>
 
@@ -37,6 +56,9 @@
 
                 ¡Conéctate ahora y comienza tu historia en <strong>Ivonia</strong>!
             </p>
+
+            <!-- Botón Copiar IP -->
+            <button class="copy-btn" onclick="copiarIP()">📋 Copiar IP</button>
         </div>
         <div class="hero-img">
             <a href="https://discord.gg/AFvq5vERyQ" target="_blank">
@@ -44,6 +66,14 @@
             </a>
         </div>
     </section>
+
+    <script>
+        function copiarIP() {
+            navigator.clipboard.writeText("ivonia.us").then(() => {
+                alert("✅ IP copiada: ivonia.us");
+            });
+        }
+    </script>
 
 </body>
 </html>
