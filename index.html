@@ -4,6 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Ivonia</title>
+    <link rel="icon" type="image/png" href="ivonia.png" /> <!-- 🔹 Logo en pestaña -->
     <link rel="stylesheet" href="styles.css" />
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet" />
     <style>
@@ -41,50 +42,20 @@
         .admin-btn:hover {
             background: #a00;
         }
-
-        /* Logo */
-        .logo {
-            height: 45px;
-            margin-right: 20px;
-        }
-
-        header {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            padding: 15px 50px;
-        }
-
-        .nav-left {
-            display: flex;
-            align-items: center;
-            gap: 15px;
-        }
-
-        .nav-left a {
-            text-decoration: none;
-            color: white;
-            font-weight: 600;
-        }
-
-        .nav-left a:hover {
-            color: orange;
-        }
     </style>
 </head>
 <body>
 
     <!-- HEADER -->
     <header>
-        <div class="nav-left">
-            <img src="ivonia.png" alt="Logo Ivonia" class="logo" />
+        <nav class="nav-left">
             <a href="index.html" class="active">INICIO</a>
             <a href="staff/">STAFFS</a>
             <a href="reglas/">REGLAS</a>
             <a href="https://tienda.ivonia.us" target="_blank">TIENDA</a>
             <a href="https://discord.ivonia.us" target="_blank">DISCORD</a>
             <a href="admin/index.html" class="admin-btn">Admin</a>
-        </div>
+        </nav>
     </header>
 
     <!-- SECCIÓN PRINCIPAL -->
