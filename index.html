@@ -41,20 +41,50 @@
         .admin-btn:hover {
             background: #a00;
         }
+
+        /* Logo */
+        .logo {
+            height: 45px;
+            margin-right: 20px;
+        }
+
+        header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 15px 50px;
+        }
+
+        .nav-left {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .nav-left a {
+            text-decoration: none;
+            color: white;
+            font-weight: 600;
+        }
+
+        .nav-left a:hover {
+            color: orange;
+        }
     </style>
 </head>
 <body>
 
     <!-- HEADER -->
     <header>
-        <nav class="nav-left">
+        <div class="nav-left">
+            <img src="ivonia.png" alt="Logo Ivonia" class="logo" />
             <a href="index.html" class="active">INICIO</a>
             <a href="staff/">STAFFS</a>
             <a href="reglas/">REGLAS</a>
             <a href="https://tienda.ivonia.us" target="_blank">TIENDA</a>
             <a href="https://discord.ivonia.us" target="_blank">DISCORD</a>
             <a href="admin/index.html" class="admin-btn">Admin</a>
-        </nav>
+        </div>
     </header>
 
     <!-- SECCIÓN PRINCIPAL -->
