@@ -7,6 +7,51 @@
     <link rel="stylesheet" href="../styles.css" />
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet" />
     <style>
+        body {
+            margin: 0;
+            font-family: 'Poppins', sans-serif;
+            background: #000;
+            color: #fff;
+        }
+
+        /* 🔹 NAV compacta */
+        header {
+            background: #111;
+            padding: 8px 12px;
+        }
+
+        .nav-left {
+            display: flex;
+            gap: 10px;
+            overflow-x: auto;
+            white-space: nowrap;
+            scrollbar-width: none; /* Ocultar scrollbar en Firefox */
+        }
+        .nav-left::-webkit-scrollbar {
+            display: none; /* Ocultar scrollbar en Chrome/Safari */
+        }
+
+        .nav-left a {
+            display: inline-block;
+            padding: 6px 12px;
+            font-size: 14px;
+            font-weight: 600;
+            color: #fff;
+            text-decoration: none;
+            border-radius: 6px;
+            transition: 0.3s;
+            flex-shrink: 0;
+        }
+        .nav-left a:hover {
+            background: #ff7b00;
+            color: #fff;
+        }
+        .nav-left a.active {
+            background: #ff7b00;
+            color: #fff;
+        }
+
+        /* 🔹 Estilo de las reglas */
         details {
             background: #111;
             padding: 15px;
