@@ -30,6 +30,45 @@
         .copy-btn:hover {
             background-color: #ff9d00;
         }
+
+        /* Mensaje animado */
+        .copy-msg {
+            position: fixed;
+            background: #1e1e1e;
+            color: #fff;
+            padding: 12px 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.4);
+            opacity: 0;
+            transform: translateY(-20px);
+            animation: fadeInOut 2s ease forwards;
+            font-weight: bold;
+            z-index: 9999;
+        }
+
+        /* Posición en PC */
+        @media (min-width: 600px) {
+            .copy-msg {
+                top: 20px;
+                right: 20px;
+            }
+        }
+
+        /* Posición en móviles */
+        @media (max-width: 599px) {
+            .copy-msg {
+                bottom: 20px;
+                left: 50%;
+                transform: translateX(-50%) translateY(20px);
+            }
+        }
+
+        @keyframes fadeInOut {
+            0% { opacity: 0; transform: translateY(-20px); }
+            15% { opacity: 1; transform: translateY(0); }
+            85% { opacity: 1; transform: translateY(0); }
+            100% { opacity: 0; transform: translateY(-20px); }
+        }
     </style>
 </head>
 <body>
@@ -76,8 +115,19 @@
     <script>
         function copiarIP() {
             navigator.clipboard.writeText("ivonia.us").then(() => {
-                alert("✅ IP copiada: ivonia.us");
+                mostrarMensaje("✅ IP copiada: ivonia.us");
             });
+        }
+
+        function mostrarMensaje(texto) {
+            const msg = document.createElement("div");
+            msg.className = "copy-msg";
+            msg.innerText = texto;
+            document.body.appendChild(msg);
+
+            setTimeout(() => {
+                msg.remove();
+            }, 2000); // Se borra en 2 segundos
         }
     </script>
 
