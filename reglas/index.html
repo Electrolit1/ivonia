@@ -4,7 +4,6 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Ivonia - Reglas</title>
-    <link rel="stylesheet" href="../styles.css" />
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet" />
     <style>
         body {
@@ -34,24 +33,36 @@
         .nav-left a {
             display: inline-block;
             padding: 6px 12px;
-            font-size: 14px;
+            font-size: 13px; /* Más compacto */
             font-weight: 600;
-            color: #fff;
+            color: #FFB400;
             text-decoration: none;
             border-radius: 6px;
             transition: 0.3s;
             flex-shrink: 0;
         }
         .nav-left a:hover {
-            background: #ff7b00;
-            color: #fff;
+            background: rgba(255, 140, 0, 0.15);
+            color: #FF8C00;
         }
         .nav-left a.active {
-            background: #ff7b00;
-            color: #fff;
+            background: rgba(255, 140, 0, 0.25);
+            color: #FF8C00;
         }
 
         /* 🔹 Estilo de las reglas */
+        .hero {
+            padding: 30px 15px;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .hero h1 {
+            color: #FFB400;
+            font-size: 2rem;
+            margin-bottom: 15px;
+        }
+
         details {
             background: #111;
             padding: 15px;
@@ -72,6 +83,16 @@
             margin-top: 10px;
             margin-left: 20px;
         }
+
+        /* 🔹 FOOTER */
+        footer {
+            text-align: center;
+            padding: 20px;
+            background-color: #111;
+            color: #bbb;
+            font-size: 14px;
+            margin-top: 40px;
+        }
     </style>
 </head>
 <body>
@@ -80,8 +101,8 @@
     <header>
         <nav class="nav-left">
             <a href="/">INICIO</a>
-            <a href="/staff/" class="active">STAFFS</a>
-            <a href="/reglas/">REGLAS</a>
+            <a href="/staff/">STAFFS</a>
+            <a href="/reglas/" class="active">REGLAS</a>
             <a href="https://tienda.ivonia.us" target="_blank">TIENDA</a>
             <a href="https://discord.ivonia.us" target="_blank">DISCORD</a>
         </nav>
@@ -136,7 +157,7 @@
     </section>
 
     <!-- FOOTER -->
-    <footer style="text-align: center; padding: 20px; background-color: #111; color: white; font-size: 14px;">
+    <footer>
         © 2025 Ivonia - Todos los derechos reservados.
     </footer>
 
