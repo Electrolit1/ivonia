@@ -1,165 +1,183 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Ivonia - Reglas</title>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet" />
-    <style>
-        body {
-            margin: 0;
-            font-family: 'Poppins', sans-serif;
-            background: #000;
-            color: #fff;
-        }
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Ivonia - Reglas</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet" />
+  <style>
+    /* RESET */
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
 
-        /* 🔹 NAV compacta */
-        header {
-            background: #111;
-            padding: 8px 12px;
-        }
+    body {
+      font-family: 'Poppins', sans-serif;
+      background-color: #111111; /* Fondo oscuro */
+      color: #FFF6E5; /* Texto claro */
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
 
-        .nav-left {
-            display: flex;
-            gap: 10px;
-            overflow-x: auto;
-            white-space: nowrap;
-            scrollbar-width: none; /* Ocultar scrollbar en Firefox */
-        }
-        .nav-left::-webkit-scrollbar {
-            display: none; /* Ocultar scrollbar en Chrome/Safari */
-        }
+    /* HEADER */
+    header {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 15px 25px;
+      background-color: #141414;
+    }
 
-        .nav-left a {
-            display: inline-block;
-            padding: 6px 12px;
-            font-size: 13px; /* Más compacto */
-            font-weight: 600;
-            color: #FFB400;
-            text-decoration: none;
-            border-radius: 6px;
-            transition: 0.3s;
-            flex-shrink: 0;
-        }
-        .nav-left a:hover {
-            background: rgba(255, 140, 0, 0.15);
-            color: #FF8C00;
-        }
-        .nav-left a.active {
-            background: rgba(255, 140, 0, 0.25);
-            color: #FF8C00;
-        }
+    .nav-left {
+      display: flex;
+      align-items: center;
+      gap: 30px;
+    }
 
-        /* 🔹 Estilo de las reglas */
-        .hero {
-            padding: 30px 15px;
-            max-width: 900px;
-            margin: 0 auto;
-        }
+    .nav-left a {
+      color: #f2f2f2;
+      text-decoration: none;
+      font-weight: 700;
+      font-size: 14px;
+      transition: all 0.3s ease;
+      padding: 8px 16px;
+      border-radius: 8px;
+    }
 
-        .hero h1 {
-            color: #FFB400;
-            font-size: 2rem;
-            margin-bottom: 15px;
-        }
+    .nav-left a.active {
+      background-color: #3a250c;
+      color: #ff8800;
+    }
 
-        details {
-            background: #111;
-            padding: 15px;
-            margin: 10px 0;
-            border-radius: 10px;
-            cursor: pointer;
-        }
-        summary {
-            font-weight: 600;
-            font-size: 18px;
-            color: orange;
-            outline: none;
-        }
-        details[open] summary {
-            color: #ff9d00;
-        }
-        details ul {
-            margin-top: 10px;
-            margin-left: 20px;
-        }
+    .nav-left a:hover {
+      background-color: #3a250c;
+      color: #ff8800;
+    }
 
-        /* 🔹 FOOTER */
-        footer {
-            text-align: center;
-            padding: 20px;
-            background-color: #111;
-            color: #bbb;
-            font-size: 14px;
-            margin-top: 40px;
-        }
-    </style>
+    /* REGLAS SECTION */
+    .rules-section {
+      padding: 40px 10%;
+      max-width: 900px;
+      margin: 0 auto;
+      flex-grow: 1;
+    }
+
+    .rules-section h1 {
+      font-size: 2rem;
+      margin-bottom: 20px;
+      color: #FFB400;
+      font-weight: 700;
+    }
+
+    details {
+      background: #1a1a1a;
+      padding: 20px;
+      margin: 15px 0;
+      border-radius: 12px;
+      cursor: pointer;
+      transition: background 0.3s ease, box-shadow 0.3s ease;
+      box-shadow: 0 0 8px rgba(255, 140, 0, 0.2);
+    }
+
+    details:hover {
+      box-shadow: 0 8px 24px rgba(255, 140, 0, 0.5);
+    }
+
+    summary {
+      font-weight: 600;
+      font-size: 18px;
+      color: #FFB400;
+      outline: none;
+    }
+
+    details[open] summary {
+      color: #ff8800;
+    }
+
+    details ul {
+      margin-top: 10px;
+      margin-left: 20px;
+      color: #DDD;
+      list-style-type: disc;
+    }
+
+    /* FOOTER */
+    footer {
+      background-color: #1a1a1a;
+      padding: 20px;
+      text-align: center;
+      color: #888;
+      font-size: 0.85rem;
+      margin-top: auto;
+      box-shadow: inset 0 1px 0 rgba(255,255,255,0.05);
+    }
+  </style>
 </head>
 <body>
 
-    <!-- HEADER -->
-    <header>
-        <nav class="nav-left">
-            <a href="/">INICIO</a>
-            <a href="/staff/">STAFFS</a>
-            <a href="/reglas/" class="active">REGLAS</a>
-            <a href="https://tienda.ivonia.us" target="_blank">TIENDA</a>
-            <a href="https://discord.ivonia.us" target="_blank">DISCORD</a>
-        </nav>
-    </header>
+  <!-- HEADER -->
+  <header>
+    <nav class="nav-left">
+      <a href="/">INICIO</a>
+      <a href="/staff/">STAFFS</a>
+      <a href="/reglas/" class="active">REGLAS</a>
+      <a href="https://tienda.ivonia.us" target="_blank">TIENDA</a>
+      <a href="https://discord.ivonia.us" target="_blank">DISCORD</a>
+    </nav>
+  </header>
 
-    <!-- SECCIÓN PRINCIPAL -->
-    <section class="hero">
-        <div class="hero-text">
-            <h1>REGLAMENTO</h1>
-            <p>
-                ⚠️ <strong>Importante:</strong> El desconocimiento de las normas no exime de su cumplimiento.<br>
-                El staff administrativo puede modificar este reglamento en cualquier momento sin previo aviso.
-            </p>
+  <!-- SECCIÓN PRINCIPAL -->
+  <section class="rules-section">
+    <h1>REGLAMENTO</h1>
+    <p>
+      ⚠️ <strong>Importante:</strong> El desconocimiento de las normas no exime de su cumplimiento.<br>
+      El staff administrativo puede modificar este reglamento en cualquier momento sin previo aviso.
+    </p>
 
-            <!-- REGLAS -->
-            <details>
-                <summary>🚫 Normas Generales</summary>
-                <ul>
-                    <li>No se permite el uso de hacks, cheats o mods ilegales.</li>
-                    <li>No hacer spam ni publicidad de otros servidores.</li>
-                    <li>Respetar a todos los jugadores y al staff.</li>
-                </ul>
-            </details>
+    <details>
+      <summary>🚫 Normas Generales</summary>
+      <ul>
+        <li>No se permite el uso de hacks, cheats o mods ilegales.</li>
+        <li>No hacer spam ni publicidad de otros servidores.</li>
+        <li>Respetar a todos los jugadores y al staff.</li>
+      </ul>
+    </details>
 
-            <details>
-                <summary>💬 Normas de Chat</summary>
-                <ul>
-                    <li>No usar lenguaje ofensivo, racista o discriminatorio.</li>
-                    <li>Evitar flood, spam y mensajes innecesarios.</li>
-                    <li>Respetar siempre las indicaciones del staff.</li>
-                </ul>
-            </details>
+    <details>
+      <summary>💬 Normas de Chat</summary>
+      <ul>
+        <li>No usar lenguaje ofensivo, racista o discriminatorio.</li>
+        <li>Evitar flood, spam y mensajes innecesarios.</li>
+        <li>Respetar siempre las indicaciones del staff.</li>
+      </ul>
+    </details>
 
-            <details>
-                <summary>⚔️ Normas de Juego</summary>
-                <ul>
-                    <li>Prohibido destruir construcciones ajenas (griefing).</li>
-                    <li>No aprovecharse de bugs, deben reportarse al staff.</li>
-                    <li>Está prohibido el uso de duplicaciones o exploits.</li>
-                </ul>
-            </details>
+    <details>
+      <summary>⚔️ Normas de Juego</summary>
+      <ul>
+        <li>Prohibido destruir construcciones ajenas (griefing).</li>
+        <li>No aprovecharse de bugs, deben reportarse al staff.</li>
+        <li>Está prohibido el uso de duplicaciones o exploits.</li>
+      </ul>
+    </details>
 
-            <details>
-                <summary>📢 Discord & Comunidad</summary>
-                <ul>
-                    <li>Respetar a todos los miembros de la comunidad.</li>
-                    <li>No realizar spam de enlaces o servidores externos.</li>
-                    <li>Mantener un ambiente amigable y seguro.</li>
-                </ul>
-            </details>
-        </div>
-    </section>
+    <details>
+      <summary>📢 Discord & Comunidad</summary>
+      <ul>
+        <li>Respetar a todos los miembros de la comunidad.</li>
+        <li>No realizar spam de enlaces o servidores externos.</li>
+        <li>Mantener un ambiente amigable y seguro.</li>
+      </ul>
+    </details>
+  </section>
 
-    <!-- FOOTER -->
-    <footer>
-        © 2025 Ivonia - Todos los derechos reservados.
-    </footer>
+  <!-- FOOTER -->
+  <footer>
+    © 2025 Ivonia - Todos los derechos reservados.
+  </footer>
 
 </body>
 </html>
