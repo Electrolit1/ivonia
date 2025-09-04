@@ -26,30 +26,30 @@
     header {
       display: flex;
       align-items: center;
-      justify-content: center; /* Centrado como en la imagen */
+      justify-content: center;
       padding: 15px 25px;
-      background-color: #141414; /* Fondo del header */
+      background-color: #141414;
     }
 
     .nav-left {
       display: flex;
       align-items: center;
-      gap: 30px; /* Espaciado entre botones */
+      gap: 30px;
     }
 
     .nav-left a {
-      color: #f2f2f2; /* Texto claro */
+      color: #f2f2f2;
       text-decoration: none;
       font-weight: 700;
       font-size: 14px;
       transition: all 0.3s ease;
-      padding: 6px 14px;
+      padding: 8px 16px;
       border-radius: 8px;
     }
 
     .nav-left a.active {
-      background-color: #3a250c; /* Fondo marrón oscuro */
-      color: #ff8800; /* Texto naranja */
+      background-color: #3a250c;
+      color: #ff8800;
     }
 
     .nav-left a:hover {
@@ -85,18 +85,19 @@
       padding: 20px;
       text-align: center;
       width: 220px;
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      transition: transform 0.3s ease, box-shadow 0.3s ease, background 0.3s ease;
       box-shadow: 0 0 8px rgba(255, 140, 0, 0.3);
     }
 
     .staff-member:hover {
       transform: translateY(-6px);
       box-shadow: 0 8px 24px rgba(255, 140, 0, 0.6);
+      background: #222222; /* Fondo un poco más brillante al hover */
     }
 
     .staff-member img {
-      width: 80px;
-      height: 80px;
+      width: 90px; /* Más grande para destacar */
+      height: 90px;
       border-radius: 50%;
       object-fit: cover;
       margin-bottom: 15px;
@@ -104,14 +105,14 @@
     }
 
     .staff-member h3 {
-      font-size: 1.1rem;
+      font-size: 1.2rem;
       margin-bottom: 5px;
       font-weight: 600;
       color: #FFF6E5;
     }
 
     .staff-member span {
-      font-size: 0.85rem;
+      font-size: 0.9rem;
       color: #aaa;
     }
 
