@@ -9,7 +9,7 @@
     body {
       margin: 0;
       font-family: "Poppins", sans-serif;
-      background: linear-gradient(to bottom, #0b0f17, #121826);
+      background: #000; /* 🔹 Fondo original negro */
       color: white;
     }
 
@@ -49,8 +49,8 @@
       margin: auto;
       display: flex;
       align-items: center;
-      justify-content: flex-start; /* Texto a la izquierda */
-      gap: 60px; /* Espacio entre logo y texto */
+      justify-content: space-between; /* 🔹 separa texto y logo */
+      gap: 40px;
     }
 
     .hero-text {
@@ -77,8 +77,12 @@
       max-width: 420px;
     }
 
+    .hero-img {
+      flex: 0 0 auto;
+      margin-left: 30px; /* 🔹 corre un poco el logo a la izquierda */
+    }
     .hero-img img {
-      width: 200px; 
+      width: 240px; /* 🔹 un poco más grande */
       height: auto;
       border-radius: 15px;
       animation: float 3s ease-in-out infinite;
@@ -129,6 +133,7 @@
       .copy-msg { bottom: 20px; left: 50%; transform: translateX(-50%); }
       .hero { flex-direction: column; text-align: center; }
       .hero-text { text-align: center; }
+      .hero-img { margin-left: 0; }
     }
 
     @keyframes fadeInOut {
