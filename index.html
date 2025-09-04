@@ -5,43 +5,36 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Ivonia</title>
 
-  <!-- Favicon -->
-  <link rel="icon" type="image/png" sizes="64x64" href="ivonia.png">
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet" />
-
   <style>
     body {
       margin: 0;
-      font-family: 'Poppins', sans-serif;
-      background: #000;
-      color: #fff;
+      font-family: "Poppins", sans-serif;
+      background: linear-gradient(to bottom, #0b0f17, #121826);
+      color: white;
     }
 
-    /* NAV compacta */
+    /* NAV */
     header {
-      background: #111;
-      padding: 8px 12px;
+      background-color: #111;
+      padding: 15px;
+      text-align: center;
     }
     .nav-left {
       display: flex;
-      gap: 10px;
-      overflow-x: auto;
-      white-space: nowrap;
-      scrollbar-width: none;
+      justify-content: center;
+      gap: 25px;
     }
-    .nav-left::-webkit-scrollbar { display: none; }
     .nav-left a {
-      padding: 6px 12px;
-      font-size: 13px;
-      font-weight: 600;
-      color: #FFB400;
+      color: #ccc;
       text-decoration: none;
-      border-radius: 6px;
+      font-weight: 600;
+      font-size: 15px;
+      padding: 8px 14px;
+      border-radius: 8px;
       transition: 0.3s;
-      flex-shrink: 0;
     }
     .nav-left a:hover {
-      background: rgba(255, 140, 0, 0.15);
+      background: rgba(255, 140, 0, 0.2);
       color: #FF8C00;
     }
     .nav-left a.active {
@@ -51,34 +44,49 @@
 
     /* HERO */
     .hero {
-      padding: 40px 20px;
-      max-width: 1000px;
+      padding: 80px 20px;
+      max-width: 1200px;
       margin: auto;
       display: flex;
-      flex-wrap: wrap;
       align-items: center;
-      justify-content: center;
-      gap: 30px;
-      text-align: center;
+      justify-content: flex-start; /* Texto a la izquierda */
+      gap: 60px; /* Espacio entre logo y texto */
     }
+
     .hero-text {
-      flex: 1 1 400px;
+      flex: 1;
+      text-align: left;
     }
+
     .hero h1 {
-      color: #FFB400;
-      font-size: 2.2rem;
-      margin-bottom: 15px;
+      font-size: 2.8rem; /* Más grande */
+      font-weight: 900;
+      color: #fff;
+      margin-bottom: 20px;
+      line-height: 1.2;
     }
+
+    .hero h1 span {
+      color: #FFB400;
+    }
+
+    .hero p {
+      font-size: 1rem;
+      color: #ccc;
+      margin-bottom: 30px;
+      max-width: 420px;
+    }
+
     .hero-img img {
-      width: 200px; /* 🔹 más grande */
+      width: 200px; 
       height: auto;
-      border-radius: 20px;
-      animation: float 3s ease-in-out infinite; /* 🔹 animación flotante */
+      border-radius: 15px;
+      animation: float 3s ease-in-out infinite;
     }
 
     @keyframes float {
       0%, 100% { transform: translateY(0); }
-      50% { transform: translateY(-12px); }
+      50% { transform: translateY(-10px); }
     }
 
     /* Botón Copiar IP */
@@ -119,6 +127,8 @@
     }
     @media (max-width: 599px) {
       .copy-msg { bottom: 20px; left: 50%; transform: translateX(-50%); }
+      .hero { flex-direction: column; text-align: center; }
+      .hero-text { text-align: center; }
     }
 
     @keyframes fadeInOut {
@@ -126,16 +136,6 @@
       15% { opacity: 1; transform: translateY(0); }
       85% { opacity: 1; }
       100% { opacity: 0; transform: translateY(-10px); }
-    }
-
-    /* FOOTER */
-    footer {
-      text-align: center;
-      padding: 20px;
-      background-color: #111;
-      color: #bbb;
-      font-size: 14px;
-      margin-top: 40px;
     }
   </style>
 </head>
@@ -155,26 +155,19 @@
   <!-- HERO -->
   <section class="hero">
     <div class="hero-text">
-      <h1>IVONIA NETWORK</h1>
+      <h1>¿BUSCAS<br><span>DIVERSIÓN</span> EN<br>MINECRAFT?</h1>
       <p>
-        En <strong>Ivonia</strong> te espera una aventura increíble con nuestra modalidad principal: 
-        <span style="color:orange; font-weight:700;">Survival 1.20</span>. <br><br>
-        Disfruta de la experiencia clásica de Minecraft con economía, clanes, eventos semanales y más. <br><br>
-        ¡Conéctate ahora y comienza tu historia en <strong>Ivonia</strong>!
+        En <strong>Ivonia</strong> encontrarás <span style="color:#FFB400;font-weight:600;">Survival 1.20</span>, con economía, clanes y eventos semanales en una gran comunidad.
       </p>
-      <button class="copy-btn" onclick="copiarIP()">📋 Copiar IP</button>
+      <button class="copy-btn" onclick="copiarIP()">📋 COPIAR IP</button>
     </div>
+
     <div class="hero-img">
       <a href="https://discord.gg/BvHPXn2uQx" target="_blank">
         <img src="ivonia.png" alt="Logo Ivonia" />
       </a>
     </div>
   </section>
-
-  <!-- FOOTER -->
-  <footer>
-    © 2025 Ivonia - Todos los derechos reservados.
-  </footer>
 
   <script>
     function copiarIP() {
