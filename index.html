@@ -10,27 +10,68 @@
     <link rel="icon" type="image/png" sizes="64x64" href="ivonia.png">
     <link rel="icon" type="image/png" sizes="128x128" href="ivonia.png">
 
-    <link rel="stylesheet" href="styles.css" />
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet" />
     <style>
-        /* 🔹 Botones menú y copiar IP */
-        .nav-left a,
+        body {
+            margin: 0;
+            font-family: 'Poppins', sans-serif;
+            background: #000;
+            color: #fff;
+        }
+
+        /* 🔹 NAV compacta (igual a reglas.html) */
+        header {
+            background: #111;
+            padding: 8px 12px;
+        }
+
+        .nav-left {
+            display: flex;
+            gap: 10px;
+            overflow-x: auto;
+            white-space: nowrap;
+            scrollbar-width: none; /* Ocultar scrollbar en Firefox */
+        }
+        .nav-left::-webkit-scrollbar {
+            display: none; /* Ocultar scrollbar en Chrome/Safari */
+        }
+
+        .nav-left a {
+            display: inline-block;
+            padding: 6px 12px;
+            font-size: 13px; /* Compacto */
+            font-weight: 600;
+            color: #FFB400;
+            text-decoration: none;
+            border-radius: 6px;
+            transition: 0.3s;
+            flex-shrink: 0;
+        }
+        .nav-left a:hover {
+            background: rgba(255, 140, 0, 0.15);
+            color: #FF8C00;
+        }
+        .nav-left a.active {
+            background: rgba(255, 140, 0, 0.25);
+            color: #FF8C00;
+        }
+
+        /* 🔹 Botón copiar IP */
         .copy-btn {
             display: inline-block;
-            padding: 8px 16px;
-            background-color: #ff9d00;
+            margin-top: 20px;
+            padding: 12px 25px;
+            background-color: orange;
             color: white;
             font-weight: 600;
             border: none;
-            border-radius: 6px;
+            border-radius: 8px;
             cursor: pointer;
-            font-size: 14px;
+            font-size: 16px;
             transition: 0.3s ease;
-            text-decoration: none;
         }
-        .nav-left a:hover,
         .copy-btn:hover {
-            background-color: #e88b00;
+            background-color: #ff9d00;
         }
 
         /* 🔹 Mensaje animado */
@@ -71,6 +112,18 @@
             85% { opacity: 1; transform: translateY(0); }
             100% { opacity: 0; transform: translateY(-20px); }
         }
+
+        /* 🔹 HERO */
+        .hero {
+            padding: 30px 15px;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+        .hero h1 {
+            color: #FFB400;
+            font-size: 2rem;
+            margin-bottom: 15px;
+        }
     </style>
 </head>
 <body>
@@ -104,7 +157,7 @@
                 ¡Conéctate ahora y comienza tu historia en <strong>Ivonia</strong>!
             </p>
 
-            <!-- Botón Copiar IP (igual que los de arriba) -->
+            <!-- Botón Copiar IP -->
             <button class="copy-btn" onclick="copiarIP()">📋 Copiar IP</button>
         </div>
         <div class="hero-img">
@@ -113,6 +166,11 @@
             </a>
         </div>
     </section>
+
+    <!-- FOOTER -->
+    <footer style="text-align: center; padding: 20px; background-color: #111; color: #bbb; font-size: 14px; margin-top: 40px;">
+        © 2025 Ivonia - Todos los derechos reservados.
+    </footer>
 
     <script>
         function copiarIP() {
