@@ -26,33 +26,35 @@
     header {
       display: flex;
       align-items: center;
-      justify-content: flex-start; /* Botones a la izquierda */
-      padding: 12px 25px;
-      background-color: #1a1a1a;
-      flex-wrap: wrap;
+      justify-content: center; /* Centrado como en la imagen */
+      padding: 15px 25px;
+      background-color: #141414; /* Fondo del header */
     }
 
     .nav-left {
       display: flex;
       align-items: center;
-      gap: 12px;
-      flex-wrap: wrap;
+      gap: 30px; /* Espaciado entre botones */
     }
 
     .nav-left a {
-      color: #FFB400; /* Naranja base */
+      color: #f2f2f2; /* Texto claro */
       text-decoration: none;
-      font-weight: 600;
-      font-size: 13px; /* Más pequeño y compacto */
-      transition: color 0.3s ease;
-      padding: 5px 9px; /* Ajustado al tamaño más chico */
-      border-radius: 6px;
+      font-weight: 700;
+      font-size: 14px;
+      transition: all 0.3s ease;
+      padding: 6px 14px;
+      border-radius: 8px;
     }
 
-    .nav-left a.active,
+    .nav-left a.active {
+      background-color: #3a250c; /* Fondo marrón oscuro */
+      color: #ff8800; /* Texto naranja */
+    }
+
     .nav-left a:hover {
-      color: #FF8C00; /* Naranja acento */
-      background-color: rgba(255, 140, 0, 0.15);
+      background-color: #3a250c;
+      color: #ff8800;
     }
 
     /* STAFF SECTION */
@@ -66,7 +68,7 @@
     .staff-section h2 {
       font-size: 1.8rem;
       margin-bottom: 30px;
-      color: #FFB400; /* Títulos en naranja */
+      color: #FFB400;
       font-weight: 700;
     }
 
@@ -123,42 +125,17 @@
       margin-top: auto;
       box-shadow: inset 0 1px 0 rgba(255,255,255,0.05);
     }
-
-    /* RESPONSIVE */
-    @media (max-width: 900px) {
-      header {
-        flex-direction: column;
-        align-items: flex-start;
-        padding: 12px 20px;
-      }
-
-      .nav-left {
-        gap: 10px;
-        width: 100%;
-        margin-bottom: 10px;
-        flex-wrap: wrap;
-      }
-
-      .staff-row {
-        flex-direction: column;
-        align-items: center;
-      }
-
-      .staff-member {
-        width: 90%;
-      }
-    }
   </style>
 </head>
 <body>
   <header>
-    <div class="nav-left">
-      <a href="/">INICIO</a>
-      <a href="/staff/" class="active">STAFFS</a>
+    <nav class="nav-left">
+      <a href="/" class="active">INICIO</a>
+      <a href="/staff/">STAFFS</a>
       <a href="/reglas/">REGLAS</a>
       <a href="https://tienda.ivonia.us" target="_blank">TIENDA</a>
       <a href="https://discord.ivonia.us" target="_blank">DISCORD</a>
-    </div>
+    </nav>
   </header>
 
   <section class="staff-section">
