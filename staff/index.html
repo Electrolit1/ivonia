@@ -3,236 +3,186 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Ivonia</title>
-
+  <title>Ivonia - Staff</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet" />
   <style>
-    body {
+    /* RESET */
+    * {
+      box-sizing: border-box;
       margin: 0;
-      font-family: "Poppins", sans-serif;
-      background: #000;
-      color: white;
+      padding: 0;
     }
 
-    /* NAV */
+    body {
+      font-family: 'Poppins', sans-serif;
+      background-color: #111111; /* Fondo oscuro */
+      color: #FFF6E5; /* Texto claro */
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* HEADER */
     header {
-      background-color: #111;
-      padding: 15px;
-      text-align: center;
-      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: flex-start; /* Botones a la izquierda */
+      padding: 12px 25px;
+      background-color: #1a1a1a;
+      flex-wrap: wrap;
     }
 
     .nav-left {
       display: flex;
-      justify-content: center;
-      gap: 25px;
+      align-items: center;
+      gap: 12px;
       flex-wrap: wrap;
     }
 
     .nav-left a {
-      color: #ccc;
+      color: #FFB400; /* Naranja base */
       text-decoration: none;
       font-weight: 600;
-      font-size: 15px;
-      padding: 8px 14px;
-      border-radius: 8px;
-      transition: 0.3s;
+      font-size: 13px; /* Más pequeño y compacto */
+      transition: color 0.3s ease;
+      padding: 5px 9px; /* Ajustado al tamaño más chico */
+      border-radius: 6px;
     }
+
+    .nav-left a.active,
     .nav-left a:hover {
-      background: rgba(255, 140, 0, 0.2);
-      color: #FF8C00;
-    }
-    .nav-left a.active {
-      background: rgba(255, 140, 0, 0.25);
-      color: #FF8C00;
+      color: #FF8C00; /* Naranja acento */
+      background-color: rgba(255, 140, 0, 0.15);
     }
 
-    /* 🔹 Botón hamburguesa */
-    .menu-toggle {
-      display: none;
-      position: absolute;
-      right: 20px;
-      top: 18px;
-      font-size: 24px;
-      cursor: pointer;
-      color: #fff;
-      background: none;
-      border: none;
+    /* STAFF SECTION */
+    .staff-section {
+      padding: 40px 10%;
+      max-width: 1100px;
+      margin: 0 auto;
+      flex-grow: 1;
     }
 
-    /* HERO */
-    .hero {
-      padding: 80px 20px;
-      max-width: 1200px;
-      margin: auto;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 40px;
-    }
-
-    .hero-text {
-      flex: 1;
-      text-align: left;
-    }
-
-    .hero h1 {
-      font-size: 2.8rem;
-      font-weight: 900;
-      color: #fff;
-      margin-bottom: 20px;
-      line-height: 1.2;
-    }
-
-    .hero h1 span {
-      color: #FFB400;
-    }
-
-    .hero p {
-      font-size: 1rem;
-      color: #ccc;
+    .staff-section h2 {
+      font-size: 1.8rem;
       margin-bottom: 30px;
-      max-width: 420px;
+      color: #FFB400; /* Títulos en naranja */
+      font-weight: 700;
     }
 
-    .hero-img {
-      flex: 0 0 auto;
-      margin-left: 30px;
-    }
-    .hero-img img {
-      width: 320px; /* 🔹 más grande */
-      height: auto;
-      border-radius: 15px;
-      animation: float 3s ease-in-out infinite;
+    .staff-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 20px;
+      justify-content: center;
     }
 
-    @keyframes float {
-      0%, 100% { transform: translateY(0); }
-      50% { transform: translateY(-10px); }
+    .staff-member {
+      background: #1a1a1a;
+      border-radius: 16px;
+      padding: 20px;
+      text-align: center;
+      width: 220px;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      box-shadow: 0 0 8px rgba(255, 140, 0, 0.3);
     }
 
-    /* Botón Copiar IP */
-    .copy-btn {
-      margin-top: 20px;
-      padding: 12px 25px;
-      background-color: orange;
-      color: white;
+    .staff-member:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 8px 24px rgba(255, 140, 0, 0.6);
+    }
+
+    .staff-member img {
+      width: 80px;
+      height: 80px;
+      border-radius: 50%;
+      object-fit: cover;
+      margin-bottom: 15px;
+      border: 2px solid #FFB400;
+    }
+
+    .staff-member h3 {
+      font-size: 1.1rem;
+      margin-bottom: 5px;
       font-weight: 600;
-      border: none;
-      border-radius: 8px;
-      cursor: pointer;
-      font-size: 16px;
-      transition: 0.3s ease;
-    }
-    .copy-btn:hover {
-      background-color: #ff9d00;
-      transform: scale(1.05);
+      color: #FFF6E5;
     }
 
-    /* Mensaje flotante */
-    .copy-msg {
-      position: fixed;
-      background: #111;
-      color: #FFB400;
-      padding: 12px 20px;
-      border-radius: 10px;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.4);
-      font-weight: bold;
-      opacity: 0;
-      animation: fadeInOut 2.2s ease forwards;
-      z-index: 9999;
+    .staff-member span {
+      font-size: 0.85rem;
+      color: #aaa;
     }
 
-    /* Responsive */
-    @media (max-width: 768px) {
-      .menu-toggle {
-        display: block;
+    /* FOOTER */
+    footer {
+      background-color: #1a1a1a;
+      padding: 20px;
+      text-align: center;
+      color: #888;
+      font-size: 0.85rem;
+      margin-top: auto;
+      box-shadow: inset 0 1px 0 rgba(255,255,255,0.05);
+    }
+
+    /* RESPONSIVE */
+    @media (max-width: 900px) {
+      header {
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 12px 20px;
       }
+
       .nav-left {
-        display: none;
-        flex-direction: column;
-        background: #111;
-        padding: 15px 0;
-        margin-top: 10px;
-        border-radius: 10px;
+        gap: 10px;
+        width: 100%;
+        margin-bottom: 10px;
+        flex-wrap: wrap;
       }
-      .nav-left.show {
-        display: flex;
-      }
-      .nav-left a {
-        font-size: 14px;
-        padding: 10px;
-      }
-      .hero {
-        flex-direction: column;
-        text-align: center;
-      }
-      .hero-text {
-        text-align: center;
-      }
-      .hero-img {
-        margin-left: 0;
-      }
-    }
 
-    @keyframes fadeInOut {
-      0% { opacity: 0; transform: translateY(-10px); }
-      15% { opacity: 1; transform: translateY(0); }
-      85% { opacity: 1; }
-      100% { opacity: 0; transform: translateY(-10px); }
+      .staff-row {
+        flex-direction: column;
+        align-items: center;
+      }
+
+      .staff-member {
+        width: 90%;
+      }
     }
   </style>
 </head>
 <body>
-
-  <!-- HEADER -->
   <header>
-    <button class="menu-toggle" onclick="toggleMenu()">☰</button>
-    <nav class="nav-left" id="menu">
-      <a href="index.html" class="active">INICIO</a>
-      <a href="staff/">STAFFS</a>
-      <a href="reglas/">REGLAS</a>
+    <div class="nav-left">
+      <a href="/">INICIO</a>
+      <a href="/staff/" class="active">STAFFS</a>
+      <a href="/reglas/">REGLAS</a>
       <a href="https://tienda.ivonia.us" target="_blank">TIENDA</a>
       <a href="https://discord.ivonia.us" target="_blank">DISCORD</a>
-    </nav>
+    </div>
   </header>
 
-  <!-- HERO -->
-  <section class="hero">
-    <div class="hero-text">
-      <h1>¿BUSCAS<br><span>DIVERSIÓN</span> EN<br>MINECRAFT?</h1>
-      <p>
-        En <strong>Ivonia</strong> encontrarás <span style="color:#FFB400;font-weight:600;">Survival 1.20</span>, con economía, clanes y eventos semanales en una gran comunidad.
-      </p>
-      <button class="copy-btn" onclick="copiarIP()">📋 COPIAR IP</button>
+  <section class="staff-section">
+    <h2>DUEÑO:</h2>
+    <div class="staff-row">
+      <div class="staff-member">
+        <img src="destras.webp" alt="Destras" />
+        <h3>Destras</h3>
+        <span>Se constante, no perfecto.</span>
+      </div>
     </div>
 
-    <div class="hero-img">
-      <a href="https://discord.gg/BvHPXn2uQx" target="_blank">
-        <img src="ivonia.png" alt="Logo Ivonia" />
-      </a>
+    <h2 style="margin-top: 60px;">ADMINISTRADOR:</h2>
+    <div class="staff-row">
+      <div class="staff-member">
+        <img src="sonicespro.webp" alt="Sonicespro" />
+        <h3>Sonicespro</h3>
+        <span>...</span>
+      </div>
     </div>
   </section>
 
-  <script>
-    function toggleMenu() {
-      document.getElementById("menu").classList.toggle("show");
-    }
-
-    function copiarIP() {
-      navigator.clipboard.writeText("ivonia.us").then(() => {
-        mostrarMensaje("✅ IP copiada: ivonia.us");
-      });
-    }
-
-    function mostrarMensaje(texto) {
-      const msg = document.createElement("div");
-      msg.className = "copy-msg";
-      msg.innerText = texto;
-      document.body.appendChild(msg);
-
-      setTimeout(() => { msg.remove(); }, 2200);
-    }
-  </script>
-
+  <footer>
+    © 2025 Ivonia - Todos los derechos reservados.
+  </footer>
 </body>
 </html>
