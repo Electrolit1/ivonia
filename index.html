@@ -70,13 +70,15 @@
       margin-bottom: 15px;
     }
     .hero-img img {
-      width: 160px;
+      width: 200px; /* 🔹 más grande */
       height: auto;
       border-radius: 20px;
-      transition: transform 0.3s ease;
+      animation: float 3s ease-in-out infinite; /* 🔹 animación flotante */
     }
-    .hero-img img:hover {
-      transform: scale(1.05);
+
+    @keyframes float {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-12px); }
     }
 
     /* Botón Copiar IP */
