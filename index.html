@@ -13,25 +13,27 @@
     <link rel="stylesheet" href="styles.css" />
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet" />
     <style>
-        /* Botón copiar IP */
+        /* 🔹 Botones menú y copiar IP */
+        .nav-left a,
         .copy-btn {
             display: inline-block;
-            margin-top: 20px;
-            padding: 12px 25px;
-            background-color: orange;
+            padding: 8px 16px;
+            background-color: #ff9d00;
             color: white;
             font-weight: 600;
             border: none;
-            border-radius: 8px;
+            border-radius: 6px;
             cursor: pointer;
-            font-size: 16px;
+            font-size: 14px;
             transition: 0.3s ease;
+            text-decoration: none;
         }
+        .nav-left a:hover,
         .copy-btn:hover {
-            background-color: #ff9d00;
+            background-color: #e88b00;
         }
 
-        /* Mensaje animado */
+        /* 🔹 Mensaje animado */
         .copy-msg {
             position: fixed;
             background: #1e1e1e;
@@ -102,7 +104,7 @@
                 ¡Conéctate ahora y comienza tu historia en <strong>Ivonia</strong>!
             </p>
 
-            <!-- Botón Copiar IP -->
+            <!-- Botón Copiar IP (igual que los de arriba) -->
             <button class="copy-btn" onclick="copiarIP()">📋 Copiar IP</button>
         </div>
         <div class="hero-img">
