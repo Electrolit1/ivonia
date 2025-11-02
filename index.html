@@ -7,7 +7,6 @@
   <link rel="icon" type="image/png" href="ivonia.png">
 
   <style>
-    /* Google font */
     @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;800&display=swap');
 
     :root{
@@ -30,7 +29,6 @@
       min-height:100vh;
     }
 
-    /* Top bar */
     header{
       width:100%;
       padding:18px 26px;
@@ -74,10 +72,8 @@
     }
     .brand p{ margin:0; font-size:0.78rem; color:var(--muted); }
 
-    /* main layout */
     main{ max-width:1180px; margin:28px auto; padding: 0 20px; }
 
-    /* Intro / hero */
     .hero{
       display:flex;
       gap:28px;
@@ -117,8 +113,6 @@
       border:1px solid rgba(255,180,0,0.06);
       box-shadow: 0 6px 20px rgba(0,0,0,0.45);
     }
-    .ip-card .label{ font-size:0.85rem; color:var(--muted); }
-    .ip-card .ip{ font-weight:700; color:#fff; font-size:1rem; letter-spacing:0.4px; }
 
     .big-copy{
       background:var(--accent);
@@ -140,7 +134,6 @@
     }
     .mode-desc{ color:var(--muted); font-weight:600; font-size:0.95rem; }
 
-    /* Cards grid */
     .grid{
       margin-top:20px;
       display:grid;
@@ -158,26 +151,24 @@
       justify-content:space-between;
       gap:18px;
       border:1px solid rgba(255,255,255,0.02);
-      transition: transform .16s ease, box-shadow .16s ease;
-      cursor:default;
+      transition: transform .16s ease, box-shadow .16s ease, background .16s ease;
+      cursor:pointer;
       overflow:hidden;
+      text-decoration:none;
+      color:inherit;
     }
 
     .card:hover{ transform: translateY(-6px); box-shadow: 0 18px 50px rgba(0,0,0,0.6); }
 
-    .card .info{
-      max-width:68%;
-    }
+    .card .info{ max-width:68%; }
     .card h3{ margin:0; font-size:1.6rem; color:#fff; font-weight:800; }
     .card p{ margin:6px 0 0 0; color:var(--muted); font-weight:600; }
 
-    /* accent styles for each card */
     .card--java{ background: linear-gradient(135deg, rgba(255,187,64,0.06), rgba(255,138,0,0.04)); border-left: 6px solid #FFA826; }
     .card--bedrock{ background: linear-gradient(135deg, rgba(93,156,255,0.05), rgba(66,140,255,0.03)); border-left:6px solid #4ea3ff; }
     .card--discord{ background: linear-gradient(135deg, rgba(86,216,130,0.04), rgba(35,195,97,0.03)); border-left:6px solid #29d07a; }
     .card--status{ background: linear-gradient(135deg, rgba(255,255,255,0.01), rgba(255,255,255,0.01)); border-left:6px solid rgba(255,180,0,0.12); }
 
-    /* image / mascot inside card */
     .card .imgWrap{
       width:160px;
       height:120px;
@@ -195,16 +186,8 @@
       border-radius:10px;
     }
 
-    /* single column wide card (full width) */
-    .full{
-      grid-column: 1 / -1;
-      display:flex;
-      align-items:center;
-      justify-content:space-between;
-      gap:18px;
-    }
+    .full{ grid-column: 1 / -1; }
 
-    /* footer small note */
     .note{
       margin-top:18px;
       font-size:0.9rem;
@@ -212,17 +195,13 @@
       text-align:center;
     }
 
-    /* responsive */
     @media (max-width:980px){
       .grid{ grid-template-columns: 1fr; }
-      .card .imgWrap{ display:none; } /* simplificar en móvil */
+      .card .imgWrap{ display:none; }
       .hero{ flex-direction:column; align-items:flex-start; gap:18px; }
       header{ padding:14px; }
       .logo{ width:48px; height:48px; }
     }
-
-    /* subtle focus */
-    button:focus{ outline: 3px solid rgba(255,180,0,0.14); outline-offset: 2px; border-radius:6px; }
   </style>
 </head>
 <body>
@@ -237,85 +216,71 @@
         <p>Survival · Comunidad · Eventos</p>
       </div>
     </div>
-
-    <!-- opcional: espacio para botones/links si los quieres en el futuro -->
-    <div style="display:flex;gap:12px;align-items:center;">
-      <!-- dejar vacío o poner links -->
-    </div>
   </header>
 
   <main>
-    <!-- HERO -->
-    <section class="hero" role="region" aria-label="Información principal">
+    <section class="hero">
       <div class="hero-left">
         <h2>Estamos en mantenimiento — pero el servidor sigue activo</h2>
         <p>Actualmente tenemos una modalidad <strong>Survival 1.21</strong> funcionando. Mientras actualizamos la web, puedes conectarte o visitar nuestra tienda y comunidad.</p>
 
-        <div class="status-line" aria-live="polite">
-
+        <div class="status-line">
           <div style="display:flex;flex-direction:column;gap:6px;">
             <div class="mode">Modalidad: Survival 1.21</div>
             <div class="mode-desc">Con economía, clanes y eventos semanales — ¡únete ya!</div>
           </div>
         </div>
       </div>
-
-      <!-- logo simple a la derecha -->
       <div style="flex:0 0 160px; display:flex; align-items:center; justify-content:center;">
         <img src="ivonia.png" alt="Logo Ivonia" style="width:140px; border-radius:12px; box-shadow: 0 10px 30px rgba(0,0,0,0.55);">
       </div>
     </section>
 
-    <!-- CARDS -->
-    <section class="grid" aria-label="Enlaces principales">
-      <article class="card card--java" role="article" aria-labelledby="java-title">
+    <section class="grid">
+      <a href="https://tienda.ivonia.us/java" target="_blank" class="card card--java">
         <div class="info">
-          <h3 id="java-title">Tienda Java</h3>
+          <h3>Tienda Java</h3>
           <p>Compra aquí si juegas con Java. Rangos, cosméticos y mucho más.</p>
         </div>
         <div class="imgWrap">
-          <!-- Imagen representativa, cámbiala por una cabeza o render -->
           <img src="https://i.imgur.com/6qZ3kQw.png" alt="Bee Java">
         </div>
-      </article>
+      </a>
 
-      <article class="card card--bedrock" role="article" aria-labelledby="bedrock-title">
+      <a href="https://tienda.ivonia.us" target="_blank" class="card card--bedrock">
         <div class="info">
-          <h3 id="bedrock-title">Tienda Bedrock</h3>
+          <h3>Tienda Bedrock</h3>
           <p>Artículos y ventajas para jugadores Bedrock. Accede y compra fácilmente.</p>
         </div>
         <div class="imgWrap">
           <img src="https://i.imgur.com/5D3z3pB.png" alt="Bee Bedrock">
         </div>
-      </article>
+      </a>
 
-      <article class="card card--discord" role="article" aria-labelledby="discord-title">
+      <a href="https://discord.ivonia.us" target="_blank" class="card card--discord">
         <div class="info">
-          <h3 id="discord-title">Comunidad — Discord</h3>
+          <h3>Comunidad — Discord</h3>
           <p>¿Atascado? Únete a nuestro Discord para ayuda, eventos y sorteos.</p>
         </div>
         <div class="imgWrap">
           <img src="https://i.imgur.com/8zQqK2x.png" alt="Iron Golem">
         </div>
-      </article>
+      </a>
 
-      <article class="card card--status full" role="article" aria-labelledby="status-title">
+      <a href="https://status.ivonia.us" target="_blank" class="card card--status full">
         <div class="info" style="max-width:100%;">
-          <h3 id="status-title">Estado del servidor</h3>
-          <p id="status-desc">Servidor en línea · 24/7 · Ping estable. Conéctate con <strong>ivonia.us</strong>.</p>
+          <h3>Estado del servidor</h3>
+          <p>Servidor en línea · 24/7 · Ping estable. Conéctate con <strong>ivonia.us</strong>.</p>
         </div>
         <div style="display:flex;flex-direction:column;gap:8px;align-items:flex-end;">
           <div style="font-weight:800;color:var(--accent);">En línea</div>
-          <a href="https://discord.ivonia.us" target="_blank" style="text-decoration:none;">
-            <button class="big-copy" style="background:#29d07a;color:#042014;">Entrar al Discord</button>
-          </a>
+          <button class="big-copy" style="background:#29d07a;color:#042014;">Entrar al Discord</button>
         </div>
-      </article>
+      </a>
     </section>
 
-    <div class="note">Diseño inspirado en interfaces modernas estilo Minecraft. ¿Quieres que agregue botones directos a la tienda o panel de usuarios?</div>
+    <div class="note">Diseño inspirado en interfaces modernas estilo Minecraft.</div>
   </main>
-
-  </script>
 </body>
 </html>
+html>
