@@ -31,6 +31,8 @@
       padding: 20px;
       text-align: center;
       border-bottom: 1px solid rgba(255, 180, 0, 0.2);
+      position: relative;
+      z-index: 2;
     }
 
     header h2 {
@@ -50,6 +52,8 @@
       justify-content: space-between;
       gap: 40px;
       min-height: 80vh;
+      position: relative;
+      z-index: 2;
     }
 
     .hero-text {
@@ -61,8 +65,8 @@
       font-size: 2.8rem;
       font-weight: 900;
       color: #fff;
-      margin-bottom: 20px;
-      line-height: 1.2;
+      margin-bottom: 12px;
+      line-height: 1.1;
     }
 
     .hero h1 span {
@@ -72,8 +76,50 @@
     .hero p {
       font-size: 1rem;
       color: #ccc;
-      margin-bottom: 30px;
-      max-width: 420px;
+      margin-bottom: 18px;
+      max-width: 520px;
+    }
+
+    .status-line {
+      margin-bottom: 18px;
+      font-size: 0.98rem;
+      color: #e6e6e6;
+    }
+
+    .ip-block {
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      background: rgba(255,255,255,0.03);
+      padding: 10px 14px;
+      border-radius: 10px;
+      border: 1px solid rgba(255,180,0,0.08);
+      font-weight: 600;
+      color: #fff;
+    }
+
+    .ip-text {
+      font-family: "Poppins", sans-serif;
+      font-size: 0.98rem;
+      color: #FFECB3;
+    }
+
+    /* Botón Copiar IP */
+    .copy-btn {
+      margin-left: 8px;
+      padding: 10px 14px;
+      background-color: #FF8C00;
+      color: white;
+      font-weight: 700;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      font-size: 14px;
+      transition: 0.18s ease;
+    }
+    .copy-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 18px rgba(255,140,0,0.15);
     }
 
     .hero-img {
@@ -87,11 +133,37 @@
       border-radius: 15px;
       animation: float 3s ease-in-out infinite;
       box-shadow: 0 0 25px rgba(255, 180, 0, 0.3);
+      display: block;
+      max-width: 85vw;
     }
 
     @keyframes float {
       0%, 100% { transform: translateY(0); }
       50% { transform: translateY(-10px); }
+    }
+
+    /* Mensaje flotante (copiado) */
+    .copy-msg {
+      position: fixed;
+      background: rgba(17,17,17,0.95);
+      color: #FFB400;
+      padding: 12px 20px;
+      border-radius: 10px;
+      box-shadow: 0 8px 26px rgba(0,0,0,0.5);
+      font-weight: 700;
+      opacity: 0;
+      animation: fadeInOut 2.2s ease forwards;
+      z-index: 9999;
+      left: 50%;
+      transform: translateX(-50%);
+      bottom: 24px;
+    }
+
+    @keyframes fadeInOut {
+      0% { opacity: 0; transform: translateY(10px) translateX(-50%); }
+      10% { opacity: 1; transform: translateY(0) translateX(-50%); }
+      85% { opacity: 1; transform: translateY(0) translateX(-50%); }
+      100% { opacity: 0; transform: translateY(10px) translateX(-50%); }
     }
 
     /* RESPONSIVE */
@@ -100,6 +172,8 @@
         flex-direction: column;
         text-align: center;
         gap: 20px;
+        padding: 40px 18px;
+        min-height: 70vh;
       }
       .hero-text {
         text-align: center;
@@ -111,8 +185,13 @@
         font-size: 2.2rem;
       }
       .hero p {
-        font-size: 0.95rem;
+        font-size: 0.98rem;
       }
+      .ip-block {
+        justify-content: center;
+      }
+      .copy-btn { margin-left: 0; margin-top: 8px; }
+      .copy-msg { left: 50%; transform: translateX(-50%); bottom: 18px; }
     }
 
     /* EFECTO DE LUCES SUAVES (decorativo) */
@@ -120,15 +199,15 @@
       position: absolute;
       width: 300px;
       height: 300px;
-      background: radial-gradient(circle, rgba(255,180,0,0.15) 0%, transparent 70%);
+      background: radial-gradient(circle, rgba(255,180,0,0.12) 0%, transparent 70%);
       filter: blur(40px);
-      z-index: 0;
+      z-index: 1;
       pointer-events: none;
       animation: moveGlow 20s linear infinite alternate;
     }
 
-    .glow:nth-child(1) { top: 10%; left: 10%; animation-delay: 0s; }
-    .glow:nth-child(2) { bottom: 15%; right: 15%; animation-delay: 5s; }
+    .glow:nth-child(1) { top: 8%; left: 6%; animation-delay: 0s; }
+    .glow:nth-child(2) { bottom: 12%; right: 10%; animation-delay: 5s; }
 
     @keyframes moveGlow {
       from { transform: translateY(0) translateX(0); }
@@ -152,12 +231,74 @@
         Estamos trabajando en una nueva experiencia para <strong>Ivonia Network</strong>.  
         Pronto volveremos con un diseño mejorado, optimizado y lleno de sorpresas.
       </p>
+
+      <div class="status-line">
+        <div style="display:flex; flex-wrap:wrap; gap:12px; align-items:center;">
+          <div class="ip-block" aria-live="polite">
+            <div>
+              IP:
+              <span class="ip-text" id="server-ip">ivonia.us</span>
+            </div>
+            <button class="copy-btn" onclick="copiarIP()" aria-label="Copiar IP al portapapeles">📋 COPIAR IP</button>
+          </div>
+
+          <div style="display:flex; align-items:center; gap:8px;">
+            <strong style="color:#FFB400;">Modalidad:</strong>
+            <span style="color:#e6e6e6; font-weight:600;">1.21 Survival (en funcionamiento)</span>
+          </div>
+        </div>
+      </div>
     </div>
 
-    <div class="hero-img">
+    <div class="hero-img" aria-hidden="false">
       <img src="ivonia.png" alt="Logo Ivonia" />
     </div>
   </section>
+
+  <script>
+    function copiarIP() {
+      const ip = document.getElementById('server-ip').innerText || 'ivonia.us';
+      // navigator clipboard
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(ip).then(() => {
+          mostrarMensaje("✅ IP copiada: " + ip);
+        }).catch(() => {
+          // fallback
+          fallbackCopy(ip);
+        });
+      } else {
+        fallbackCopy(ip);
+      }
+    }
+
+    function fallbackCopy(text) {
+      const textarea = document.createElement('textarea');
+      textarea.value = text;
+      textarea.style.position = 'fixed';
+      textarea.style.left = '-9999px';
+      document.body.appendChild(textarea);
+      textarea.select();
+      try {
+        document.execCommand('copy');
+        mostrarMensaje("✅ IP copiada: " + text);
+      } catch (e) {
+        mostrarMensaje("⚠️ No se pudo copiar. IP: " + text);
+      }
+      textarea.remove();
+    }
+
+    function mostrarMensaje(texto) {
+      const existing = document.querySelector('.copy-msg');
+      if (existing) existing.remove();
+
+      const msg = document.createElement("div");
+      msg.className = "copy-msg";
+      msg.innerText = texto;
+      document.body.appendChild(msg);
+
+      setTimeout(() => { msg.remove(); }, 2200);
+    }
+  </script>
 
 </body>
 </html>
