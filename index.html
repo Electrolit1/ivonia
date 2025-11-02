@@ -323,32 +323,6 @@
     <div class="note">Diseño inspirado en interfaces modernas estilo Minecraft. ¿Quieres que agregue botones directos a la tienda o panel de usuarios?</div>
   </main>
 
-  <script>
-    function copiarIP(){
-      const ip = document.getElementById('server-ip').innerText || 'ivonia.us';
-      if(navigator.clipboard && navigator.clipboard.writeText){
-        navigator.clipboard.writeText(ip).then(()=> mostrarMsg(`✅ IP copiada: ${ip}`)).catch(()=> fallbackCopy(ip));
-      } else { fallbackCopy(ip); }
-    }
-
-    function fallbackCopy(text){
-      const ta = document.createElement('textarea');
-      ta.value = text;
-      ta.style.position='fixed'; ta.style.left='-9999px';
-      document.body.appendChild(ta); ta.select();
-      try{ document.execCommand('copy'); mostrarMsg(`✅ IP copiada: ${text}`); }catch(e){ mostrarMsg(`⚠️ Copia manual: ${text}`); }
-      ta.remove();
-    }
-
-    function mostrarMsg(txt){
-      const existing = document.querySelector('.copy-msg');
-      if(existing) existing.remove();
-      const d = document.createElement('div');
-      d.className='copy-msg';
-      d.innerText = txt;
-      document.body.appendChild(d);
-      setTimeout(()=> d.remove(),2200);
-    }
   </script>
 </body>
 </html>
