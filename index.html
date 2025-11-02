@@ -9,37 +9,15 @@
     body {
       margin: 0;
       font-family: "Poppins", sans-serif;
-      background: #000; /* 🔹 Fondo original negro */
+      background: #000;
       color: white;
     }
 
-    /* NAV */
+    /* HEADER (vacío visualmente, mantiene estructura) */
     header {
       background-color: #111;
-      padding: 15px;
+      padding: 20px;
       text-align: center;
-    }
-    .nav-left {
-      display: flex;
-      justify-content: center;
-      gap: 25px;
-    }
-    .nav-left a {
-      color: #ccc;
-      text-decoration: none;
-      font-weight: 600;
-      font-size: 15px;
-      padding: 8px 14px;
-      border-radius: 8px;
-      transition: 0.3s;
-    }
-    .nav-left a:hover {
-      background: rgba(255, 140, 0, 0.2);
-      color: #FF8C00;
-    }
-    .nav-left a.active {
-      background: rgba(255, 140, 0, 0.25);
-      color: #FF8C00;
     }
 
     /* HERO */
@@ -49,7 +27,7 @@
       margin: auto;
       display: flex;
       align-items: center;
-      justify-content: space-between; /* 🔹 separa texto y logo */
+      justify-content: space-between;
       gap: 40px;
     }
 
@@ -59,7 +37,7 @@
     }
 
     .hero h1 {
-      font-size: 2.8rem; /* Más grande */
+      font-size: 2.8rem;
       font-weight: 900;
       color: #fff;
       margin-bottom: 20px;
@@ -79,10 +57,10 @@
 
     .hero-img {
       flex: 0 0 auto;
-      margin-left: 30px; /* 🔹 corre un poco el logo a la izquierda */
+      margin-left: 30px;
     }
     .hero-img img {
-      width: 240px; /* 🔹 un poco más grande */
+      width: 240px;
       height: auto;
       border-radius: 15px;
       animation: float 3s ease-in-out infinite;
@@ -93,103 +71,49 @@
       50% { transform: translateY(-10px); }
     }
 
-    /* Botón Copiar IP */
-    .copy-btn {
-      margin-top: 20px;
-      padding: 12px 25px;
-      background-color: orange;
-      color: white;
-      font-weight: 600;
-      border: none;
-      border-radius: 8px;
-      cursor: pointer;
-      font-size: 16px;
-      transition: 0.3s ease;
-    }
-    .copy-btn:hover {
-      background-color: #ff9d00;
-      transform: scale(1.05);
-    }
-
-    /* Mensaje flotante */
-    .copy-msg {
-      position: fixed;
-      background: #111;
-      color: #FFB400;
-      padding: 12px 20px;
-      border-radius: 10px;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.4);
-      font-weight: bold;
-      opacity: 0;
-      animation: fadeInOut 2.2s ease forwards;
-      z-index: 9999;
-    }
-
-    /* Posición mensaje */
-    @media (min-width: 600px) {
-      .copy-msg { top: 20px; right: 20px; }
-    }
-    @media (max-width: 599px) {
-      .copy-msg { bottom: 20px; left: 50%; transform: translateX(-50%); }
-      .hero { flex-direction: column; text-align: center; }
-      .hero-text { text-align: center; }
-      .hero-img { margin-left: 0; }
-    }
-
-    @keyframes fadeInOut {
-      0% { opacity: 0; transform: translateY(-10px); }
-      15% { opacity: 1; transform: translateY(0); }
-      85% { opacity: 1; }
-      100% { opacity: 0; transform: translateY(-10px); }
+    /* RESPONSIVE */
+    @media (max-width: 768px) {
+      .hero {
+        flex-direction: column;
+        text-align: center;
+      }
+      .hero-text {
+        text-align: center;
+      }
+      .hero-img {
+        margin-left: 0;
+      }
+      .hero h1 {
+        font-size: 2.2rem;
+      }
+      .hero p {
+        font-size: 0.95rem;
+      }
     }
   </style>
 </head>
 <body>
 
-  <!-- HEADER -->
+  <!-- HEADER (sin botones) -->
   <header>
-    <nav class="nav-left">
-      <a href="index.html" class="active">INICIO</a>
-      <a href="staff/">STAFFS</a>
-      <a href="reglas/">REGLAS</a>
-      <a href="https://tienda.ivonia.us" target="_blank">TIENDA</a>
-      <a href="https://discord.ivonia.us" target="_blank">DISCORD</a>
-    </nav>
+    <h2 style="color:#FFB400; margin:0;">Ivonia Network</h2>
   </header>
 
   <!-- HERO -->
   <section class="hero">
     <div class="hero-text">
-      <h1><br><span>IVONIA NETWORK</span>
+      <h1><span>WEB EN REFORMAS</span></h1>
       <p>
-        En <strong>Ivonia</strong> encontrarás <span style="color:#FFB400;font-weight:600;">Survival 1.21</span>, con economía, clanes y eventos semanales en una gran comunidad.
+        Estamos trabajando en una nueva experiencia para <strong>Ivonia Network</strong>.  
+        Pronto volveremos con un diseño mejorado y muchas sorpresas.
       </p>
-      <button class="copy-btn" onclick="copiarIP()">📋 COPIAR IP</button>
     </div>
 
     <div class="hero-img">
-      <a href="https://discord.ivonia.us/" target="_blank">
-        <img src="ivonia.png" alt="Logo Ivonia" />
-      </a>
+      <img src="ivonia.png" alt="Logo Ivonia" />
     </div>
   </section>
 
-  <script>
-    function copiarIP() {
-      navigator.clipboard.writeText("ivonia.us").then(() => {
-        mostrarMensaje("✅ IP copiada: ivonia.us");
-      });
-    }
-
-    function mostrarMensaje(texto) {
-      const msg = document.createElement("div");
-      msg.className = "copy-msg";
-      msg.innerText = texto;
-      document.body.appendChild(msg);
-
-      setTimeout(() => { msg.remove(); }, 2200);
-    }
-  </script>
-
 </body>
 </html>
+
