@@ -1,208 +1,354 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8" />
+  <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Ivonia Network</title>
   <link rel="icon" type="image/png" href="ivonia.png">
+
   <style>
+    /* Google font */
     @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;800&display=swap');
 
-    body {
-      margin: 0;
-      font-family: "Poppins", sans-serif;
-      background: linear-gradient(135deg, #0d0d0d, #121212, #181818);
-      color: #f2f2f2;
-      overflow-x: hidden;
+    :root{
+      --bg-1: #0b0b0b;
+      --bg-2: #111111;
+      --card: #0f0f10;
+      --accent: #FFB400;
+      --muted: #bfbfbf;
+      --glass: rgba(255,255,255,0.03);
     }
 
-    header {
-      background-color: rgba(17, 17, 17, 0.85);
-      backdrop-filter: blur(6px);
-      padding: 20px;
-      text-align: center;
-      border-bottom: 1px solid rgba(255, 180, 0, 0.2);
+    *{box-sizing:border-box}
+    body{
+      margin:0;
+      font-family:"Poppins",sans-serif;
+      background: linear-gradient(180deg, var(--bg-1) 0%, var(--bg-2) 100%);
+      color: #f4f4f4;
+      -webkit-font-smoothing:antialiased;
+      -moz-osx-font-smoothing:grayscale;
+      min-height:100vh;
     }
 
-    header h2 {
-      color: #FFB400;
-      margin: 0;
-      font-weight: 700;
-      letter-spacing: 0.5px;
-      font-size: 1.6rem;
+    /* Top bar */
+    header{
+      width:100%;
+      padding:18px 26px;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:16px;
+      background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+      border-bottom: 1px solid rgba(255,180,0,0.06);
+      position:sticky;
+      top:0;
+      z-index:100;
     }
 
-    .hero {
-      padding: 90px 20px;
-      max-width: 1100px;
-      margin: auto;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 60px;
-      min-height: 75vh;
+    .brand{
+      display:flex;
+      gap:14px;
+      align-items:center;
     }
 
-    .hero-text {
-      flex: 1;
+    .logo{
+      width:56px;
+      height:56px;
+      border-radius:12px;
+      overflow:hidden;
+      flex:0 0 56px;
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      background: #0d0d0d;
+      border: 1px solid rgba(255,255,255,0.03);
+    }
+    .logo img{ width:100%; height:100%; object-fit:cover; display:block; }
+
+    .brand h1{
+      margin:0;
+      font-size:1.05rem;
+      font-weight:800;
+      color:var(--accent);
+      letter-spacing:0.2px;
+    }
+    .brand p{ margin:0; font-size:0.78rem; color:var(--muted); }
+
+    /* main layout */
+    main{ max-width:1180px; margin:28px auto; padding: 0 20px; }
+
+    /* Intro / hero */
+    .hero{
+      display:flex;
+      gap:28px;
+      align-items:center;
+      justify-content:space-between;
+      background: linear-gradient(180deg, rgba(255,255,255,0.015), rgba(255,255,255,0.01));
+      padding:28px;
+      border-radius:14px;
+      border:1px solid rgba(255,255,255,0.02);
+      margin-bottom:22px;
     }
 
-    .hero h1 {
-      font-size: 2.6rem;
-      font-weight: 800;
-      margin-bottom: 16px;
-      line-height: 1.2;
-      color: #fff;
+    .hero-left{ flex:1; min-width:260px; }
+    .hero-left h2{
+      margin:0 0 8px 0;
+      font-size:1.9rem;
+      line-height:1.05;
+      color:#fff;
+      font-weight:800;
+    }
+    .hero-left p{ margin:0 0 18px 0; color:var(--muted); font-size:1rem; max-width:680px; }
+
+    .status-line{
+      display:flex;
+      flex-wrap:wrap;
+      gap:14px;
+      align-items:center;
     }
 
-    .hero h1 span {
-      color: #FFB400;
+    .ip-card{
+      display:flex;
+      align-items:center;
+      gap:12px;
+      padding:12px 14px;
+      border-radius:10px;
+      background:var(--glass);
+      border:1px solid rgba(255,180,0,0.06);
+      box-shadow: 0 6px 20px rgba(0,0,0,0.45);
+    }
+    .ip-card .label{ font-size:0.85rem; color:var(--muted); }
+    .ip-card .ip{ font-weight:700; color:#fff; font-size:1rem; letter-spacing:0.4px; }
+
+    .big-copy{
+      background:var(--accent);
+      color:#0a0a0a;
+      padding:10px 16px;
+      border-radius:8px;
+      border:none;
+      cursor:pointer;
+      font-weight:700;
+      box-shadow: 0 8px 26px rgba(255,180,0,0.08);
+      transition:transform .12s ease, box-shadow .12s ease;
+    }
+    .big-copy:hover{ transform:translateY(-3px); box-shadow: 0 14px 40px rgba(255,180,0,0.12); }
+
+    .mode{
+      font-weight:700;
+      color:var(--accent);
+      font-size:0.98rem;
+    }
+    .mode-desc{ color:var(--muted); font-weight:600; font-size:0.95rem; }
+
+    /* Cards grid */
+    .grid{
+      margin-top:20px;
+      display:grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap:22px;
     }
 
-    .hero p {
-      font-size: 1.05rem;
-      color: #bfbfbf;
-      margin-bottom: 24px;
-      max-width: 520px;
-      line-height: 1.6;
+    .card{
+      background: linear-gradient(180deg, rgba(255,255,255,0.01), rgba(255,255,255,0.008));
+      border-radius:14px;
+      padding:22px;
+      min-height:150px;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:18px;
+      border:1px solid rgba(255,255,255,0.02);
+      transition: transform .16s ease, box-shadow .16s ease;
+      cursor:default;
+      overflow:hidden;
     }
 
-    .status-line {
-      font-size: 0.98rem;
-      color: #e6e6e6;
-      display: flex;
-      flex-direction: column;
-      gap: 12px;
+    .card:hover{ transform: translateY(-6px); box-shadow: 0 18px 50px rgba(0,0,0,0.6); }
+
+    .card .info{
+      max-width:68%;
+    }
+    .card h3{ margin:0; font-size:1.6rem; color:#fff; font-weight:800; }
+    .card p{ margin:6px 0 0 0; color:var(--muted); font-weight:600; }
+
+    /* accent styles for each card */
+    .card--java{ background: linear-gradient(135deg, rgba(255,187,64,0.06), rgba(255,138,0,0.04)); border-left: 6px solid #FFA826; }
+    .card--bedrock{ background: linear-gradient(135deg, rgba(93,156,255,0.05), rgba(66,140,255,0.03)); border-left:6px solid #4ea3ff; }
+    .card--discord{ background: linear-gradient(135deg, rgba(86,216,130,0.04), rgba(35,195,97,0.03)); border-left:6px solid #29d07a; }
+    .card--status{ background: linear-gradient(135deg, rgba(255,255,255,0.01), rgba(255,255,255,0.01)); border-left:6px solid rgba(255,180,0,0.12); }
+
+    /* image / mascot inside card */
+    .card .imgWrap{
+      width:160px;
+      height:120px;
+      flex:0 0 160px;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      transform: translateX(10px);
+    }
+    .card .imgWrap img{
+      width:140px;
+      height:auto;
+      object-fit:contain;
+      display:block;
+      border-radius:10px;
     }
 
-    .ip-block {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      background: rgba(255, 255, 255, 0.03);
-      padding: 10px 16px;
-      border-radius: 10px;
-      border: 1px solid rgba(255,180,0,0.1);
-      width: fit-content;
+    /* single column wide card (full width) */
+    .full{
+      grid-column: 1 / -1;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:18px;
     }
 
-    .ip-text {
-      color: #FFD966;
-      font-weight: 600;
-      font-size: 1rem;
+    /* footer small note */
+    .note{
+      margin-top:18px;
+      font-size:0.9rem;
+      color:var(--muted);
+      text-align:center;
     }
 
-    .copy-btn {
-      padding: 8px 14px;
-      background-color: #FFB400;
-      color: #000;
-      font-weight: 600;
-      border: none;
-      border-radius: 6px;
-      cursor: pointer;
-      font-size: 14px;
-      transition: background-color 0.2s ease, transform 0.1s ease;
+    /* responsive */
+    @media (max-width:980px){
+      .grid{ grid-template-columns: 1fr; }
+      .card .imgWrap{ display:none; } /* simplificar en móvil */
+      .hero{ flex-direction:column; align-items:flex-start; gap:18px; }
+      header{ padding:14px; }
+      .logo{ width:48px; height:48px; }
     }
 
-    .copy-btn:hover {
-      background-color: #ffcc4d;
-      transform: translateY(-2px);
-    }
-
-    .hero-img img {
-      width: 230px;
-      height: auto;
-      border-radius: 14px;
-      animation: float 3.5s ease-in-out infinite;
-    }
-
-    @keyframes float {
-      0%, 100% { transform: translateY(0); }
-      50% { transform: translateY(-8px); }
-    }
-
-    .copy-msg {
-      position: fixed;
-      background: rgba(20,20,20,0.95);
-      color: #FFB400;
-      padding: 12px 20px;
-      border-radius: 8px;
-      font-weight: 600;
-      opacity: 0;
-      animation: fadeInOut 2.2s ease forwards;
-      bottom: 22px;
-      left: 50%;
-      transform: translateX(-50%);
-      z-index: 999;
-    }
-
-    @keyframes fadeInOut {
-      0% { opacity: 0; transform: translateY(10px) translateX(-50%); }
-      10% { opacity: 1; transform: translateY(0) translateX(-50%); }
-      85% { opacity: 1; }
-      100% { opacity: 0; transform: translateY(10px) translateX(-50%); }
-    }
-
-    @media (max-width: 768px) {
-      .hero {
-        flex-direction: column;
-        text-align: center;
-        gap: 30px;
-        padding: 60px 20px;
-      }
-      .hero-img img {
-        width: 200px;
-      }
-      .ip-block {
-        justify-content: center;
-        margin: 0 auto;
-      }
-    }
+    /* subtle focus */
+    button:focus{ outline: 3px solid rgba(255,180,0,0.14); outline-offset: 2px; border-radius:6px; }
   </style>
 </head>
 <body>
 
   <header>
-    <h2>Ivonia Network</h2>
-  </header>
-
-  <section class="hero">
-    <div class="hero-text">
-      <h1><span>WEB EN REFORMAS</span></h1>
-      <p>Estamos trabajando en una nueva experiencia para <strong>Ivonia Network</strong>.  
-      Muy pronto volveremos con un sitio renovado, moderno y mejor integrado con nuestra comunidad.</p>
-
-      <div class="status-line">
-        <div class="ip-block">
-          <div>IP: <span class="ip-text" id="server-ip">ivonia.us</span></div>
-          <button class="copy-btn" onclick="copiarIP()">Copiar</button>
-        </div>
-        <div>
-          <strong style="color:#FFB400;">Modalidad:</strong>
-          <span style="color:#ddd;">Survival 1.21 (en funcionamiento)</span>
-        </div>
+    <div class="brand">
+      <div class="logo" aria-hidden="true">
+        <img src="ivonia.png" alt="Ivonia logo">
+      </div>
+      <div>
+        <h1>Ivonia Network</h1>
+        <p>Survival · Comunidad · Eventos</p>
       </div>
     </div>
 
-    <div class="hero-img">
-      <img src="ivonia.png" alt="Logo Ivonia">
+    <!-- opcional: espacio para botones/links si los quieres en el futuro -->
+    <div style="display:flex;gap:12px;align-items:center;">
+      <!-- dejar vacío o poner links -->
     </div>
-  </section>
+  </header>
+
+  <main>
+    <!-- HERO -->
+    <section class="hero" role="region" aria-label="Información principal">
+      <div class="hero-left">
+        <h2>Estamos en mantenimiento — pero el servidor sigue activo</h2>
+        <p>Actualmente tenemos una modalidad <strong>Survival 1.21</strong> funcionando. Mientras actualizamos la web, puedes conectarte o visitar nuestra tienda y comunidad.</p>
+
+        <div class="status-line" aria-live="polite">
+          <div class="ip-card" role="status" aria-label="Dirección IP del servidor">
+            <div>
+              <div class="label">IP</div>
+              <div class="ip" id="server-ip">ivonia.us</div>
+            </div>
+            <button class="big-copy" onclick="copiarIP()" aria-label="Copiar la IP del servidor">COPIAR IP</button>
+          </div>
+
+          <div style="display:flex;flex-direction:column;gap:6px;">
+            <div class="mode">Modalidad: Survival 1.21</div>
+            <div class="mode-desc">Con economía, clanes y eventos semanales — ¡únete ya!</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- logo simple a la derecha -->
+      <div style="flex:0 0 160px; display:flex; align-items:center; justify-content:center;">
+        <img src="ivonia.png" alt="Logo Ivonia" style="width:140px; border-radius:12px; box-shadow: 0 10px 30px rgba(0,0,0,0.55);">
+      </div>
+    </section>
+
+    <!-- CARDS -->
+    <section class="grid" aria-label="Enlaces principales">
+      <article class="card card--java" role="article" aria-labelledby="java-title">
+        <div class="info">
+          <h3 id="java-title">Tienda Java</h3>
+          <p>Compra aquí si juegas con Java. Rangos, cosméticos y mucho más.</p>
+        </div>
+        <div class="imgWrap">
+          <!-- Imagen representativa, cámbiala por una cabeza o render -->
+          <img src="https://i.imgur.com/6qZ3kQw.png" alt="Bee Java">
+        </div>
+      </article>
+
+      <article class="card card--bedrock" role="article" aria-labelledby="bedrock-title">
+        <div class="info">
+          <h3 id="bedrock-title">Tienda Bedrock</h3>
+          <p>Artículos y ventajas para jugadores Bedrock. Accede y compra fácilmente.</p>
+        </div>
+        <div class="imgWrap">
+          <img src="https://i.imgur.com/5D3z3pB.png" alt="Bee Bedrock">
+        </div>
+      </article>
+
+      <article class="card card--discord" role="article" aria-labelledby="discord-title">
+        <div class="info">
+          <h3 id="discord-title">Comunidad — Discord</h3>
+          <p>¿Atascado? Únete a nuestro Discord para ayuda, eventos y sorteos.</p>
+        </div>
+        <div class="imgWrap">
+          <img src="https://i.imgur.com/8zQqK2x.png" alt="Iron Golem">
+        </div>
+      </article>
+
+      <article class="card card--status full" role="article" aria-labelledby="status-title">
+        <div class="info" style="max-width:100%;">
+          <h3 id="status-title">Estado del servidor</h3>
+          <p id="status-desc">Servidor en línea · 24/7 · Ping estable. Conéctate con <strong>ivonia.us</strong>.</p>
+        </div>
+        <div style="display:flex;flex-direction:column;gap:8px;align-items:flex-end;">
+          <div style="font-weight:800;color:var(--accent);">En línea</div>
+          <a href="https://discord.ivonia.us" target="_blank" style="text-decoration:none;">
+            <button class="big-copy" style="background:#29d07a;color:#042014;">Entrar al Discord</button>
+          </a>
+        </div>
+      </article>
+    </section>
+
+    <div class="note">Diseño inspirado en interfaces modernas estilo Minecraft. ¿Quieres que agregue botones directos a la tienda o panel de usuarios?</div>
+  </main>
 
   <script>
-    function copiarIP() {
-      const ip = document.getElementById('server-ip').innerText;
-      navigator.clipboard.writeText(ip).then(() => mostrarMensaje(`✅ IP copiada: ${ip}`));
+    function copiarIP(){
+      const ip = document.getElementById('server-ip').innerText || 'ivonia.us';
+      if(navigator.clipboard && navigator.clipboard.writeText){
+        navigator.clipboard.writeText(ip).then(()=> mostrarMsg(`✅ IP copiada: ${ip}`)).catch(()=> fallbackCopy(ip));
+      } else { fallbackCopy(ip); }
     }
 
-    function mostrarMensaje(texto) {
-      const msg = document.createElement('div');
-      msg.className = 'copy-msg';
-      msg.innerText = texto;
-      document.body.appendChild(msg);
-      setTimeout(() => msg.remove(), 2200);
+    function fallbackCopy(text){
+      const ta = document.createElement('textarea');
+      ta.value = text;
+      ta.style.position='fixed'; ta.style.left='-9999px';
+      document.body.appendChild(ta); ta.select();
+      try{ document.execCommand('copy'); mostrarMsg(`✅ IP copiada: ${text}`); }catch(e){ mostrarMsg(`⚠️ Copia manual: ${text}`); }
+      ta.remove();
+    }
+
+    function mostrarMsg(txt){
+      const existing = document.querySelector('.copy-msg');
+      if(existing) existing.remove();
+      const d = document.createElement('div');
+      d.className='copy-msg';
+      d.innerText = txt;
+      document.body.appendChild(d);
+      setTimeout(()=> d.remove(),2200);
     }
   </script>
-
 </body>
 </html>
