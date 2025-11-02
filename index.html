@@ -6,18 +6,38 @@
   <title>Ivonia</title>
 
   <style>
+    @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;900&display=swap');
+
     body {
       margin: 0;
       font-family: "Poppins", sans-serif;
-      background: #000;
+      background: linear-gradient(270deg, #0a0a0a, #111111, #1a1a1a, #0f0f0f);
+      background-size: 400% 400%;
+      animation: gradientMove 15s ease infinite;
       color: white;
+      overflow-x: hidden;
     }
 
-    /* HEADER (vacío visualmente, mantiene estructura) */
+    @keyframes gradientMove {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+
+    /* HEADER */
     header {
-      background-color: #111;
+      background-color: rgba(17, 17, 17, 0.8);
+      backdrop-filter: blur(6px);
       padding: 20px;
       text-align: center;
+      border-bottom: 1px solid rgba(255, 180, 0, 0.2);
+    }
+
+    header h2 {
+      color: #FFB400;
+      margin: 0;
+      font-weight: 700;
+      letter-spacing: 1px;
     }
 
     /* HERO */
@@ -29,6 +49,7 @@
       align-items: center;
       justify-content: space-between;
       gap: 40px;
+      min-height: 80vh;
     }
 
     .hero-text {
@@ -59,11 +80,13 @@
       flex: 0 0 auto;
       margin-left: 30px;
     }
+
     .hero-img img {
       width: 240px;
       height: auto;
       border-radius: 15px;
       animation: float 3s ease-in-out infinite;
+      box-shadow: 0 0 25px rgba(255, 180, 0, 0.3);
     }
 
     @keyframes float {
@@ -76,6 +99,7 @@
       .hero {
         flex-direction: column;
         text-align: center;
+        gap: 20px;
       }
       .hero-text {
         text-align: center;
@@ -90,22 +114,43 @@
         font-size: 0.95rem;
       }
     }
+
+    /* EFECTO DE LUCES SUAVES (decorativo) */
+    .glow {
+      position: absolute;
+      width: 300px;
+      height: 300px;
+      background: radial-gradient(circle, rgba(255,180,0,0.15) 0%, transparent 70%);
+      filter: blur(40px);
+      z-index: 0;
+      pointer-events: none;
+      animation: moveGlow 20s linear infinite alternate;
+    }
+
+    .glow:nth-child(1) { top: 10%; left: 10%; animation-delay: 0s; }
+    .glow:nth-child(2) { bottom: 15%; right: 15%; animation-delay: 5s; }
+
+    @keyframes moveGlow {
+      from { transform: translateY(0) translateX(0); }
+      to { transform: translateY(40px) translateX(60px); }
+    }
   </style>
 </head>
 <body>
 
-  <!-- HEADER (sin botones) -->
+  <div class="glow"></div>
+  <div class="glow"></div>
+
   <header>
-    <h2 style="color:#FFB400; margin:0;">Ivonia Network</h2>
+    <h2>Ivonia Network</h2>
   </header>
 
-  <!-- HERO -->
   <section class="hero">
     <div class="hero-text">
       <h1><span>WEB EN REFORMAS</span></h1>
       <p>
         Estamos trabajando en una nueva experiencia para <strong>Ivonia Network</strong>.  
-        Pronto volveremos con un diseño mejorado y muchas sorpresas.
+        Pronto volveremos con un diseño mejorado, optimizado y lleno de sorpresas.
       </p>
     </div>
 
@@ -116,4 +161,3 @@
 
 </body>
 </html>
-
