@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Error 404 - Portal Corrupto</title>
+    
+    <!-- Carga de Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Carga de Fuente (Inter) y Iconos (Lucide) -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <!-- Estilos Personalizados y Tema IVONIA (Violeta/Obsidiana) -->
+    <style>
+        /* Variables y Base */
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #121212; 
+            color: #e5e7eb;
+            /* Estilo de fondo IVONIA */
+            background-image: linear-gradient(rgba(0, 0, 0, 0.9), rgba(0, 0, 0, 0.9)), url('img/wallpaper.png');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+        .color-primary {
+            color: #a855f7; /* Violeta 500 */
+        }
+        
+        /* Contenedor principal de ancho limitado */
+        .main-container {
+            max-width: 1300px; 
+            width: 95%;
+            margin: 0 auto;
+        }
+
+        /* NAVEGACIÓN CENTRALIZADA */
+        #central-nav {
+            padding-top: 2rem; 
+        }
+        
+        /* Contenedor de Error 404 */
+        .error-container {
+            flex-grow: 1; /* Para que ocupe el espacio restante y centre el contenido */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 2rem;
+        }
+        
+        /* Estilo dramático para el panel de error */
+        .obsidian-error-panel {
+            background-color: #1a0f28; /* Base púrpura oscuro */
+            border: 3px solid #6b21a8; /* Borde violeta oscuro */
+            box-shadow: 0 0 40px rgba(168, 85, 247, 0.5), 0 0 10px rgba(255, 0, 0, 0.7); /* Resplandor púrpura y rojo para peligro */
+            animation: pulse-border 2s infinite alternate; /* Animación de pulsación */
+        }
+        
+        /* Animación para el borde de advertencia */
+        @keyframes pulse-border {
+            from {
+                border-color: #6b21a8;
+                box-shadow: 0 0 40px rgba(168, 85, 247, 0.5), 0 0 10px rgba(255, 0, 0, 0.7);
+            }
+            to {
+                border-color: #f87171; /* Rojo suave */
+                box-shadow: 0 0 60px rgba(239, 68, 68, 0.6), 0 0 20px rgba(168, 85, 247, 0.5);
+            }
+        }
+        
+        /* Efecto de texto glitch */
+        .glitch {
+            position: relative;
+            color: #fca5a5; /* Rojo pálido */
+            font-size: 8rem;
+            font-weight: 900;
+            line-height: 1;
+        }
+        
+        .glitch::before,
+        .glitch::after {
+            content: attr(data-text);
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }
+
+        .glitch::before {
+            left: 2px;
+            text-shadow: -2px 0 #a855f7; /* Violeta */
+            clip: rect(44px, 450px, 56px, 0);
+            animation: glitch-anim 2s infinite linear alternate-reverse;
+        }
+
+        .glitch::after {
+            left: -2px;
+            text-shadow: -2px 0 #ef4444; /* Rojo */
+            clip: rect(85px, 450px, 100px, 0);
+            animation: glitch-anim 3s infinite linear alternate-reverse;
+        }
+
+        @keyframes glitch-anim {
+            0% {
+                clip: rect(50px, 9999px, 80px, 0);
+                transform: skew(0.5deg);
+            }
+            50% {
+                clip: rect(20px, 9999px, 40px, 0);
+                transform: skew(-0.5deg);
+            }
+            100% {
+                clip: rect(70px, 9999px, 90px, 0);
+                transform: skew(1deg);
+            }
+        }
+
+        /* Media Queries para responsividad */
+        @media (max-width: 640px) {
+            .glitch {
+                font-size: 4rem;
+            }
+            .obsidian-error-panel {
+                padding: 1.5rem;
+            }
+            .description {
+                font-size: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- 1. NAVEGACIÓN CENTRALIZADA (Mismo estilo que HOME y WIKI) -->
+    <nav id="central-nav" class="main-container flex justify-center items-center py-4 mb-8">
+        <div class="flex flex-wrap justify-center space-x-4 sm:space-x-8 text-lg font-semibold bg-black/50 p-3 rounded-full border border-gray-700">
+            <a href="index.html" class="nav-link text-white transition duration-150 px-2 py-1 hover:color-primary">HOME</a>
+            <a href="forum.html" class="nav-link text-white transition duration-150 px-2 py-1 hover:color-primary">FORUM</a>
+            <a href="wiki.html" class="nav-link text-white transition duration-150 px-2 py-1 hover:color-primary">WIKI</a> 
+            <a href="category.html" class="nav-link text-white bg-violet-600/30 rounded-full hover:bg-violet-600/50 transition duration-150 px-4 py-1 border border-violet-500">STORE</a>
+            <a href="#" class="nav-link text-white transition duration-150 px-2 py-1 hover:color-primary">BAN LIST</a>
+            <a href="404.html" class="nav-link text-white transition duration-150 px-2 py-1 hover:color-primary">MAP</a>
+        </div>
+    </nav>
+    <!-- Fin de la Navegación Centralizada -->
+
+    <!-- 2. CONTENEDOR DE ERROR 404 -->
+    <div class="error-container">
+        <div class="obsidian-error-panel p-10 sm:p-20 rounded-xl max-w-xl w-full">
+            
+            <!-- Icono de Advertencia -->
+            <i data-lucide="skull" class="w-16 h-16 sm:w-20 sm:h-20 text-red-500 mb-6 mx-auto"></i>
+
+            <!-- Código de Error con Glitch Effect -->
+            <div data-text="404" class="glitch mx-auto text-red-400 mb-4">404</div>
+            
+            <!-- Título Dramático -->
+            <h1 class="text-3xl sm:text-4xl font-extrabold text-white mb-4">
+                PORTAL CORRUPTO
+            </h1>
+
+            <!-- Descripción Temática -->
+            <p class="description text-lg sm:text-xl text-gray-400 mb-8">
+                El nexo dimensional que intentaste cruzar ha colapsado. Esta página ha sido consumida por EL VACIO DE IVONIA.
+            </p>
+
+            <!-- Botón de Retorno -->
+            <a href="index.html" class="inline-flex items-center justify-center px-8 py-3 text-base font-medium rounded-full text-white bg-violet-600 hover:bg-violet-700 shadow-lg shadow-violet-500/50 transition duration-300 transform hover:scale-105 border border-violet-400">
+                 <i data-lucide="home" class="w-5 h-5 mr-2"></i>
+                Regresar a la Zona Segura (HOME)
+            </a>
+            
+            <p class="mt-8 text-sm text-gray-500">
+                Si crees que esto es un error del sistema, contacta a un Moderador.
+            </p>
+        </div>
+    </div>
+
+            <!-- FOOTER SIMPLE -->
+        <footer class="mt-20 text-center text-gray-600 pt-8 w-full border-t border-gray-800">
+            <p class="text-xs mb-4">
+                IVONIA NETWORK © 2025. Juega en: <span class="text-white font-mono">mc.ivonia.us</span>
+            </p>
+            <div class="space-x-4 text-sm">
+                <a href="#" class="hover:text-white">Términos de Servicio</a>
+                <a href="#" class="hover:text-white">Política de Privacidad</a>
+            </div>
+        </footer>
+            
+    <!-- 3. Inicialización de Lucide Icons -->
+    <script type="module">
+        document.addEventListener('DOMContentLoaded', () => {
+            // Inicializar iconos de Lucide
+            if (typeof lucide !== 'undefined') lucide.createIcons();
+        });
+    </script>
+</body>
+</html>

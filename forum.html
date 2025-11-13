@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IVONIA Social - Feed de Contenido Simplificado</title>
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <style>
+        /* Variables y Base */
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #121212; 
+            color: #e5e7eb;
+            /* Estilo de fondo IVONIA */
+            background-image: linear-gradient(rgba(0, 0, 0, 0.85), rgba(0, 0, 0, 0.85)), url('img/wallpaper.png');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            padding-top: 0; 
+        }
+        .color-primary {
+            color: #a855f7; /* Violeta 500 */
+        }
+        
+        /* Contenedor principal de ancho limitado */
+        .main-container {
+            max-width: 1100px;
+            width: 95%;
+            margin: 0 auto;
+        }
+
+        /* NAVEGACIÓN CENTRALIZADA */
+        #central-nav {
+            padding-top: 2rem; 
+        }
+        
+        /* Contenedor principal de los posts */
+        #main-feed {
+            padding: 2rem 0;
+        }
+        
+        /* --- ESTILOS DE TARJETAS DE OBSIDIANA --- */
+        
+        .obsidian-bg {
+            background-color: #1a0f28;
+            background-image: repeating-linear-gradient(
+                -45deg, 
+                #1a0f28, 
+                #1a0f28 5px, 
+                #10081d 5px, 
+                #10081d 10px
+            );
+            border: 3px solid #6b21a8;
+            box-shadow: 0 0 15px rgba(168, 85, 247, 0.4);
+        }
+
+        /* Estilos de Tarjetas Cuadradas */
+        .post-card {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between; 
+            height: 300px;
+            overflow: hidden; 
+            transition: transform 0.3s, box-shadow 0.3s, border-color 0.3s;
+        }
+        
+        /* Efecto de Hover: un resplandor más intenso */
+        .post-card:hover {
+            transform: scale(1.02);
+            box-shadow: 0 0 25px rgba(168, 85, 247, 0.7);
+            border-color: #a855f7;
+        }
+        
+        /* Barra de Categoría Superior  */
+        .category-bar {
+            height: 10px;
+            background-color: #a855f7;
+        }
+
+        /* Área de Contenido */
+        .post-content-area {
+            flex-grow: 1;
+            overflow: hidden;
+            padding: 1rem;
+        }
+
+        .post-content-area p {
+            display: -webkit-box;
+            -webkit-line-clamp: 4;
+            -webkit-box-orient: vertical;  
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+        
+        /* Estilos de Voto */
+        .vote-section {
+            background-color: rgba(0, 0, 0, 0.4);
+            border-right: 2px solid rgba(168, 85, 247, 0.5);
+            padding: 1rem 0;
+        }
+        
+        .vote-button:hover {
+            color: #fff;
+            background-color: #a855f7;
+        }
+
+        /* Adaptación Móvil */
+        @media (min-width: 768px) {
+            #posts-container {
+                grid-template-columns: repeat(2, 1fr); 
+            }
+        }
+        @media (min-width: 1024px) {
+            #posts-container {
+                grid-template-columns: repeat(3, 1fr); 
+            }
+        }
+        @media (max-width: 767px) {
+            #posts-container {
+                grid-template-columns: repeat(1, 1fr); 
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- 1. NAVEGACIÓN CENTRALIZADA -->
+    <nav id="central-nav" class="main-container flex justify-center items-center py-4 mb-16">
+        <div class="flex flex-wrap justify-center space-x-4 sm:space-x-8 text-lg font-semibold bg-black/50 p-3 rounded-full border border-gray-700">
+            <a href="index.html" class="nav-link text-white transition duration-150 px-2 py-1 hover:color-primary">HOME</a>
+            <a href="forum.html" class="nav-link text-white transition duration-150 px-2 py-1 hover:color-primary">FORUM</a>
+            <a href="wiki.html" class="nav-link text-white transition duration-150 px-2 py-1 hover:color-primary">WIKI</a>
+            
+            <!-- Botón de Tienda Resaltado -->
+            <a href="category.html" class="nav-link text-white bg-violet-600/30 rounded-full hover:bg-violet-600/50 transition duration-150 px-4 py-1 border border-violet-500">STORE</a>
+            
+            <a href="#" class="nav-link text-white transition duration-150 px-2 py-1 hover:color-primary">BAN LIST</a>
+            <a href="404.html" class="nav-link text-white transition duration-150 px-2 py-1 hover:color-primary">MAP</a>
+        </div>
+    </nav>
+    <!-- Fin de la Navegación Centralizada -->
+
+    <!-- 2. CONTENEDOR PRINCIPAL -->
+    <div class="main-container">
+
+        <!-- 3. CONTENIDO CENTRAL (Main Feed) -->
+        <section id="main-feed">
+            <h2 class="text-4xl font-extrabold mb-8 text-white border-b border-gray-800 pb-4">
+                 <i data-lucide="compass" class="w-8 h-8 inline-block mr-3 color-primary"></i> Feed Principal
+            </h2>
+
+            <!-- Usamos grid para las tarjetas cuadradas -->
+            <div id="posts-container" class="grid gap-8">
+                <!-- Posts del array PRESET_POSTS se renderizarán aquí -->
+                <p id="loading-message" class="text-center text-gray-500 mt-10 p-10 post-card obsidian-bg">Cargando publicaciones...</p>
+            </div>
+        </section>
+
+        <!-- FOOTER SIMPLE -->
+        <footer class="mt-20 text-center text-gray-600 pt-8 w-full border-t border-gray-800">
+            <p class="text-xs mb-4">
+                IVONIA NETWORK © 2025. Juega en: <span class="text-white font-mono">mc.ivonia.us</span>
+            </p>
+            <div class="space-x-4 text-sm">
+                <a href="#" class="hover:text-white">Términos de Servicio</a>
+                <a href="#" class="hover:text-white">Política de Privacidad</a>
+            </div>
+        </footer>
+    </div>        
+
+    </div>
+            
+ <script src="js/forum.js"></script> 
+
+</body>
+</html>

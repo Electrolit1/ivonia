@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ivonia Network</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <style>
+        /* Definición de la fuente base */
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #121212; /* Fondo muy oscuro */
+            color: #e5e7eb; /* Texto gris claro */
+            /* Simula el fondo de imagen borroso y oscuro de SiphonMC */
+            background-image: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8)), url('img/wallpaper.png');
+            background-size: cover;
+            background-position: center;
+        }
+        /* Color principal PÚRPURA vibrante (Similar al logo de SiphonMC) */
+        .color-primary {
+            color: #a855f7; /* Violeta 500 */
+        }
+        .bg-primary {
+            background-color: #a855f7; 
+        }
+        .bg-primary:hover {
+            background-color: #9333ea; /* Violeta 600 */
+        }
+
+        /* Estilo para el contenedor principal de contenido */
+        .main-container {
+            max-width: 1100px;
+            width: 95%;
+            margin: 0 auto;
+        }
+        /* Estilo para los bloques de contenido (Tarjetas) */
+        .content-card {
+            background-color: rgba(26, 26, 26, 0.85); /* Gris oscuro semi-transparente */
+            backdrop-filter: blur(5px);
+            border: 1px solid #333333;
+            border-radius: 12px;
+            transition: transform 0.3s, border-color 0.3s;
+        }
+        .content-card:hover {
+            transform: translateY(-3px);
+            border-color: #a855f7; /* Borde púrpura al pasar el ratón */
+        }
+        /* Estilo para el botón principal */
+        .btn-main {
+            background-color: #a855f7; 
+            color: #1f2937;
+            font-weight: 700;
+            border-radius: 12px;
+            transition: background-color 0.3s, transform 0.1s;
+        }
+        .btn-main:hover {
+            background-color: #9333ea; 
+            transform: translateY(-1px);
+        }
+    </style>
+    
+</head>
+<body class="min-h-screen pt-8 pb-12">
+
+    <!-- BARRA DE NAVEGACIÓN CENTRALIZADA -->
+    <nav class="main-container flex justify-center items-center py-4 mb-16">
+        <div class="flex flex-wrap justify-center space-x-4 sm:space-x-8 text-lg font-semibold bg-black/50 p-3 rounded-full border border-gray-700">
+            <a href="index.html" class="text-white hover:color-primary transition duration-150 px-2 py-1">HOME</a>
+            <a href="forum.html" class="text-white hover:color-primary transition duration-150 px-2 py-1">FORUM</a>
+            <a href="wiki.html" class="text-white hover:color-primary transition duration-150 px-2 py-1">WIKI</a>
+            <!-- Botón de Tienda Resaltado -->
+            <a href="category.html" class="text-white bg-violet-600/30 rounded-full hover:bg-violet-600/50 transition duration-150 px-4 py-1 border border-violet-500">STORE</a>
+            <a href="#" class="text-white hover:color-primary transition duration-150 px-2 py-1">BAN LIST</a>
+            <a href="404.html" class="text-white hover:color-primary transition duration-150 px-2 py-1">MAP</a>
+        </div>
+    </nav>
+
+    <!-- CONTENEDOR PRINCIPAL -->
+    <div class="main-container flex flex-col items-center">
+
+        <!-- SECCIÓN PRINCIPAL HERO: LOGO Y CONEXIÓN -->
+        <header class="text-center mb-16">
+            
+            <!-- Logo/Imagen Central (Púrpura, Estilo SiphonMC) -->
+            <div class="mb-10">
+                <img 
+                    src="img/ivonia.png" 
+                    alt="Logo de Ivonia Network" 
+                    class="w-48 h-48 sm:w-64 sm:h-64 mx-auto rounded-full shadow-2xl shadow-violet-700/50"
+                />
+            </div>
+
+
+            <!-- Info de Estado (Replicando el formato en línea de SiphonMC) -->
+            <div class="flex justify-center space-x-10 mb-8 text-lg font-bold">
+                
+                <!-- IP y Jugadores -->
+                <div class="flex items-center space-x-2 bg-black/50 px-4 py-2 rounded-lg border border-gray-700">
+                    <span class="text-green-400 font-mono text-xl">PLAY.IVONIAMC.US</span>
+                    <i data-lucide="users" class="w-5 h-5 text-red-500"></i>
+                    <span id="player-count" class="text-white">49</span> 
+                </div>
+
+                <!-- Discord -->
+                <div class="flex items-center space-x-2 bg-black/50 px-4 py-2 rounded-lg border border-gray-700">
+                    <i data-lucide="message-circle" class="w-5 h-5 color-primary"></i>
+                    <span class="text-gray-400 font-mono text-xl">DISCORD.COM/IVONIA.US</span>
+                    <span id="discord-count" class="text-white">285</span>
+                </div>
+            </div>
+
+            <!-- Botón principal de Conexión (Púrpura Grande) -->
+            <button id="copy-button" class="btn-main flex items-center justify-center mx-auto py-3 px-10 text-2xl shadow-xl shadow-violet-500/30 font-extrabold tracking-wider">
+                JUGAR AHORA
+                <i data-lucide="play-circle" class="w-7 h-7 ml-3"></i> 
+            </button>
+            <div id="copy-message" class="text-green-400 mt-3 hidden text-sm font-semibold">¡IP Copiada: mc.ivonia.us!</div>
+            
+        </header>
+
+        <!-- SECCIÓN DE CONTENIDO PRINCIPAL (Bienvenida + Botón STORE flotante) -->
+        <section class="content-card p-6 md:p-10 w-full mb-16 flex flex-col md:flex-row items-start justify-between relative">
+            
+            <!-- Texto de Bienvenida -->
+            <div>
+                <h2 class="text-2xl font-bold color-primary mb-2">
+                    <i data-lucide="sword" class="inline-block w-6 h-6 mr-2"></i> Bienvenido a Ivonia Network!
+                </h2>
+                <p class="text-gray-300 text-lg max-w-2xl">
+                    IvoniaMC es un servidor de Minecraft único y gratificante que proporciona una experiencia divertida y satisfactoria para jugadores apasionados.
+                </p>
+                <p class="text-gray-400 text-base mt-3">
+                    Actualmente presentando el modo: <span class="text-white font-bold">Survival 1.21.</span>
+                </p>
+            </div>
+
+            <!-- Botón STORE Flotante (Replicando el estilo SiphonMC) -->
+            <a href="category.html" class="bg-primary text-white py-4 px-8 mt-6 md:mt-0 font-extrabold text-xl rounded-xl shadow-2xl shadow-violet-500/50 transition duration-300 hover:bg-purple-600 flex items-center">
+                STORE
+                <i data-lucide="shopping-cart" class="w-5 h-5 ml-2"></i>
+            </a>
+
+        </section>
+
+        <!-- SECCIÓN DE NOTICIAS O TEMPORADAS (Dos Columnas) -->
+        <section class="w-full mb-16">
+            <h2 class="text-4xl font-extrabold text-white mb-8 text-left">
+                <span class="color-primary">TEMPORADA</span> ACTUAL
+            </h2>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                
+                <!-- Bloque de Temporada 5 -->
+                <div class="content-card p-6">
+                    <h3 class="text-2xl font-bold text-white mb-4 border-b border-gray-700 pb-2">
+                        <i data-lucide="gem" class="inline-block w-5 h-5 mr-2 text-red-500"></i> Temporada 1
+                    </h3>
+                    <p class="text-gray-400 mb-4">
+                        ¡Lanzamiento del Reino S1 - Reinos Temporada 1! Una nueva aventura te espera con nuevos encantamientos, items custom y un mapa fresco.
+                    </p>
+                    <ul class="text-sm space-y-2 text-gray-300">
+                        <li class="flex items-center"><i data-lucide="chevron-right" class="w-4 h-4 mr-2 color-primary"></i> Nueva Economía</li>
+                        <li class="flex items-center"><i data-lucide="chevron-right" class="w-4 h-4 mr-2 color-primary"></i> Zonas de Farmeo Optimizado</li>
+                        <li class="flex items-center"><i data-lucide="chevron-right" class="w-4 h-4 mr-2 color-primary"></i> Más de 20 Misiones Diarias</li>
+                    </ul>
+                    <a href="#" class="mt-4 inline-block text-sm font-semibold color-primary hover:text-white transition">
+                        Ver Notas del Parche Completo
+                    </a>
+                </div>
+
+                <!-- Bloque de Eventos Semanales -->
+                <div class="content-card p-6">
+                    <h3 class="text-2xl font-bold text-white mb-4 border-b border-gray-700 pb-2">
+                        <i data-lucide="calendar" class="inline-block w-5 h-5 mr-2 text-blue-400"></i> Eventos y Comunidad
+                    </h3>
+                    <p class="text-gray-400 mb-4">
+                        Participa en nuestros eventos programados y gana recompensas exclusivas, rangos temporales o items únicos.
+                    </p>
+                    <ul class="text-sm space-y-2 text-gray-300">
+                        <li class="flex items-center"><i data-lucide="gift" class="w-4 h-4 mr-2 text-green-400"></i> Sorteo Discord semanal (¡Únete ya!)</li>
+                        <li class="flex items-center"><i data-lucide="sword" class="w-4 h-4 mr-2 text-red-400"></i> PvP Arena de Clanes - Sábados 8PM EST</li>
+                        <li class="flex items-center"><i data-lucide="hammer" class="w-4 h-4 mr-2 text-yellow-400"></i> Soporte de Staff 24/7</li>
+                    </ul>
+                    <a href="#" class="mt-4 inline-block text-sm font-semibold color-primary hover:text-white transition">
+                        Ver Calendario de Eventos
+                    </a>
+                </div>
+            </div>
+        </section>
+
+
+        <!-- FOOTER SIMPLE -->
+        <footer class="mt-20 text-center text-gray-600 pt-8 w-full border-t border-gray-800">
+            <p class="text-xs mb-4">
+                IVONIA NETWORK © 2025. Juega en: <span class="text-white font-mono">mc.ivonia.us</span>
+            </p>
+            <div class="space-x-4 text-sm">
+                <a href="#" class="hover:text-white">Términos de Servicio</a>
+                <a href="#" class="hover:text-white">Política de Privacidad</a>
+            </div>
+        </footer>
+    </div>
+
+    <!-- SCRIPT DE INICIALIZACIÓN Y LÓGICA JS (Copiar IP) -->
+    <script>
+        // 1. Inicializa los iconos de Lucide
+        lucide.createIcons();
+
+        // 2. Lógica para el botón de Copiar IP
+        document.getElementById('copy-button').addEventListener('click', () => {
+            const ip = 'mc.ivonia.us';
+            const copyMessage = document.getElementById('copy-message');
+            
+            // Función de fallback para copiar texto
+            function fallbackCopyTextToClipboard(text) {
+                const textArea = document.createElement("textarea");
+                textArea.value = text;
+                textArea.style.position = "fixed"; 
+                textArea.style.left = "-9999px";
+                document.body.appendChild(textArea);
+                textArea.focus();
+                textArea.select();
+                try {
+                    document.execCommand('copy');
+                } catch (err) {
+                    console.error('Fallback: La copia fue imposible', err);
+                }
+                document.body.removeChild(textArea);
+            }
+
+            // Mostrar el mensaje de confirmación
+            function showCopyMessage() {
+                copyMessage.classList.remove('hidden');
+                setTimeout(() => {
+                    copyMessage.classList.add('hidden');
+                }, 2000);
+            }
+
+            // Intentar copiar
+            if (navigator.clipboard && navigator.clipboard.writeText) {
+                navigator.clipboard.writeText(ip)
+                    .then(showCopyMessage)
+                    .catch(() => {
+                        fallbackCopyTextToClipboard(ip);
+                        showCopyMessage();
+                    });
+            } else {
+                fallbackCopyTextToClipboard(ip);
+                showCopyMessage();
+            }
+
+            // Simular un cambio en el contador de jugadores para que se vea dinámico
+            const playerCount = document.getElementById('player-count');
+            const currentPlayers = parseInt(playerCount.textContent);
+            playerCount.textContent = currentPlayers + Math.floor(Math.random() * 5) + 1; // Suma entre 1 y 5 jugadores
+        });
+    </script>
+</body>
+</html>

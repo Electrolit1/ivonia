@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wiki Oficial IVONIA - Lore y Mecánicas</title>
+    
+    <!-- Carga de Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Carga de Font Awesome para iconos (Flechas de voto) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    
+    <!-- Carga de Fuente (Inter) y Iconos (Lucide) -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <!-- Estilos Personalizados y Tema IVONIA (Violeta/Obsidiana) -->
+    <style>
+        /* Variables y Base */
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #121212; 
+            color: #e5e7eb;
+            /* Estilo de fondo IVONIA */
+            background-image: linear-gradient(rgba(0, 0, 0, 0.9), rgba(0, 0, 0, 0.9)), url('img/wallpaper.png');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+        }
+        .color-primary {
+            color: #a855f7; /* Violeta 500 */
+        }
+        
+        /* Contenedor principal de ancho limitado */
+        .main-container {
+            max-width: 1300px; /* Un poco más ancho para la Wiki */
+            width: 95%;
+            margin: 0 auto;
+        }
+
+        /* NAVEGACIÓN CENTRALIZADA */
+        #central-nav {
+            padding-top: 2rem; 
+        }
+        
+        /* Contenedor de Obsidiana para la Sidebar y Contenido */
+        .obsidian-panel {
+            background-color: #1a0f28; /* Base púrpura oscuro */
+            border: 3px solid #6b21a8; /* Borde violeta oscuro */
+            box-shadow: 0 0 15px rgba(168, 85, 247, 0.3); /* Resplandor púrpura */
+        }
+        
+        /* Estilo de los enlaces de la Sidebar */
+        .sidebar-link {
+            padding: 0.75rem 1rem;
+            cursor: pointer;
+            transition: all 0.2s;
+            border-radius: 0.375rem;
+            font-weight: 500;
+        }
+        
+        .sidebar-link:hover {
+            background-color: #3b1c67; /* Violeta más oscuro en hover */
+            color: #fff;
+        }
+
+        .sidebar-link.active {
+            background-color: #a855f7; /* Violeta primario para activo */
+            color: #1a0f28; /* Texto oscuro para contraste */
+            font-weight: 700;
+        }
+
+        /* Estilo del contenido principal (para textos enriquecidos) */
+        #wiki-content h1 {
+            font-size: 2.5rem;
+            font-weight: 900;
+            margin-bottom: 1rem;
+            color: #fff;
+            padding-bottom: 0.5rem;
+            border-bottom: 2px solid #6b21a8;
+        }
+
+        #wiki-content h2 {
+            font-size: 1.75rem;
+            font-weight: 700;
+            margin-top: 2rem;
+            margin-bottom: 1rem;
+            color: #c4b5fd;
+        }
+
+        #wiki-content p {
+            margin-bottom: 1rem;
+            line-height: 1.75;
+            color: #d1d5db;
+        }
+        
+        #wiki-content ul {
+            list-style-type: disc;
+            margin-left: 1.5rem;
+            margin-bottom: 1rem;
+        }
+        
+        /* Responsividad */
+        @media (max-width: 1024px) {
+            #wiki-layout {
+                grid-template-columns: 1fr;
+            }
+            #wiki-sidebar {
+                margin-bottom: 2rem;
+                padding: 1rem;
+            }
+            #wiki-content-area {
+                padding: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- 1. NAVEGACIÓN CENTRALIZADA -->
+    <nav id="central-nav" class="main-container flex justify-center items-center py-4 mb-16">
+        <div class="flex flex-wrap justify-center space-x-4 sm:space-x-8 text-lg font-semibold bg-black/50 p-3 rounded-full border border-gray-700">
+            <!-- Los enlaces ahora tienen un color hover primario (color-primary) definido en CSS -->
+            <a href="index.html" class="nav-link text-white transition duration-150 px-2 py-1 hover:color-primary">HOME</a>
+            <a href="forum.html" class="nav-link text-white transition duration-150 px-2 py-1 hover:color-primary">FORUM</a>
+            <a href="wiki.html" class="nav-link text-white transition duration-150 px-2 py-1 color-primary">WIKI</a> <!-- WIKI ACTIVO -->
+            <a href="category.html" class="nav-link text-white bg-violet-600/30 rounded-full hover:bg-violet-600/50 transition duration-150 px-4 py-1 border border-violet-500">STORE</a>
+            <a href="#" class="nav-link text-white transition duration-150 px-2 py-1 hover:color-primary">BAN LIST</a>
+            <a href="404.html" class="nav-link text-white transition duration-150 px-2 py-1 hover:color-primary">MAP</a>
+        </div>
+    </nav>
+    <!-- Fin de la Navegación Centralizada -->
+
+    <!-- 2. ESTRUCTURA PRINCIPAL DE LA WIKI -->
+    <div class="main-container mb-20">
+
+        <h1 class="text-5xl font-extrabold mb-10 text-white border-b border-gray-800 pb-4 flex items-center">
+             <i data-lucide="scroll-text" class="w-10 h-10 inline-block mr-4 text-violet-500"></i> WIKI DE IVONIA
+        </h1>
+
+        <div id="wiki-layout" class="grid grid-cols-4 gap-8">
+            
+            <!-- Sidebar (Menú de Navegación) - Columna 1 -->
+            <aside id="wiki-sidebar" class="col-span-4 lg:col-span-1 p-4 rounded-xl obsidian-panel h-fit">
+                <h3 class="text-xl font-bold mb-4 text-white border-b border-gray-600 pb-2 flex items-center">
+                    <i data-lucide="book-open-text" class="w-5 h-5 mr-2 text-violet-400"></i> Secciones
+                </h3>
+                <nav class="flex flex-col space-y-2" id="sidebar-nav">
+                    <!-- Los enlaces se generarán aquí -->
+                </nav>
+            </aside>
+            
+            <!-- Contenido Principal - Columnas 2, 3, 4 -->
+            <main id="wiki-content-area" class="col-span-4 lg:col-span-3 p-6 rounded-xl obsidian-panel">
+                <div id="wiki-content" class="min-h-[600px]">
+                    <!-- El contenido HTML se inyectará aquí -->
+                </div>
+            </main>
+            
+        </div>
+
+        <!-- FOOTER SIMPLE -->
+        <footer class="mt-20 text-center text-gray-600 pt-8 w-full border-t border-gray-800">
+            <p class="text-xs mb-4">
+                IVONIA NETWORK © 2025. Juega en: <span class="text-white font-mono">mc.ivonia.us</span>
+            </p>
+            <div class="space-x-4 text-sm">
+                <a href="#" class="hover:text-white">Términos de Servicio</a>
+                <a href="#" class="hover:text-white">Política de Privacidad</a>
+            </div>
+        </footer>
+
+    </div>
+            
+    <!-- 3. Lógica de la Wiki -->
+    <script type="module">
+        
+        // --- 1. DATOS DE LA WIKI ---
+        
+        // Estructura de contenido. Cada clave es el 'slug' (ID) y contiene el HTML.
+        const WIKI_CONTENT = {
+            'introduccion': {
+                title: "Introducción a IVONIA",
+                html: `
+                    <h1>Bienvenido al Servidor IVONIA</h1>
+                    <p>IVONIA es un servidor de Minecraft de la modalidad *Survival* con elementos de Facciones (Factions) y un sistema de magia y habilidades únicas. Fue fundado en 2024 con la visión de crear un entorno de juego donde la construcción y el PVP se fusionaran en una experiencia persistente y llena de historia.</p>
+                    
+                    <h2>El Sistema de Lore y Era Oscura</h2>
+                    <p>El servidor se basa en la leyenda de los Antiguos Vengadores, un grupo de guerreros que sellaron la entidad conocida como "El Vacío". Cada temporada representa una nueva era donde los sellos se debilitan. Actualmente, nos encontramos en la "Era de Obsidiana", donde los bloques oscuros y la magia púrpura dominan la estética del mundo.</p>
+                    <p class="text-violet-400 font-semibold">Consejo: Recolectar Obsidiana Púrpura tiene un bonus de experiencia en esta Era.</p>
+                `
+            },
+            'facciones': {
+                title: "Guía de Facciones",
+                html: `
+                    <h1>Facciones y Alianzas</h1>
+                    <p>Las facciones son esenciales para la protección territorial, la economía y el combate en IVONIA. Al unirte a una facción, obtienes acceso a cofres compartidos, chat privado y defensa territorial (Claiming).</p>
+                    
+                    <h2>Reglas de Reclamo (Claiming)</h2>
+                    <ul>
+                        <li>Cada jugador puede reclamar hasta 10 chunks de forma individual.</li>
+                        <li>Las facciones pueden reclamar un máximo de 200 chunks.</li>
+                        <li>Está prohibido reclamar terrenos en el spawn o a menos de 50 bloques de una base administrativa.</li>
+                        <li>Los terrenos reclamados protegen contra explosiones de TNT, pero no contra el daño de lava o fuego.</li>
+                    </ul>
+                    
+                    <h2>Poder de Facciones (Power)</h2>
+                    <p>El 'Power' se regenera con el tiempo y aumenta al realizar actividades como minar o matar mobs. Si el Power de tu facción cae por debajo de los chunks reclamados, tu facción es vulnerable a la invasión y al robo.</p>
+                `
+            },
+            'encantamientos': {
+                title: "Encantamientos y Habilidades Únicas",
+                html: `
+                    <h1>Encantamientos Exclusivos de IVONIA</h1>
+                    <p>Hemos añadido un set de encantamientos personalizados que no existen en el Minecraft vainilla. Estos se obtienen mediante el intercambio con aldeanos especiales (Elder Villagers) que aparecen una vez a la semana.</p>
+                    
+                    <h2>Lista de Habilidades (Custom Enchants)</h2>
+                    <ul>
+                        <li>**Teletransporte (Nivel III):** Permite un salto de 10 bloques con un cooldown de 5 segundos. Aplicable a Botas de Diamante.</li>
+                        <li>**Drenaje de Vida (Nivel I):** Cada 10 golpes exitosos en PVP, recuperas medio corazón. Aplicable a Hacha de Netherite.</li>
+                        <li>**Visión Nocturna Permanente:** Se aplica al Yelmo. No requiere poción.</li>
+                    </ul>
+                    <p class="text-red-400 font-semibold">¡Importante! Todos los encantamientos personalizados se pierden al morir en el End o en el Nether.</p>
+                `
+            },
+            'reglas': {
+                title: "Reglas Generales y Políticas",
+                html: `
+                    <h1>Reglamento del Servidor</h1>
+                    <p>El incumplimiento de estas reglas resultará en una advertencia, baneo temporal o baneo permanente, dependiendo de la gravedad.</p>
+                    
+                    <h2>Reglas de Conducta</h2>
+                    <ul>
+                        <li>**Respeto:** Prohibido el acoso, la discriminación o el lenguaje de odio.</li>
+                        <li>**Griefing:** El griefing está permitido solo en territorios NO reclamados. El griefing en zonas protegidas será penalizado.</li>
+                        <li>**Clientes Ilegales (Hacks):** El uso de cualquier tipo de cliente modificado (como X-Ray, Fly Hack) resulta en baneo permanente instantáneo.</li>
+                    </ul>
+                    
+                    <h2>Reglas de Comercio</h2>
+                    <p>Todo el comercio debe realizarse a través del sistema de Tiendas Seguras del servidor. El scamming (estafa) está prohibido en el chat global, pero es responsabilidad del jugador confirmar las transacciones privadas.</p>
+                `
+            }
+        };
+        
+        // Orden de la navegación
+        const NAV_ORDER = ['introduccion', 'facciones', 'encantamientos', 'reglas'];
+
+        // --- 2. FUNCIONES DE RENDERIZADO Y LÓGICA ---
+
+        function renderSidebar() {
+            const sidebarNav = document.getElementById('sidebar-nav');
+            let navHTML = '';
+            
+            NAV_ORDER.forEach(key => {
+                const item = WIKI_CONTENT[key];
+                // Usamos un simple clic para manejar la navegación interna.
+                navHTML += `
+                    <a href="#" data-page="${key}" class="sidebar-link text-gray-300 flex items-center">
+                        <i data-lucide="${getIconForPage(key)}" class="w-4 h-4 mr-3"></i>
+                        ${item.title}
+                    </a>
+                `;
+            });
+            sidebarNav.innerHTML = navHTML;
+            
+            // Inicializar iconos de Lucide
+            if (typeof lucide !== 'undefined') lucide.createIcons();
+        }
+
+        function getIconForPage(key) {
+            switch (key) {
+                case 'introduccion': return 'library';
+                case 'facciones': return 'shield-half';
+                case 'encantamientos': return 'sparkles';
+                case 'reglas': return 'gavel';
+                default: return 'file-text';
+            }
+        }
+
+        function loadPage(pageKey) {
+            const contentArea = document.getElementById('wiki-content');
+            const navLinks = document.querySelectorAll('.sidebar-link');
+            const page = WIKI_CONTENT[pageKey];
+
+            if (!page) {
+                contentArea.innerHTML = '<h1>Error 404</h1><p>Contenido de la wiki no encontrado.</p>';
+                return;
+            }
+
+            // Inyectar el contenido HTML
+            contentArea.innerHTML = page.html;
+
+            // Actualizar el estado 'active' de la navegación
+            navLinks.forEach(link => {
+                link.classList.remove('active', 'text-gray-300');
+                if (link.dataset.page === pageKey) {
+                    link.classList.add('active');
+                } else {
+                    link.classList.add('text-gray-300');
+                }
+            });
+            
+            // Volver al inicio del contenido
+            document.getElementById('wiki-content-area').scrollTop = 0;
+        }
+
+        // --- 3. INICIALIZACIÓN ---
+        document.addEventListener('DOMContentLoaded', () => {
+            // 1. Renderizar la navegación lateral
+            renderSidebar();
+            
+            // 2. Inicializar los listeners de navegación
+            document.getElementById('sidebar-nav').addEventListener('click', (event) => {
+                const targetLink = event.target.closest('.sidebar-link');
+                if (targetLink) {
+                    event.preventDefault();
+                    const pageKey = targetLink.dataset.page;
+                    loadPage(pageKey);
+                }
+            });
+
+            // 3. Cargar la página inicial (Introducción)
+            loadPage('introduccion');
+        });
+
+    </script>
+</body>
+</html>
