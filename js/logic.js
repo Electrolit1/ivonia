@@ -1,611 +1,801 @@
-// --- CONSTANTES ---
-const IVA_RATE = 0.03; 
-const PAYPAL_BUSINESS_EMAIL = 'alexanderosales048@gmail.com';
+// --- 0. CONFIGURACIÓN ---
+const CONFIG = {
 
-// Constantes para Webhooks de Discord
-const DISCORD_LOGS_WEBHOOK = 'https://discord.com/api/webhooks/1438620421229514895/SUiHz0Kqt8vuYdHe9yXK7HchNHcRPmP_kZZc3hDUZNiSwKAtBDTUPCcuwCWG9rp2oWcC'; // Para ver la compra (staff/privado)
-const DISCORD_PUBLIC_WEBHOOK = 'https://discord.com/api/webhooks/1438619985294528622/7r1gm56Gl50eGjTYfL06pEBXTtAX6e0ByL68dgMObvW0HPk2DTHy2WbE_9M1K6j9xyc2'; // Para notificar en un canal público
+    PAYPAL_CLIENT_ID: 'sb', // 'sb' es un Client ID de sandbox para PRUEBAS. 
+    
+    // ¡MUY IMPORTANTE! Este es el email de la cuenta de PayPal que RECIBIRÁ el dinero.
+    PAYPAL_BUSINESS_EMAIL: 'tu-email-de-negocios@paypal.com', 
+    
+    // Códigos de descuento (Código: porcentaje de descuento, ej. 0.10 = 10%)
+    // ¡RECUERDA! Esto no es seguro, los usuarios pueden ver los códigos en el JS.
+    DISCOUNT_CODES: {
+        'BIENVENIDO10': 0.10,
+        'SERVER20': 0.20,
+        'SOYVIP': 0.05,
+        'GRATIS100': 1.0 // <-- CÓDIGO DE EJEMPLO DEL 100% (valor 1.0)
+    },
 
-const DISCOUNT_CODES = {
-    'IVONIA3': { type: 'percent', value: 0.03, name: '3% IVA Compensado' },
-    'IVONIAMC': { type: 'percent', value: 0.25, name: '25% de Descuento VIP' },
-    'NULLY': { type: 'fixed', value: 10.00, name: '$10.00 Descuento Fijo' },
-    'NULL': { type: 'percent', value: 0.15, name: '15% para Upgrades' },
-    'NULL': { type: 'fixed', value: 5.00, name: '$5.00 para Mineros' },
+    // Webhook para notificaciones de staff (privado)
+    // ¡RECUERDA! Esto es INSEGURO. Tu URL es visible.
+    WEBHOOK_STAFF_URL: 'https://discord.com/api/webhooks/1438620421229514895/SUiHz0Kqt8vuYdHe9yXK7HchNHcRPmP_kZZc3hDUZNiSwKAtBDTUPCcuwCWG9rp2oWcC',
+
+    // Webhook para notificaciones públicas (canal #compras)
+    WEBHOOK_PUBLIC_URL: 'https://discord.com/api/webhooks/1438619985294528622/7r1gm56Gl50eGjTYfL06pEBXTtAX6e0ByL68dgMObvW0HPk2DTHy2WbE_9M1K6j9xyc2'
 };
 
-// --- 5.1. DATA MOCKUP DE PRODUCTOS ---
-const products = [
-// --- Nuevos Ranks ---
-    { id: 1, name: "Rank FOX", category: "Ranks", price: 5.99, icon: "fas fa-fox", info: "El Rank de entrada más accesible. 1 Home y comandos básicos.", details: "Rank de inicio. Incluye /kit fox y 1 /home.", is_bestseller: false, badge_color: 'mc-wool', icon_url: "images/rank-fox.png" },
-    { id: 2, name: "Rank CREEPER", category: "Ranks", price: 12.99, icon: "fas fa-explosion", info: "Un rank intermedio con un kit enfocado en TNT y explosivos.", details: "Incluye /kit creeper, /feed, y 2 /homes.", is_bestseller: false, badge_color: 'mc-gunpowder', icon_url: "images/rank-creeper.png" },
-    { id: 3, name: "Rank ALLAY", category: "Ranks", price: 20.99, icon: "fas fa-hand-sparkles", info: "Rank con beneficios de recolector y un kit diario con ítems útiles.", details: "Incluye /kit allay, /fly y /feed por tiempo limitado, 3 /homes.", is_bestseller: false, badge_color: 'mc-lapis', icon_url: "images/rank-allay.png" },
-    { id: 4, name: "Rank WICHT", category: "Ranks", price: 34.99, icon: "fas fa-hat-wizard", info: "Un rank avanzado. Acceso a zona VIP y kit con pociones avanzadas.", details: "Incluye /kit wicht, /fly permanente, /god temporal, 4 /homes, acceso a /warp vip.", is_bestseller: true, badge_color: 'mc-glowstone', icon_url: "images/rank-wicht.png" },
-
-    // --- Nuevas Llaves ---
-    { id: 5, name: "Llave SEASONAL", category: "Llaves", price: 1.50, icon: "fas fa-snowflake", info: "Llave para la caja de temporada. Recompensas temáticas de evento.", details: "Abre la Caja de temporada para ítems únicos que solo están disponibles por tiempo limitado.", is_bestseller: false, badge_color: 'mc-ice', icon_url: "images/key-seasonal.png" },
-    { id: 6, name: "Llave PREMIUM", category: "Llaves", price: 3.50, icon: "fas fa-trophy", info: "Llave para la caja de ítems premium. Gana armadura de protección II/III.", details: "Abre la Caja Premium para obtener encantamientos de nivel medio.", is_bestseller: false, badge_color: 'mc-iron', icon_url: "images/key-premium.png" },
-    { id: 7, name: "Llave ULTIMATE", category: "Llaves", price: 7.99, icon: "fas fa-gem", info: "Una llave muy rara. Oportunidad de ganar herramientas y armadura de Netherite.", details: "Abre la Caja Ultimate para tener la mejor oportunidad de obtener el mejor equipo del juego.", is_bestseller: true, badge_color: 'mc-diamond', icon_url: "images/key-ultimate.png" },
-    { id: 8, name: "Llave LEGENDARIA", category: "Llaves", price: 12.99, icon: "fas fa-crown", info: "La llave más valiosa. Ítems únicos y grandes cantidades de dinero y experiencia.", details: "Abre la Caja Legendaria. Garantiza un ítem raro o un cosmético exclusivo.", is_bestseller: true, badge_color: 'mc-netherite', icon_url: "images/key-legendary.png" },
-    
-    // --- Nuevas Mascotas (Vacio) ---
-    { id: 9, name: "Mascota LOBO", category: "Mascotas", price: 6.99, icon: "fas fa-wolf", info: "Una mascota de lobo domesticado para acompañarte.", details: "Mascota permanente. Se activa con /pet wolf. Cosmético.", is_bestseller: false, badge_color: 'mc-bone', icon_url: "images/pet-wolf.png" },
-    { id: 10, name: "Mascota ENDERMAN", category: "Mascotas", price: 14.99, icon: "fas fa-teleport", info: "Una mascota de Enderman que se teletransporta contigo.", details: "Mascota permanente. Se activa con /pet enderman. Tiene efecto de partículas de teletransporte.", is_bestseller: false, badge_color: 'mc-pearl', icon_url: "images/pet-enderman.png" },
-
-    // --- Nuevos Kits (Vacio) ---
-    { id: 11, name: "Kit GUERRERO", category: "Kits", price: 7.50, icon: "fas fa-sword", info: "Un kit de batalla con armadura de hierro y espada de diamante encantada.", details: "Recibes 1 Espada de Diamante Filo III y armadura de hierro Protección II.", is_bestseller: false, badge_color: 'mc-iron', icon_url: "images/kit-guerrero.png" },
-    { id: 12, name: "Kit FARMER", category: "Kits", price: 9.99, icon: "fas fa-seedling", info: "Kit de cultivo con herramientas de oro y semillas raras.", details: "Contiene Hacha de Eficiencia V, 64 semillas de cacao y una pala encantada.", is_bestseller: false, badge_color: 'mc-wheat', icon_url: "images/kit-farmer.png" },
-
-    // --- Otros (Vacio) ---
-    { id: 13, name: "Tag de CHAT ROJO", category: "Otros", price: 2.99, icon: "fas fa-tag", info: "Un tag de chat de color rojo vibrante para destacar en el chat.", details: "Color de tag de chat permanente. Se activa con /tag red.", is_bestseller: false, badge_color: 'mc-redstone', icon_url: "images/tag-red.png" },
-    { id: 14, name: "Sombrero de PÍXEL", category: "Otros", price: 10.99, icon: "fas fa-mitten", info: "Un sombrero cosmético único para tu personaje.", details: "Sombrero cosmético permanente. Se activa con /hat pixel.", is_bestseller: false, badge_color: 'mc-wool', icon_url: "images/hat-pixel.png" },
+// --- 1. DATOS DE LOS PRODUCTOS ---
+// (Datos de productos existentes)
+const allProducts = [
+    {
+        id: 1,
+        name: "Rango VIP (30 días)",
+        price: 9.99,
+        imageUrl: "https://placehold.co/300x200/90cdf4/ffffff?text=Rango+VIP",
+        altText: "Rango VIP",
+        rating: 4.5,
+        category: "rangos",
+        badge: null
+    },
+    {
+        id: 2,
+        name: "Rango MVP+ (Permanente)",
+        price: 24.99,
+        imageUrl: "https://placehold.co/300x200/a0aec0/ffffff?text=Rango+MVP%2B",
+        altText: "Rango MVP+",
+        rating: 5,
+        category: "rangos",
+        badge: "¡Hot!"
+    },
+    {
+        id: 3,
+        name: "Mascota: Golem de Hierro",
+        price: 7.99,
+        imageUrl: "https://placehold.co/300x200/fbd38d/ffffff?text=Mascota+Golem",
+        altText: "Mascota Golem de Hierro",
+        rating: 4,
+        category: "cosmeticos",
+        badge: null
+    },
+    {
+        id: 4,
+        name: "Paquete de 5000 Gemas",
+        price: 4.99,
+        imageUrl: "https://placehold.co/300x200/b794f4/ffffff?text=5000+Gemas",
+        altText: "Paquete de 5000 Gemas",
+        rating: 4.5,
+        category: "moneda",
+        badge: null
+    },
+    {
+        id: 5,
+        name: "Kit de Constructor (Uso Único)",
+        price: 3.99,
+        imageUrl: "https://placehold.co/300x200/f687b3/ffffff?text=Kit+Constructor",
+        altText: "Kit de Constructor",
+        rating: 5,
+        category: "kits",
+        badge: null
+    },
+    {
+        id: 6,
+        name: "Efectos de Partículas: Fuego",
+        price: 2.99,
+        imageUrl: "https://placehold.co/300x200/4fd1c5/ffffff?text=Efectos+de+Fuego",
+        altText: "Efectos de Partículas de Fuego",
+        rating: 4.5,
+        category: "cosmeticos",
+        badge: null
+    },
+    {
+        id: 7,
+        name: "Paquete de 5 Llaves Épicas",
+        price: 4.99,
+        imageUrl: "https://placehold.co/300x200/38b2ac/ffffff?text=5+Llaves+Epicas",
+        altText: "5 Llaves de Cajas Épicas",
+        rating: 4,
+        category: "llaves",
+        badge: null
+    },
+    {
+        id: 8,
+        name: "Pase de Batalla: Temporada 3",
+        price: 12.99,
+        imageUrl: "https://placehold.co/300x200/718096/ffffff?text=Pase+de+Batalla",
+        altText: "Pase de Batalla Temporada 3",
+        rating: 5,
+        category: "kits",
+        badge: null
+    }
 ];
 
-// --- 5.2. ESTADO GLOBAL DEL CARRITO ---
-let cartState = {
-    items: [], 
-    discountCode: null, 
-    giftCardValue: 0.00, 
-    minecraftUsername: null
-};
+// --- 2. ESTADO DE LA APLICACIÓN ---
+let cart = [];
+let appliedDiscount = null; 
+let currentMinecraftUsername = "";
 
-// --- 5.3. FUNCIONES DE UTILIDAD Y CÁLCULO ---
-function calculateTotals() {
-    let subtotal = 0;
-    cartState.items.forEach(item => {
-        subtotal += item.price * item.quantity;
-    });
-    
-    let totalDiscount = 0;
-    if (cartState.discountCode) {
-        const code = cartState.discountCode;
-        if (code.type === 'percent') {
-            totalDiscount = subtotal * code.value;
-        } else if (code.type === 'fixed') {
-            totalDiscount = code.value;
-        }
-    }
-    totalDiscount = Math.min(totalDiscount, subtotal);
-    
-    let totalAfterDiscount = subtotal - totalDiscount;
-    const taxAmount = totalAfterDiscount * IVA_RATE;
-    let totalBeforeGiftCard = totalAfterDiscount + taxAmount;
-    
-    let totalGiftCardUsed = Math.min(cartState.giftCardValue, totalBeforeGiftCard);
-    let totalPayable = totalBeforeGiftCard - totalGiftCardUsed;
-    
-    return {
-        subtotal: subtotal,
-        totalDiscount: totalDiscount,
-        taxAmount: taxAmount,
-        totalGiftCardUsed: totalGiftCardUsed,
-        totalPayable: Math.max(0, totalPayable),
-        currentGiftCardBalance: cartState.giftCardValue
-    };
-}
+// --- 3. SELECTORES DE ELEMENTOS ---
+// Selectores de la tienda
+const productGrid = document.getElementById('product-grid');
+const categoryTitle = document.getElementById('category-title');
+const sidebarLinks = document.querySelectorAll('#sidebar-nav .sidebar-link');
+const searchInput = document.getElementById('search-input');
 
-function formatCurrency(amount) {
-    return `$${amount.toFixed(2)}`;
-}
+// Selectores del Carrito
+const cartModal = document.getElementById('cart-modal');
+const cartIconButton = document.getElementById('cart-icon-button');
+const closeCartButton = document.getElementById('close-cart-button');
+const cartItemsContainer = document.getElementById('cart-items-container');
+const emptyCartMessage = document.getElementById('empty-cart-message');
+const cartCountBadge = document.getElementById('cart-count-badge');
 
-// --- 5.7. NUEVA FUNCIÓN DE WEBHOOK DE DISCORD ---
+// Selectores de Checkout
+const cartSubtotalEl = document.getElementById('cart-subtotal');
+const cartDiscountEl = document.getElementById('cart-discount');
+const cartTotalEl = document.getElementById('cart-total');
+const discountCodeInput = document.getElementById('discount-code-input');
+const applyDiscountButton = document.getElementById('apply-discount-button');
+const discountAppliedRow = document.getElementById('discount-applied-row');
+const discountCodeText = document.getElementById('discount-code-text');
+const usernameInput = document.getElementById('minecraft-username');
+const cartMessage = document.getElementById('cart-message');
+const paypalButtonContainer = document.getElementById('paypal-button-container');
+const claimFreeButton = document.getElementById('claim-free-button'); // <-- Selector para el botón gratis
+
+// Selectores de Notificación
+const notificationToast = document.getElementById('notification-toast');
+
+// Selectores del Menú Móvil
+const menuButton = document.getElementById('mobile-menu-button');
+const mobileMenu = document.getElementById('mobile-menu');
+
+
+// --- 4. FUNCIONES PRINCIPALES (INICIALIZACIÓN) ---
+
+// Espera a que el DOM esté cargado para ejecutar todo
+document.addEventListener('DOMContentLoaded', () => {
+    initStore();
+    initMobileMenu();
+});
 
 /**
- * Envía un mensaje estructurado (Embed) a un Webhook de Discord.
- * @param {string} webhookUrl - El URL del Webhook de Discord.
- * @param {object} embedData - Los datos del embed de Discord.
+ * Inicializa la lógica del menú móvil
  */
-function sendDiscordWebhook(webhookUrl, embedData) {
-    if (webhookUrl.includes('[TU_WEBHOOK_URL')) {
-        console.warn("Advertencia: No se puede enviar Webhook. URL de Discord no configurada.");
+function initMobileMenu() {
+    if (menuButton && mobileMenu) {
+        menuButton.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+    }
+}
+
+/**
+ * Inicializa la lógica de la tienda
+ */
+function initStore() {
+    // Comprueba si los elementos de la tienda existen antes de continuar
+    if (!productGrid || !categoryTitle || !sidebarLinks.length) {
+        console.warn("No se encontraron todos los elementos de la tienda. Asegúrate de que el HTML está cargado.");
         return;
     }
 
-    const payload = {
-        // Se usa el nombre de la tienda y un ícono para el bot del webhook
-        username: "IVONIA Store Notifier",
-        avatar_url: "https://discord.com/channels/1343360454931513374/1343363542136389686/1438620962839990404", // Reemplaza con el logo de tu tienda
-        embeds: [embedData]
-    };
+    loadCart();
+    addEventListeners();
+    renderProducts(allProducts); // Render inicial
+    renderCart();
+    loadPayPalSDK();
+}
 
-    fetch(webhookUrl, {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(payload),
-    })
-    .then(response => {
-        if (!response.ok) {
-            console.error(`Error al enviar el Webhook a Discord (Código: ${response.status})`);
-            // Opcional: Intentar leer el cuerpo de error de Discord
-            response.text().then(text => console.error("Respuesta de Discord:", text));
-        } else {
-            console.log(`Webhook enviado con éxito a ${webhookUrl}`);
-        }
-    })
-    .catch(error => {
-        console.error('Error de red al intentar enviar el Webhook:', error);
+// --- 5. LÓGICA DE EVENTOS ---
+
+function addEventListeners() {
+    // Clics en la barra lateral (Categorías)
+    sidebarLinks.forEach(link => {
+        link.addEventListener('click', handleCategoryClick);
     });
-}
 
-
-// --- 5.4. MANEJO DEL CARRITO ---
-
-function updateCartDisplay() {
-    const totals = calculateTotals();
-    const count = cartState.items.reduce((sum, item) => sum + item.quantity, 0);
-    
-    // 1. Renderizar el contador del carrito (Verificación de Null)
-    const cartCountEl = document.getElementById('cart-count');
-    if (cartCountEl) {
-        cartCountEl.textContent = count;
-    }
-    
-    // 2. Renderizar la lista de items y la factura
-    renderCart(totals);
-    
-    // 3. Controlar estado del botón de pago (Verificación de Null)
-    const checkoutBtn = document.getElementById('checkout-btn');
-    const checkoutMessage = document.getElementById('checkout-message');
-
-    if (!checkoutBtn || !checkoutMessage) {
-        console.error("Error: Elementos de checkout no encontrados.");
-        return;
-    }
-    
-    // Lógica para habilitar/deshabilitar el botón
-    const canCheckout = cartState.items.length > 0 && cartState.minecraftUsername && totals.totalPayable > 0;
-
-    if (canCheckout || (cartState.items.length > 0 && totals.totalPayable <= 0)) {
-        // Habilitar si hay pago pendiente O si el total es $0.00 y hay items.
-        checkoutBtn.disabled = false;
-        checkoutMessage.classList.add('hidden');
-        if (totals.totalPayable <= 0) {
-             checkoutBtn.textContent = 'Completar Compra ($0.00)';
-             checkoutBtn.classList.remove('bg-[#FFC439]', 'hover:bg-yellow-500');
-             checkoutBtn.classList.add('bg-green-600', 'hover:bg-green-500');
-        } else {
-             checkoutBtn.textContent = 'Pagar con PayPal';
-             checkoutBtn.classList.add('bg-[#FFC439]', 'hover:bg-yellow-500');
-             checkoutBtn.classList.remove('bg-green-600', 'hover:bg-green-500');
-        }
-    } else {
-        checkoutBtn.disabled = true;
-        checkoutBtn.textContent = 'Pagar con PayPal';
-        checkoutBtn.classList.add('bg-[#FFC439]', 'hover:bg-yellow-500');
-        checkoutBtn.classList.remove('bg-green-600', 'hover:bg-green-500');
-
-        if (cartState.items.length === 0) {
-            checkoutMessage.textContent = 'El carrito está vacío.';
-        } else {
-            checkoutMessage.textContent = 'Por favor, confirma tu usuario de Minecraft para pagar.';
-        }
-        checkoutMessage.classList.remove('hidden');
-    }
-}
-
-function renderCart(totals) {
-    const itemsContainer = document.getElementById('cart-items-container');
-    const emptyMessage = document.getElementById('empty-cart-message');
-    
-    if (!itemsContainer || !emptyMessage) {
-        console.error("Error: Contenedores de carrito no encontrados en el DOM.");
-        return;
+    // Búsqueda
+    if (searchInput) {
+        searchInput.addEventListener('input', handleSearch);
     }
 
-    itemsContainer.innerHTML = '';
-    
-    if (cartState.items.length === 0) {
-        emptyMessage.classList.remove('hidden');
-    } else {
-        emptyMessage.classList.add('hidden'); 
-        cartState.items.forEach(item => {
-            const itemTotal = item.price * item.quantity;
-            const itemDiv = document.createElement('div');
-            itemDiv.className = 'flex items-center p-3 bg-gray-800 rounded-lg shadow';
-            itemDiv.innerHTML = `
-                <div class="flex-1 min-w-0">
-                    <p class="text-sm font-semibold text-white truncate">${item.name}</p>
-                    <p class="text-xs text-gray-400">${formatCurrency(item.price)} c/u</p>
-                </div>
-                <div class="flex items-center space-x-3">
-                    <button onclick="updateQuantity(${item.id}, -1)" class="text-violet-400 hover:text-white transition text-lg w-6 h-6 flex items-center justify-center rounded-full bg-gray-700">-</button>
-                    <span class="text-sm font-bold text-white w-4 text-center">${item.quantity}</span>
-                    <button onclick="updateQuantity(${item.id}, 1)" class="text-violet-400 hover:text-white transition text-lg w-6 h-6 flex items-center justify-center rounded-full bg-gray-700">+</button>
-                    <span class="text-sm font-bold text-green-400 w-16 text-right">${formatCurrency(itemTotal)}</span>
-                    <button onclick="removeItem(${item.id})" class="text-red-500 hover:text-red-400 transition ml-3">
-                        <i class="fas fa-trash-alt text-xs"></i>
-                    </button>
-                </div>
-            `;
-            itemsContainer.appendChild(itemDiv);
+    // Clics en la cuadrícula de productos (Añadir al carrito)
+    if (productGrid) {
+        productGrid.addEventListener('click', (e) => {
+            const addToCartButton = e.target.closest('.add-to-cart-button');
+            if (addToCartButton) {
+                e.preventDefault(); // Prevenir la navegación si el botón está dentro de un <a>
+                const productId = parseInt(addToCartButton.dataset.id, 10);
+                addToCart(productId);
+            }
         });
     }
 
-    // Actualizar factura (Verificación de Null para todos los elementos)
-    const subtotalEl = document.getElementById('subtotal-amount');
-    const discountEl = document.getElementById('discount-amount');
-    const giftcardBalanceEl = document.getElementById('giftcard-balance');
-    const giftcardUsedEl = document.getElementById('giftcard-used');
-    const taxEl = document.getElementById('tax-amount');
-    const totalPayableEl = document.getElementById('total-payable');
+    // Abrir/Cerrar Carrito
+    if (cartIconButton) {
+        cartIconButton.addEventListener('click', toggleCartModal);
+    }
+    if (closeCartButton) {
+        closeCartButton.addEventListener('click', toggleCartModal);
+    }
+    if (cartModal) {
+        cartModal.addEventListener('click', (e) => {
+            // Cierra el modal si se hace clic en el fondo oscuro
+            if (e.target === cartModal) {
+                toggleCartModal();
+            }
+        });
+    }
 
-    if (subtotalEl) subtotalEl.textContent = formatCurrency(totals.subtotal);
-    if (discountEl) discountEl.textContent = `-${formatCurrency(totals.totalDiscount)}`;
-    if (giftcardBalanceEl) giftcardBalanceEl.textContent = formatCurrency(totals.currentGiftCardBalance);
-    if (giftcardUsedEl) giftcardUsedEl.textContent = `-${formatCurrency(totals.totalGiftCardUsed)}`;
-    if (taxEl) taxEl.textContent = formatCurrency(totals.taxAmount);
-    if (totalPayableEl) totalPayableEl.textContent = formatCurrency(totals.totalPayable);
+    // Actualizaciones dentro del Carrito
+    if (cartItemsContainer) {
+        cartItemsContainer.addEventListener('click', (e) => {
+            const target = e.target;
+            const parentItem = target.closest('.cart-item');
+            if (!parentItem) return;
+
+            const productId = parseInt(parentItem.dataset.id, 10);
+
+            // Botón de Incrementar (+)
+            if (target.closest('.cart-quantity-increase')) {
+                const item = cart.find(i => i.id === productId);
+                if (item) updateCartQuantity(productId, item.quantity + 1);
+            }
+            // Botón de Decrementar (-)
+            else if (target.closest('.cart-quantity-decrease')) {
+                const item = cart.find(i => i.id === productId);
+                if (item) updateCartQuantity(productId, item.quantity - 1);
+            }
+            // Botón de Eliminar (x)
+            else if (target.closest('.cart-remove-item')) {
+                updateCartQuantity(productId, 0); // Poner cantidad a 0 elimina el item
+            }
+        });
+    }
+
+    // Aplicar Descuento
+    if (applyDiscountButton) {
+        applyDiscountButton.addEventListener('click', applyDiscount);
+    }
+
+    // Guardar nombre de usuario de MC
+    if (usernameInput) {
+        usernameInput.addEventListener('input', (e) => {
+            currentMinecraftUsername = e.target.value.trim();
+            // Si había un error de "nombre requerido", lo borra al escribir
+            if (currentMinecraftUsername) {
+                setCartMessage("");
+            }
+        });
+    }
+    
+    // Listener para el botón gratis
+    if (claimFreeButton) {
+        claimFreeButton.addEventListener('click', handleFreeClaim);
+    }
 }
 
-function openCart() {
-    const modal = document.getElementById('cart-modal');
-    const overlay = document.getElementById('cart-overlay');
-    if (modal && overlay) {
-        modal.classList.add('open');
-        overlay.classList.remove('hidden');
+function handleCategoryClick(event) {
+    event.preventDefault(); 
+    
+    const clickedLink = event.currentTarget;
+    const category = clickedLink.dataset.category;
+
+    const linkText = clickedLink.querySelector('span').textContent;
+    categoryTitle.textContent = linkText;
+
+    sidebarLinks.forEach(link => link.classList.remove('active'));
+    clickedLink.classList.add('active');
+
+    let filteredProducts = [];
+    
+    if (category === 'all') {
+        filteredProducts = allProducts;
+    } else if (['favoritos', 'recomendados', 'top20'].includes(category)) {
+        if(category === 'top20') {
+            filteredProducts = [...allProducts].sort((a, b) => b.rating - a.rating).slice(0, 20);
+            categoryTitle.textContent = "Top 20 Más Valorados";
+        } else {
+             // Lógica para favoritos o recomendados (requeriría más datos en el producto)
+             filteredProducts = [];
+        }
+    } else {
+        filteredProducts = allProducts.filter(product => product.category === category);
     }
-    updateCartDisplay();
+    
+    renderProducts(filteredProducts);
 }
 
-function closeCart() {
-    const modal = document.getElementById('cart-modal');
-    const overlay = document.getElementById('cart-overlay');
-    if (modal && overlay) {
-        modal.classList.remove('open');
-        overlay.classList.add('hidden');
+function handleSearch(e) {
+    const searchTerm = e.target.value.toLowerCase();
+    const filteredProducts = allProducts.filter(product => 
+        product.name.toLowerCase().includes(searchTerm)
+    );
+    renderProducts(filteredProducts);
+}
+
+// --- 6. FUNCIONES DE RENDERIZADO (UI) ---
+
+/**
+ * "Pinta" los productos en el DOM.
+ */
+function renderProducts(productsToRender) {
+    if (!productGrid) return; // Salir si la cuadrícula no existe
+    productGrid.innerHTML = ''; // Limpia la cuadrícula
+
+    if (productsToRender.length === 0) {
+        productGrid.innerHTML = `
+            <div class="col-span-full text-center text-gray-500 py-10">
+                <i class="fa-solid fa-box-open text-4xl mb-4"></i>
+                <p class="text-xl">No se encontraron productos.</p>
+            </div>
+        `;
+        return;
     }
+
+    const productCardsHTML = productsToRender.map(product => {
+        const ratingStars = generateRatingStars(product.rating);
+        const badgeHTML = product.badge 
+            ? `<span class="absolute top-2 right-2 bg-red-500 text-white text-xs font-bold px-2 py-1 rounded-full uppercase z-10">${product.badge}</span>`
+            : '';
+
+        return `
+            <div class="bg-white rounded-lg shadow-lg overflow-hidden transition-all duration-300 product-card relative flex flex-col">
+                ${badgeHTML}
+                <img src="${product.imageUrl}" 
+                     alt="${product.altText}" 
+                     class="w-full h-48 object-cover"
+                     onerror="this.src='https://placehold.co/300x200/cccccc/ffffff?text=Imagen+No+Disponible'">
+                
+                <div class="p-4 flex flex-col flex-grow">
+                    <h4 class="text-lg font-semibold text-gray-800 truncate">${product.name}</h4>
+                    <div class="flex items-center mt-1">
+                        ${ratingStars}
+                    </div>
+                    <p class="text-lg font-bold text-minecraft-green-dark mt-2">$${product.price.toFixed(2)}</p>
+                    
+                    <button data-id="${product.id}" class="add-to-cart-button mt-4 w-full bg-action-orange text-white font-semibold py-2 rounded-lg hover:bg-action-orange-dark transition-colors">
+                        <i class="fa-solid fa-cart-plus mr-2"></i>Añadir
+                    </button>
+                </div>
+            </div>
+        `;
+    }).join('');
+
+    productGrid.innerHTML = productCardsHTML;
+}
+
+/**
+ * Pinta el contenido del modal del carrito
+ */
+function renderCart() {
+    // Salir si los elementos del carrito no existen
+    if (!cartItemsContainer || !emptyCartMessage || !cartSubtotalEl || !cartTotalEl) return;
+
+    // Vaciar contenedor de items
+    cartItemsContainer.innerHTML = '';
+
+    if (cart.length === 0) {
+        emptyCartMessage.classList.remove('hidden');
+    } else {
+        emptyCartMessage.classList.add('hidden');
+        cart.forEach(item => {
+            const itemHTML = `
+                <div class="flex items-center space-x-4 mb-4 p-2 rounded-lg border cart-item" data-id="${item.id}">
+                    <img src="${item.imageUrl}" alt="${item.altText}" class="w-16 h-16 object-cover rounded-lg">
+                    <div class="flex-grow">
+                        <h4 class="font-semibold text-gray-800">${item.name}</h4>
+                        <p class="text-sm text-gray-600">$${item.price.toFixed(2)}</p>
+                    </div>
+                    <div class="flex items-center border rounded-lg">
+                        <button class="cart-quantity-decrease w-8 h-8 text-gray-600 hover:bg-gray-100 rounded-l-lg" aria-label="Reducir cantidad">-</button>
+                        <input type="number" value="${item.quantity}" class="w-12 text-center border-l border-r" readonly>
+                        <button class="cart-quantity-increase w-8 h-8 text-gray-600 hover:bg-gray-100 rounded-r-lg" aria-label="Aumentar cantidad">+</button>
+                    </div>
+                    <button class="cart-remove-item text-gray-400 hover:text-red-500 ml-2" aria-label="Eliminar item">
+                        <i class="fa-solid fa-trash"></i>
+                    </button>
+                </div>
+            `;
+            cartItemsContainer.innerHTML += itemHTML;
+        });
+    }
+
+    // Calcular totales
+    const subtotal = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+    let discountAmount = 0;
+    
+    if (appliedDiscount) {
+        discountAmount = subtotal * appliedDiscount.percent;
+        if(cartDiscountEl) cartDiscountEl.textContent = `-$${discountAmount.toFixed(2)}`;
+        if(discountCodeText) discountCodeText.textContent = appliedDiscount.code;
+        if(discountAppliedRow) discountAppliedRow.classList.remove('hidden');
+    } else {
+        if(discountAppliedRow) discountAppliedRow.classList.add('hidden');
+    }
+    
+    const total = subtotal - discountAmount;
+
+    cartSubtotalEl.textContent = `$${subtotal.toFixed(2)}`;
+    cartTotalEl.textContent = `$${total.toFixed(2)}`;
+
+    updateCartIconCount();
+    
+    // LÓGICA DE BOTÓN DE PAGO (MODIFICADA)
+    if (cart.length > 0) {
+        if (total <= 0) {
+            // Total es $0.00 o menos, es gratis
+            if (paypalButtonContainer) {
+                paypalButtonContainer.innerHTML = ''; // Limpiar botones de PayPal
+                paypalButtonContainer.classList.add('hidden');
+            }
+            if (claimFreeButton) claimFreeButton.classList.remove('hidden');
+        } else {
+            // Hay un total que pagar
+            if (paypalButtonContainer) paypalButtonContainer.classList.remove('hidden');
+            if (claimFreeButton) claimFreeButton.classList.add('hidden');
+            renderPayPalButton(total); // Solo renderizar PayPal si el total es > 0
+        }
+    } else {
+        // Carrito vacío
+        if (paypalButtonContainer) {
+            paypalButtonContainer.innerHTML = '';
+            paypalButtonContainer.classList.add('hidden');
+        }
+        if (claimFreeButton) claimFreeButton.classList.add('hidden');
+    }
+}
+
+function updateCartIconCount() {
+    if (!cartCountBadge) return;
+    const count = cart.reduce((sum, item) => sum + item.quantity, 0);
+    cartCountBadge.textContent = count;
+    cartCountBadge.classList.toggle('hidden', count === 0);
+}
+
+function generateRatingStars(rating) {
+    let starsHTML = '';
+    const fullStars = Math.floor(rating);
+    const halfStar = (rating % 1) >= 0.5;
+    const emptyStars = 5 - fullStars - (halfStar ? 1 : 0);
+
+    for (let i = 0; i < fullStars; i++) starsHTML += '<i class="fa-solid fa-star text-sm text-yellow-500"></i>';
+    if (halfStar) starsHTML += '<i class="fa-solid fa-star-half-stroke text-sm text-yellow-500"></i>';
+    for (let i = 0; i < emptyStars; i++) starsHTML += '<i class="fa-regular fa-star text-sm text-yellow-500"></i>';
+    return starsHTML;
+}
+
+function toggleCartModal() {
+    if (cartModal) {
+        cartModal.classList.toggle('hidden');
+    }
+}
+
+/**
+ * Muestra una notificación toast
+ */
+function showNotification(message, isError = false) {
+    if (!notificationToast) return;
+    
+    notificationToast.textContent = message;
+    notificationToast.classList.remove('hidden', 'translate-y-20', 'opacity-0', 'bg-red-500', 'bg-minecraft-green-dark');
+    
+    if (isError) {
+        notificationToast.classList.add('bg-red-500');
+    } else {
+        notificationToast.classList.add('bg-minecraft-green-dark');
+    }
+
+    // Forzar reflow para la animación de entrada
+    notificationToast.offsetWidth;
+    
+    notificationToast.classList.remove('translate-y-20', 'opacity-0');
+
+    setTimeout(() => {
+        notificationToast.classList.add('translate-y-20', 'opacity-0');
+        setTimeout(() => notificationToast.classList.add('hidden'), 500); // Ocultar después de la transición
+    }, 3000); // 3 segundos visible
+}
+
+/**
+ * Muestra un mensaje dentro del modal del carrito
+ */
+function setCartMessage(message, isError = true) {
+    if (!cartMessage) return;
+    cartMessage.textContent = message;
+    cartMessage.classList.toggle('text-red-500', isError);
+    cartMessage.classList.toggle('text-green-600', !isError);
+}
+
+// --- 7. LÓGICA DEL CARRITO ---
+
+function loadCart() {
+    const savedCart = localStorage.getItem('mine-store-cart');
+    cart = savedCart ? JSON.parse(savedCart) : [];
+}
+
+function saveCart() {
+    localStorage.setItem('mine-store-cart', JSON.stringify(cart));
 }
 
 function addToCart(productId) {
-    const product = products.find(p => p.id === productId);
+    const product = allProducts.find(p => p.id === productId);
     if (!product) return;
-    const existingItem = cartState.items.find(item => item.id === productId);
+
+    const existingItem = cart.find(item => item.id === productId);
+
     if (existingItem) {
-        existingItem.quantity += 1;
+        existingItem.quantity++;
     } else {
-        cartState.items.push({ id: product.id, name: product.name, price: product.price, quantity: 1 });
+        cart.push({ ...product, quantity: 1 });
     }
-    updateCartDisplay();
-    alertMessage(`Añadido: ${product.name}`, 'green');
-    openCart(); 
+
+    saveCart();
+    renderCart();
+    showNotification(`¡${product.name} añadido al carrito!`);
 }
 
-function updateQuantity(productId, change) {
-    const existingItem = cartState.items.find(item => item.id === productId);
-    if (!existingItem) return;
-    existingItem.quantity += change;
-    if (existingItem.quantity <= 0) {
-        removeItem(productId);
+function updateCartQuantity(productId, newQuantity) {
+    if (newQuantity <= 0) {
+        // Eliminar item
+        cart = cart.filter(item => item.id !== productId);
     } else {
-        updateCartDisplay();
-    }
-}
-
-function removeItem(productId) {
-    cartState.items = cartState.items.filter(item => item.id !== productId);
-    updateCartDisplay();
-    alertMessage(`Producto eliminado del carrito.`, 'yellow');
-}
-
-// --- 5.5. MANEJO DE DESCUENTOS ---
-function applyDiscount() {
-    const input = document.getElementById('discount-input');
-    if (!input) return; 
-    const code = input.value.toUpperCase().trim();
-    const discount = DISCOUNT_CODES[code];
-    cartState.discountCode = null; 
-    if (discount) {
-        cartState.discountCode = discount;
-        alertMessage(`Descuento aplicado: ${discount.name}`, 'green');
-    } else {
-        alertMessage('Código de descuento no válido.', 'red');
-    }
-    updateCartDisplay();
-}
-
-function applyGiftCard() {
-    const input = document.getElementById('giftcard-input');
-    if (!input) return; 
-    const value = parseFloat(input.value);
-    if (isNaN(value) || value <= 0) {
-        alertMessage('Por favor, ingresa un valor de tarjeta válido.', 'red');
-        return;
-    }
-    cartState.giftCardValue += value;
-    alertMessage(`Tarjeta de regalo de ${formatCurrency(value)} canjeada.`, 'blue');
-    input.value = '';
-    updateCartDisplay();
-}
-
-// --- 5.6. CONFIRMAR Y EDITAR USUARIO ---
-
-function confirmUsername() {
-    const usernameInput = document.getElementById('minecraft-username');
-    const confirmationSection = document.getElementById('username-confirmation-section');
-    const inputArea = document.getElementById('username-input-area');
-    const displayArea = document.getElementById('username-display-area');
-    const usernameStatus = document.getElementById('username-status');
-
-    if (!usernameInput || !confirmationSection || !inputArea || !displayArea || !usernameStatus) return; 
-
-    const username = usernameInput.value.trim();
-
-    if (username.length < 3) {
-        alertMessage('Nombre de usuario inválido. Debe tener al menos 3 caracteres.', 'red');
-        confirmationSection.classList.add('animate-shake');
-        setTimeout(() => {
-            confirmationSection.classList.remove('animate-shake');
-        }, 500);
-        return;
-    }
-    
-    cartState.minecraftUsername = username;
-    
-    usernameStatus.textContent = username;
-    inputArea.classList.add('hidden');
-    displayArea.classList.remove('hidden');
-    
-    updateCartDisplay();
-    alertMessage(`Usuario confirmado: ${username}`, 'green');
-}
-
-function editUsername() {
-    const usernameInput = document.getElementById('minecraft-username');
-    const inputArea = document.getElementById('username-input-area');
-    const displayArea = document.getElementById('username-display-area');
-
-    if (!usernameInput || !inputArea || !displayArea) return; 
-
-    cartState.minecraftUsername = null;
-    
-    inputArea.classList.remove('hidden');
-    displayArea.classList.add('hidden');
-    usernameInput.value = '';
-    
-    updateCartDisplay();
-}
-
-
-// --- 5.8. CHECKOUT, PAYPAL Y DISCORD ---
-
-function checkout() {
-    if (cartState.items.length === 0) {
-         alertMessage('El carrito está vacío. Añade productos para pagar.', 'red');
-         return;
-    }
-    const confirmationSection = document.getElementById('username-confirmation-section');
-    if (!cartState.minecraftUsername) {
-        alertMessage('Por favor, confirma tu nombre de usuario de Minecraft antes de pagar.', 'red');
-        if (confirmationSection) {
-            confirmationSection.classList.add('animate-shake');
-            setTimeout(() => {
-                confirmationSection.classList.remove('animate-shake');
-            }, 500);
+        // Actualizar cantidad
+        const item = cart.find(i => i.id === productId);
+        if (item) {
+            item.quantity = newQuantity;
         }
+    }
+    saveCart();
+    renderCart();
+}
+
+function clearCart() {
+    cart = [];
+    appliedDiscount = null;
+    if (discountCodeInput) discountCodeInput.value = '';
+    saveCart();
+    renderCart();
+}
+
+// --- 8. LÓGICA DE PAGO Y NOTIFICACIONES ---
+
+function applyDiscount() {
+    if (!discountCodeInput) return;
+    const code = discountCodeInput.value.toUpperCase();
+    if (!code) return;
+
+    if (CONFIG.DISCOUNT_CODES[code]) {
+        const percent = CONFIG.DISCOUNT_CODES[code];
+        appliedDiscount = { code, percent };
+        setCartMessage(`¡${(percent * 100)}% de descuento aplicado!`, false);
+        renderCart(); // Re-renderizar para aplicar el descuento
+    } else {
+        appliedDiscount = null;
+        setCartMessage("Código de descuento no válido.", true);
+        renderCart(); // Re-renderizar para quitar cualquier descuento
+    }
+}
+
+function loadPayPalSDK() {
+    const script = document.createElement('script');
+    // Carga el SDK de PayPal con tu Client ID y la moneda
+    script.src = `https://www.paypal.com/sdk/js?client-id=${CONFIG.PAYPAL_CLIENT_ID}&currency=USD`;
+    script.onload = () => {
+        // Una vez cargado, renderiza el botón (si hay items en el carrito)
+        if (cart.length > 0) {
+            // Recalcular el total aquí por si acaso
+            const subtotal = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+            let discountAmount = 0;
+            if (appliedDiscount) {
+                discountAmount = subtotal * appliedDiscount.percent;
+            }
+            const total = subtotal - discountAmount;
+            
+            // MODIFICADO: Solo renderizar si el total es mayor a 0
+            if (total > 0) {
+                renderPayPalButton(total);
+            }
+        }
+    };
+    // MANEJO DE ERROR: Si el script de PayPal no se puede cargar (común en sandboxes)
+    script.onerror = () => {
+        console.error("Error al cargar el SDK de PayPal.");
+        setCartMessage("Error al cargar el módulo de pago. Inténtalo de nuevo.", true);
+    };
+    document.head.appendChild(script);
+}
+
+/**
+ * Renderiza el botón de PayPal
+ * @param {number} totalAmount - El monto final a pagar
+ */
+function renderPayPalButton(totalAmount) {
+    if (!paypalButtonContainer) return;
+    
+    // Salvaguarda por si se llama con 0
+    if (totalAmount <= 0) {
+        paypalButtonContainer.innerHTML = '';
+        paypalButtonContainer.classList.add('hidden');
+        return;
+    }
+
+    // Limpia el contenedor antes de renderizar
+    paypalButtonContainer.innerHTML = '';
+    
+    // CORRECCIÓN: Añadir comprobación por si el SDK de PayPal no se carga
+    if (typeof paypal === 'undefined') {
+        console.error("El SDK de PayPal no se cargó o inicializó correctamente.");
+        setCartMessage("Error al cargar el módulo de pago.", true);
+        return; // No intentes renderizar el botón
+    }
+
+    // Configuración del botón de PayPal
+    try {
+        paypal.Buttons({
+            // Validación ANTES de abrir el popup de PayPal
+            onClick: (data, actions) => {
+                if (!currentMinecraftUsername) {
+                    setCartMessage("Por favor, introduce tu nombre de usuario de Minecraft.", true);
+                    if (usernameInput) usernameInput.focus(); // Foco en el input
+                    return actions.reject(); // Cancela el pago
+                } else {
+                    setCartMessage(""); // Limpia mensajes de error
+                    return actions.resolve(); // Procede con el pago
+                }
+            },
+
+            // Configura la transacción
+            createOrder: (data, actions) => {
+                return actions.order.create({
+                    purchase_units: [{
+                        amount: {
+                            value: totalAmount.toFixed(2) // Asegura 2 decimales
+                        },
+                        payee: {
+                            // ¡MUY IMPORTANTE! Aquí va tu email de PayPal
+                            email_address: CONFIG.PAYPAL_BUSINESS_EMAIL
+                        }
+                    }]
+                });
+            },
+
+            // Se llama cuando el pago es aprobado por el usuario
+            onApprove: (data, actions) => {
+                return actions.order.capture().then(details => {
+                    // ¡Pago Exitoso!
+                    setCartMessage(`¡Pago completado por ${details.payer.name.given_name}!`, false);
+                    
+                    // Enviar notificaciones a Discord
+                    sendDiscordNotification('staff', details);
+                    sendDiscordNotification('public', details);
+
+                    // Limpiar el carrito
+                    setTimeout(() => {
+                        clearCart();
+                        toggleCartModal(); // Cierra el modal
+                        showNotification("¡Gracias por tu compra!");
+                    }, 3000); // Espera 3 seg. para que el usuario lea el mensaje
+                });
+            },
+
+            // Manejo de errores
+            onError: (err) => {
+                console.error("Error de PayPal:", err);
+                setCartMessage("Ocurrió un error durante el pago.", true);
+            }
+        }).render('#paypal-button-container');
+    } catch (error) {
+        console.error("Error al renderizar el botón de PayPal:", error);
+        setCartMessage("Error crítico al iniciar el módulo de pago.", true);
+    }
+}
+
+/**
+ * Maneja el reclamo de items gratuitos (descuento 100%)
+ */
+function handleFreeClaim() {
+    // 1. Validar nombre de usuario
+    if (!currentMinecraftUsername) {
+        setCartMessage("Por favor, introduce tu nombre de usuario de Minecraft.", true);
+        if (usernameInput) usernameInput.focus(); // Foco en el input
         return;
     }
     
-    const totals = calculateTotals();
-    const totalPayable = totals.totalPayable;
-    const description = cartState.items.map(item => `${item.name} x${item.quantity}`).join(', ');
-    const fullItemName = `Compra para [${cartState.minecraftUsername}] en IVONIA Store - (${description})`;
+    setCartMessage("Procesando tu reclamo...", false);
 
-    // Prepara los datos del producto/compra para Discord
-    const itemFields = cartState.items.map(item => ({
-        name: item.name,
-        value: `**Precio:** ${formatCurrency(item.price)} | **Cant:** ${item.quantity}`,
-        inline: true,
-    }));
-
-    // Lógica de los Webhooks (Aplicable tanto para $0.00 como para pagos con PayPal)
-    
-    // --- 1. WEBHOOK DE LOGS (Para Staff) ---
-    const logsEmbed = {
-        title: "💸 Nueva Transacción en la Tienda",
-        description: `El usuario **${cartState.minecraftUsername}** ha intentado una compra.`,
-        color: 11090679, // Violeta (#a855f7)
-        fields: [
-            ...itemFields,
-            { name: "Subtotal", value: formatCurrency(totals.subtotal), inline: true },
-            { name: "Descuento Aplicado", value: formatCurrency(totals.totalDiscount), inline: true },
-            { name: "Tarjeta/Gift Card Usada", value: formatCurrency(totals.totalGiftCardUsed), inline: true },
-            { name: "IVA (3%)", value: formatCurrency(totals.taxAmount), inline: true },
-            { name: "TOTAL A PAGAR", value: `**${formatCurrency(totalPayable)}**`, inline: false },
-        ],
-        footer: {
-            text: `ID de Transacción Simulado: ${Date.now()}`
-        },
-        timestamp: new Date().toISOString()
-    };
-    sendDiscordWebhook(DISCORD_LOGS_WEBHOOK, logsEmbed);
-
-
-    // Caso especial para compras cubiertas por descuento/gift card (Total $0.00)
-    if (totalPayable <= 0) {
-        alertMessage('¡Compra completada con éxito! Gracias por usar tu saldo.', 'green');
-        
-        // --- 2. WEBHOOK PÚBLICO (Para notificar la compra) ---
-        const publicEmbed = {
-            title: "✨ ¡NUEVA COMPRA EN LA TIENDA! ✨",
-            description: `¡**${cartState.minecraftUsername}** acaba de apoyar el servidor comprando **${cartState.items.length}** ítem(s)!`,
-            color: 3066993, // Verde
-            thumbnail: {
-                url: `https://minotar.net/avatar/${cartState.minecraftUsername}/100.png` // Muestra la cabeza del jugador
+    // 2. Simular un objeto 'details' de PayPal para las notificaciones
+    const mockDetails = {
+        payer: {
+            name: {
+                given_name: "Usuario",
+                surname: "(Reclamo Gratis)"
             },
+            email_address: "no-reply@gratis.com"
+        },
+        purchase_units: [{
+            amount: {
+                value: "0.00"
+            }
+        }]
+    };
+
+    // 3. Enviar notificaciones
+    sendDiscordNotification('staff', mockDetails);
+    sendDiscordNotification('public', mockDetails);
+
+    // 4. Limpiar carrito y cerrar
+    setTimeout(() => {
+        clearCart();
+        toggleCartModal(); // Cierra el modal
+        showNotification("¡Has reclamado tus items gratuitos!");
+    }, 2000); // Espera 2 seg
+}
+
+
+/**
+ * Envía la notificación a Discord vía Webhook
+ * @param {string} type - 'staff' o 'public'
+ * @param {object} details - Los detalles del pago de PayPal (o el objeto simulado)
+ */
+async function sendDiscordNotification(type, details) {
+    let url = '';
+    let embed = {};
+    const payerName = `${details.payer.name.given_name} ${details.payer.name.surname}`;
+    const total = parseFloat(details.purchase_units[0].amount.value); // Convertir a número
+    
+    // Construir la lista de items
+    const itemsDescription = cart.map(item => `${item.quantity}x ${item.name}`).join('\n');
+
+    if (type === 'staff') {
+        url = CONFIG.WEBHOOK_STAFF_URL;
+        if (!url.includes('https://discord.com/api/webhooks/')) return; // No envía si la URL no es válida
+
+        embed = {
+            title: total > 0 ? '✅ Nueva Compra de Staff' : '🎁 Reclamo Gratuito de Staff',
+            description: `**¡Venta/Reclamo realizado con éxito!**`,
+            color: total > 0 ? 0x00FF00 : 0x00BFFF, // Verde para compra, Azul para gratis
             fields: [
-                { name: "Ítems Comprados", value: description, inline: false },
-                { name: "Monto Pagado", value: "**$0.00 (Cubierto)**", inline: true },
+                { name: 'Usuario de Minecraft', value: `\`${currentMinecraftUsername}\``, inline: true },
+                { name: 'Comprador de PayPal', value: `\`${payerName}\``, inline: true },
+                { name: 'Email de PayPal', value: `\`${details.payer.email_address}\``, inline: false },
+                { name: 'Total Pagado', value: `**$${total.toFixed(2)} USD**`, inline: true },
+                { name: 'Items Comprados', value: `\`\`\`${itemsDescription}\`\`\``, inline: false },
             ],
             timestamp: new Date().toISOString()
         };
-        sendDiscordWebhook(DISCORD_PUBLIC_WEBHOOK, publicEmbed);
 
-        // Simulación de limpieza de carrito
-        cartState.items = [];
-        cartState.discountCode = null;
-        cartState.giftCardValue = 0.00;
-        cartState.minecraftUsername = null; 
-        updateCartDisplay();
-        closeCart();
+    } else { // 'public'
+        url = CONFIG.WEBHOOK_PUBLIC_URL;
+        if (!url.includes('https://discord.com/api/webhooks/')) return; // No envía si la URL no es válida
+        
+        // Para el público, solo mostramos el primer item para no saturar
+        const firstItemName = cart[0] ? cart[0].name : 'un paquete';
+        const actionText = total > 0 ? "acaba de comprar" : "acaba de reclamar";
 
-        return;
+        embed = {
+            title: total > 0 ? '🎉 ¡Nueva Compra en la Tienda!' : '🎁 ¡Nuevo Reclamo en la Tienda!',
+            description: `¡**${currentMinecraftUsername}** ${actionText} **${firstItemName}** y está apoyando al servidor!`,
+            color: 0x5865F2, // Azul de Discord
+            footer: {
+                text: '¡Gracias por tu apoyo!'
+            },
+            timestamp: new Date().toISOString()
+        };
     }
-    
-    // Redirección a PayPal para el pago
-    const paypalUrl = `https://www.paypal.com/cgi-bin/webscr?cmd=_xclick&` +
-                      `business=${PAYPAL_BUSINESS_EMAIL}&` +
-                      `item_name=${encodeURIComponent(fullItemName)}&` +
-                      `amount=${totalPayable.toFixed(2)}&` +
-                      `currency_code=USD`;
 
-    window.open(paypalUrl, '_blank');
-    alertMessage('Redirigiendo a PayPal para pago. ¡Gracias por tu apoyo!', 'yellow');
-}
-
-
-// --- 5.7. LÓGICA DE TARJETAS Y FILTROS ---
-
-function togglePreview(productId) {
-    const detailElement = document.getElementById(`details-${productId}`);
-    const previewButton = document.getElementById(`preview-btn-${productId}`);
-    if (!detailElement || !previewButton) return; 
-
-    if (detailElement.classList.contains('hidden')) {
-        detailElement.classList.remove('hidden');
-        previewButton.innerHTML = '<i class="fas fa-eye-slash mr-2"></i> Ocultar Detalles';
-    } else {
-        detailElement.classList.add('hidden');
-        previewButton.innerHTML = '<i class="fas fa-search mr-2"></i> Previsualizar Detalles';
+    try {
+        await fetch(url, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+                username: 'Notificador de Tienda',
+                avatar_url: 'https://i.pinimg.com/736x/43/ba/67/43ba67dbb1a51e7c2b0f943790462345.jpg', // Un ícono de cofre
+                embeds: [embed],
+            }),
+        });
+    } catch (error) {
+        console.error('Error enviando webhook a Discord:', error);
     }
 }
-
-function renderProductCard(product) {
-    const bestsellerBadge = product.is_bestseller 
-        ? `<span class="absolute top-0 right-0 transform translate-x-1/4 -translate-y-1/2 bg-red-600 text-white text-xs font-bold py-1 px-3 rounded-full shadow-lg rotate-3 z-10">
-             <i class="fas fa-bolt mr-1"></i> ¡MÁS VENDIDO!
-           </span>`
-        : '';
-
-    return `
-        <div class="content-card p-5 relative overflow-hidden">
-            ${bestsellerBadge}
-            <div class="text-5xl text-center mb-4 p-3 rounded-md bg-gray-900">
-                <i class="${product.icon} color-primary"></i>
-            </div>
-            
-            <h3 class="font-bold text-white text-xl mb-1">${product.name}</h3>
-            <p class="text-sm text-gray-400 mb-4 h-12 overflow-hidden">${product.info}</p>
-            <div class="flex justify-between items-center mb-4">
-                <span class="text-2xl font-bold color-primary">$${product.price.toFixed(2)}</span>
-                <span class="text-xs font-semibold text-gray-500 bg-gray-800 px-2 py-1 rounded-full">${product.category.toUpperCase()}</span>
-            </div>
-
-            <div class="space-y-3">
-                <button id="preview-btn-${product.id}" onclick="togglePreview(${product.id})" class="btn-secondary w-full text-sm bg-gray-700 hover:bg-gray-600 transition">
-                    <i class="fas fa-search mr-2"></i> Previsualizar Detalles
-                </button>
-                <button onclick="addToCart(${product.id})" class="btn-main w-full text-sm">
-                    <i class="fas fa-cart-plus mr-2"></i> Añadir al Carrito
-                </button>
-            </div>
-
-            <div id="details-${product.id}" class="hidden mt-4 p-3 bg-gray-800 rounded-lg border-l-4 border-primary text-sm text-gray-300">
-                <p class="font-bold color-primary mb-1">Detalles de ${product.name}:</p>
-                <p>${product.details}</p>
-            </div>
-        </div>
-    `;
-}
-
-function filterProducts(category) {
-    const grid = document.getElementById('product-grid');
-    const titleElement = document.getElementById('category-title');
-    
-    if (!grid || !titleElement) return; 
-
-    const icon = (category === 'Ranks') ? 'fas fa-crown' : (category === 'Llaves') ? 'fas fa-key' : (category === 'Comandos') ? 'fas fa-terminal' : (category === 'Kits') ? 'fas fa-box-open' : (category === 'Otros') ? 'fas fa-magic' : 'fas fa-cubes';
-    const titleText = (category === 'Todos') ? 'TODOS LOS ÍTEMS' : category.toUpperCase();
-    titleElement.innerHTML = `<i class="${icon} mr-2"></i> ${titleText}`;
-
-    const filteredProducts = (category === 'Todos') ? products : products.filter(p => p.category === category);
-    const productHtml = filteredProducts.map(renderProductCard).join('');
-    grid.innerHTML = productHtml;
-
-    document.querySelectorAll('.sidebar-link').forEach(a => {
-        a.classList.remove('active-category');
-    });
-    const activeLink = document.querySelector(`.sidebar-link[data-category="${category}"]`);
-    if (activeLink) {
-        activeLink.classList.add('active-category');
-    }
-}
-
-// Uso una función de alerta simple en lugar de window.alert/confirm
-function alertMessage(message, colorName) {
-    const currentAlert = document.getElementById('custom-alert');
-    if (currentAlert) currentAlert.remove();
-    
-    const colorClasses = {
-        'green': 'bg-green-600 border-green-400',
-        'red': 'bg-red-600 border-red-400',
-        'yellow': 'bg-yellow-600 border-yellow-400',
-        'blue': 'bg-blue-600 border-blue-400'
-    };
-
-    const alertDiv = document.createElement('div');
-    alertDiv.id = 'custom-alert';
-    alertDiv.className = `fixed top-4 right-4 z-50 p-4 rounded-lg text-white shadow-lg border-l-4 transform transition-transform duration-300 translate-x-full ${colorClasses[colorName] || 'bg-gray-700 border-gray-500'}`;
-    alertDiv.innerHTML = `<div class="font-bold">${message}</div>`;
-    
-    document.body.appendChild(alertDiv);
-    
-    setTimeout(() => {
-        alertDiv.classList.remove('translate-x-full');
-    }, 10);
-
-    setTimeout(() => {
-        alertDiv.classList.add('translate-x-full');
-        alertDiv.addEventListener('transitionend', () => alertDiv.remove());
-    }, 3000);
-}
-
-// --- 5.10. FUNCIÓN DE PROMOCIÓN ---
-function showPromoFloat() {
-    const promoEl = document.getElementById('promo-float');
-    if (promoEl) {
-        // Muestra el mensaje después de 1 segundo para que sea visible
-        setTimeout(() => {
-            promoEl.classList.remove('opacity-0', 'scale-95');
-        }, 1000);
-
-        // Hace que se cierre automáticamente después de 10 segundos
-        setTimeout(() => {
-            if (promoEl.classList.contains('opacity-0')) return; // No cerrar si ya fue cerrado por el usuario
-            promoEl.classList.add('opacity-0', 'scale-95');
-        }, 10000);
-    }
-}
-
-// --- 5.9. INICIALIZACIÓN (BLINDAJE DE CÓDIGO) ---
-// Usamos DOMContentLoaded para asegurar que el HTML esté 100% cargado antes de interactuar con él.
-document.addEventListener('DOMContentLoaded', () => {
-    // 1. Renderiza los productos (esto crea las tarjetas en el DOM)
-    filterProducts('Todos'); 
-
-    // 2. Inicialización de iconos de Lucide (DEBE IR DESPUÉS DE RENDERIZAR LOS ÍCONOS)
-    if (typeof lucide !== 'undefined' && lucide.createIcons) {
-        try {
-            lucide.createIcons();
-        } catch(e) {
-            console.error("Error al inicializar Lucide Icons:", e);
-        }
-    }
-    
-    // 3. Inicializa el estado del carrito y la factura
-    updateCartDisplay();
-    
-    // 4. Muestra la promoción flotante al cargar la página (NUEVO)
-    showPromoFloat();
-});
