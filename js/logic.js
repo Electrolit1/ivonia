@@ -1,10 +1,10 @@
 // --- 0. CONFIGURACIÓN ---
 const CONFIG = {
 
-    PAYPAL_CLIENT_ID: 'sb', // 'sb' es un Client ID de sandbox para PRUEBAS. 
+    PAYPAL_CLIENT_ID: 'VD5V2TDCBK95J', // 'sb' es un Client ID de sandbox para PRUEBAS. 
     
     // ¡MUY IMPORTANTE! Este es el email de la cuenta de PayPal que RECIBIRÁ el dinero.
-    PAYPAL_BUSINESS_EMAIL: 'tu-email-de-negocios@paypal.com', 
+    PAYPAL_BUSINESS_EMAIL: 'alexanderosales048@gmail.com', 
     
     // Códigos de descuento (Código: porcentaje de descuento, ej. 0.10 = 10%)
     // ¡RECUERDA! Esto no es seguro, los usuarios pueden ver los códigos en el JS.
@@ -799,3 +799,4 @@ async function sendDiscordNotification(type, details) {
         console.error('Error enviando webhook a Discord:', error);
     }
 }
+
