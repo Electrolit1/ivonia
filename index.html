@@ -3,234 +3,352 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ivonia Network</title>
+    <title>Inicio - Servidor de Minecraft</title>
+    
+    <!-- Cargar Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&display=swap" rel="stylesheet">
-    <script src="https://unpkg.com/lucide@latest"></script>
-
+    
+    <!-- Cargar Font Awesome (para iconos) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    
+    <!-- Cargar Fuentes de Google (Pixelify Sans para un look "gamer", Inter para legibilidad) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Pixelify+Sans:wght@400..700&family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
+    
+    <!-- Configuración personalizada de Tailwind (la misma que la tienda) -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        'sans': ['Inter', 'sans-serif'],
+                        'pixel': ['"Pixelify Sans"', 'sans-serif']
+                    },
+                    colors: {
+                        'minecraft-green': {
+                            'light': '#68D391',
+                            'DEFAULT': '#48BB78',
+                            'dark': '#38A169',
+                        },
+                        'minecraft-brown': {
+                            'DEFAULT': '#8B4513'
+                        },
+                        'action-orange': {
+                            'DEFAULT': '#ED8936',
+                            'dark': '#DD6B20'
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    
     <style>
+        /* Estilos personalizados */
+        html {
+            scroll-behavior: smooth;
+        }
         body {
-            font-family: 'Inter', sans-serif;
-            background-color: #121212; 
-            color: #e5e7eb;
-            background-image: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8)), url('img/wallpaper.png');
-            background-size: cover;
-            background-position: center;
+            background-color: #f4f4f5;
         }
-        .color-primary {
-            color: #a855f7; /* Violeta 500 */
-        }
-        .bg-primary {
-            background-color: #a855f7; 
-        }
-        .bg-primary:hover {
-            background-color: #9333ea; 
-        }
-
-        .main-container {
-            max-width: 1100px;
-            width: 95%;
-            margin: 0 auto;
-        }
-        .content-card {
-            background-color: rgba(26, 26, 26, 0.85);
-            backdrop-filter: blur(5px);
-            border: 1px solid #333333;
-            border-radius: 12px;
-            transition: transform 0.3s, border-color 0.3s;
-        }
-        .content-card:hover {
-            transform: translateY(-3px);
-            border-color: #a855f7; 
-        }
-        .btn-main {
-            background-color: #a855f7; 
-            color: #1f2937;
+        /* Clase 'active' para el JS de la barra lateral */
+        .sidebar-link.active {
+            color: #ED8936; /* action-orange */
             font-weight: 700;
-            border-radius: 12px;
-            transition: background-color 0.3s, transform 0.1s;
         }
-        .btn-main:hover {
-            background-color: #9333ea; 
-            transform: translateY(-1px);
+        /* Clase para el offset del scroll por el header pegajoso */
+        .content-section {
+            scroll-margin-top: 100px; /* Header es h-20 (80px) + 20px padding */
         }
     </style>
-    
 </head>
-<body class="min-h-screen pt-8 pb-12">
+<body class="font-sans">
 
-    <nav class="main-container flex justify-center items-center py-4 mb-16">
-        <div class="flex flex-wrap justify-center space-x-4 sm:space-x-8 text-lg font-semibold bg-black/50 p-3 rounded-full border border-gray-700">
-            <a href="index.html" class="text-white hover:color-primary transition duration-150 px-2 py-1">HOME</a>
-            <a href="forum.html" class="text-white hover:color-primary transition duration-150 px-2 py-1">FORUM</a>
-            <a href="wiki.html" class="text-white hover:color-primary transition duration-150 px-2 py-1">WIKI</a>
+    <!-- Barra de Navegación Principal (Modificada para centrar) -->
+    <header class="bg-white shadow-md sticky top-0 z-50">
+        <nav class="container mx-auto px-4 flex items-center h-20">
             
-            <a href="category.html" class="text-white bg-violet-600/30 rounded-full hover:bg-violet-600/50 transition duration-150 px-4 py-1 border border-violet-500">TIENDA</a>
-            <a href="#" class="text-white hover:color-primary transition duration-150 px-2 py-1">BAN LIST</a>
-            <a href="404.html" class="text-white hover:color-primary transition duration-150 px-2 py-1">MAP</a>
+            <!-- Lado Izquierdo: Logo -->
+            <div class="w-1/4">
+                <a href="#" class="flex items-center py-2">
+                    <img src="img/logo.png" alt="Logo del Servidor" class="h-12 w-12 rounded-lg">
+                </a>
+            </div>
+            
+            <!-- Navegación Central (NUEVA) -->
+            <div class="w-1/2 hidden md:flex items-center justify-center space-x-2">
+                <!-- "Inicio" es ahora el activo -->
+                <a href="index.html" class="flex items-center bg-action-orange text-white font-semibold hover:bg-action-orange-dark transition-colors px-4 py-2 rounded-lg">
+                    Inicio
+                </a>
+                <!-- "Tienda" ahora linkea al otro archivo -->
+                <a href="tienda.html" class="flex items-center text-gray-600 hover:bg-gray-100 hover:text-action-orange transition-colors px-4 py-2 rounded-lg font-medium">
+                    Tienda
+                </a>
+                <a href="404.html" class="flex items-center text-gray-600 hover:bg-gray-100 hover:text-action-orange transition-colors px-4 py-2 rounded-lg font-medium">Foro</a>
+                <a href="#" class="flex items-center text-gray-600 hover:bg-gray-100 hover:text-action-orange transition-colors px-4 py-2 rounded-lg font-medium">Wiki</a>
+            </div>
+            
+            <!-- Lado Derecho: Botón Móvil -->
+            <div class="w-1/4 flex items-center justify-end">
+                <button id="mobile-menu-button" class="md:hidden text-gray-700 text-2xl">
+                    <i class="fa-solid fa-bars"></i>
+                </button>
+            </div>
+        </nav>
+        
+        <!-- Menú Móvil (Actualizado, sin carrito) -->
+        <div id="mobile-menu" class="hidden md:hidden bg-white px-4 pb-4 border-t">
+            <a href="index.html" class="block py-2 text-action-orange font-semibold">Inicio</a>
+            <a href="tienda.html" class="block py-2 text-gray-700 hover:text-action-orange">Tienda</a>
+            <a href="404.html" class="block py-2 text-gray-700 hover:text-action-orange">Foro</a>
+            <a href="#" class="block py-2 text-gray-700 hover:text-action-orange">Wiki</a>
         </div>
-    </nav>
+    </header>
 
-    <div class="main-container flex flex-col items-center">
-        <header class="text-center mb-16">
-            
-            <div class="mb-10">
-                <img 
-                    src="img/ivonia.png" 
-                    alt="Logo de Ivonia Network" 
-                    class="w-48 h-48 sm:w-64 sm:h-64 mx-auto rounded-full shadow-2xl shadow-violet-700/50"
-                />
-            </div>
-
-
-            <div class="flex justify-center space-x-10 mb-8 text-lg font-bold">
-                
-                <!-- IP y Jugadores -->
-                <div class="flex items-center space-x-2 bg-black/50 px-4 py-2 rounded-lg border border-gray-700">
-                    <span class="text-green-400 font-mono text-xl">PLAY.IVONIAMC.US</span>
-                    <i data-lucide="users" class="w-5 h-5 text-red-500"></i>
-                </div>
-
-                <!-- Discord -->
-                <div class="flex items-center space-x-2 bg-black/50 px-4 py-2 rounded-lg border border-gray-700">
-                    <i data-lucide="message-circle" class="w-5 h-5 color-primary"></i>
-                    <span class="text-gray-400 font-mono text-xl">DISCORD.IVONIA.US</span>
-                </div>
-            </div>
-
-            <button id="copy-button" class="btn-main flex items-center justify-center mx-auto py-3 px-10 text-2xl shadow-xl shadow-violet-500/30 font-extrabold tracking-wider">
-                JUGAR AHORA
-                <i data-lucide="play-circle" class="w-7 h-7 ml-3"></i> 
-            </button>
-            <div id="copy-message" class="text-green-400 mt-3 hidden text-sm font-semibold">¡IP Copiada: mc.ivonia.us!</div>
-            
-        </header>
-
-        <section class="content-card p-6 md:p-10 w-full mb-16 flex flex-col md:flex-row items-start justify-between relative">
-            
-            <div>
-                <h2 class="text-2xl font-bold color-primary mb-2">
-                    <i data-lucide="sword" class="inline-block w-6 h-6 mr-2"></i> Bienvenido a Ivonia Network!
-                </h2>
-                <p class="text-gray-300 text-lg max-w-2xl">
-                    Ivonia es un servidor de Minecraft único y gratificante que proporciona una experiencia divertida y satisfactoria para jugadores apasionados.
+    <!-- Sección de Héroe/Banner Principal (Modificado) -->
+    <section class="relative bg-gradient-to-r from-blue-400 to-minecraft-green-light text-white overflow-hidden">
+        <div class="container mx-auto px-4 py-12 md:py-16 flex flex-col md:flex-row items-center relative z-10">
+            <!-- Contenido de texto del Banner (Modificado) -->
+            <div class="md:w-1/2 text-center md:text-left mb-8 md:mb-0">
+                <h1 class="text-4xl lg:text-5xl font-bold font-pixel mb-3" style="text-shadow: 2px 2px 4px rgba(0,0,0,0.3);">
+                    ¡BIENVENIDO A NUESTRO SERVIDOR!
+                </h1>
+                <p class="text-lg lg:text-xl mb-6 max-w-lg" style="text-shadow: 1px 1px 2px rgba(0,0,0,0.2);">
+                    Únete a nuestra increíble comunidad. ¡Te esperamos dentro!
                 </p>
-                <p class="text-gray-400 text-base mt-3">
-                    Actualmente presentando el modo: <span class="text-white font-bold">Survival 1.21.</span>
-                </p>
-            </div>
-
-            <a href="category.html" class="bg-primary text-white py-4 px-8 mt-6 md:mt-0 font-extrabold text-xl rounded-xl shadow-2xl shadow-violet-500/50 transition duration-300 hover:bg-purple-600 flex items-center">
-                STORE
-                <i data-lucide="shopping-cart" class="w-5 h-5 ml-2"></i>
-            </a>
-
-        </section>
-        <section class="w-full mb-16">
-            <h2 class="text-4xl font-extrabold text-white mb-8 text-left">
-                <span class="color-primary">TEMPORADA</span> ACTUAL
-            </h2>
-
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
                 
-                <div class="content-card p-6">
-                    <h3 class="text-2xl font-bold text-white mb-4 border-b border-gray-700 pb-2">
-                        <i data-lucide="gem" class="inline-block w-5 h-5 mr-2 text-red-500"></i> Temporada 1
-                    </h3>
-                    <p class="text-gray-400 mb-4">
-                        ¡Lanzamiento del Survival S1 - Survival Temporada 1! Una nueva aventura te espera.
-                    </p>
-                    <ul class="text-sm space-y-2 text-gray-300">
-                        <li class="flex items-center"><i data-lucide="chevron-right" class="w-4 h-4 mr-2 color-primary"></i> Nueva Economía</li>
-                        <li class="flex items-center"><i data-lucide="chevron-right" class="w-4 h-4 mr-2 color-primary"></i> Zonas de Farmeo Optimizado</li>
-                        <li class="flex items-center"><i data-lucide="chevron-right" class="w-4 h-4 mr-2 color-primary"></i> Más de 20 Misiones Diarias</li>
-                    </ul>
-                    <a href="#" class="mt-4 inline-block text-sm font-semibold color-primary hover:text-white transition">
-                        Ver Notas del Parche Completo
-                    </a>
-                </div>
-
-                <div class="content-card p-6">
-                    <h3 class="text-2xl font-bold text-white mb-4 border-b border-gray-700 pb-2">
-                        <i data-lucide="calendar" class="inline-block w-5 h-5 mr-2 text-blue-400"></i> Eventos y Comunidad
-                    </h3>
-                    <p class="text-gray-400 mb-4">
-                        Participa en nuestros eventos programados y gana recompensas exclusivas, rangos temporales o items únicos.
-                    </p>
-                    <ul class="text-sm space-y-2 text-gray-300">
-                        <li class="flex items-center"><i data-lucide="gift" class="w-4 h-4 mr-2 text-green-400"></i> Sorteo Discord semanal (¡Únete ya!)</li>
-                        <li class="flex items-center"><i data-lucide="sword" class="w-4 h-4 mr-2 text-red-400"></i> PvP Arena de Clanes - Sábados 8PM EST</li>
-                        <li class="flex items-center"><i data-lucide="hammer" class="w-4 h-4 mr-2 text-yellow-400"></i> Soporte de Staff 24/7</li>
-                    </ul>
-                    <a href="#" class="mt-4 inline-block text-sm font-semibold color-primary hover:text-white transition">
-                        Ver Calendario de Eventos
+                <!-- IP y Discord (NUEVO) -->
+                <div class="space-y-4 md:space-y-0 md:flex md:items-center md:space-x-4">
+                    <!-- Botón de IP (Simulado para copiar) -->
+                    <div class="bg-gray-900 bg-opacity-50 border-2 border-gray-400 rounded-lg px-6 py-3 text-center transition-all hover:bg-opacity-70">
+                        <span class="text-gray-300 text-sm uppercase font-pixel">IP del Servidor</span>
+                        <p class="text-white font-bold text-xl font-mono tracking-wider">mc.ivonia.us</p>
+                    </div>
+                    <!-- Botón de Discord -->
+                    <a href="https://discord.gg/Y9CU4FWGQP" target="_blank" rel="noopener noreferrer" class="inline-flex items-center justify-center bg-blue-600 text-white font-bold font-pixel text-lg px-8 py-4 rounded-lg shadow-lg hover:bg-blue-700 transition-transform hover:scale-105">
+                        <i class="fa-brands fa-discord mr-3 text-2xl"></i>
+                        ÚNETE AL DISCORD
                     </a>
                 </div>
             </div>
-        </section>
+            
+            <!-- Imagen del Banner (sin cambios) -->
+            <div class="md:w-1/2 flex justify-center md:justify-end">
+                <img src="img/wallpaper.jpg" 
+                     alt="Banner Promocional del Servidor" 
+                     class="max-w-full h-auto rounded-lg shadow-2xl"
+                     onerror="this.src='https://placehold.co/500x350/76c893/ffffff?text=Error+Cargando+Imagen'">
+            </div>
+        </div>
+        <!-- Fondo decorativo (sin cambios) -->
+        <div class="absolute bottom-0 left-0 w-full h-20 bg-repeat-x opacity-40" style="background-image: url('img/logo.png'); background-size: auto 100%;"></div>
+    </section>
 
+    <!-- Contenido Principal (Restaurado a 2 columnas) -->
+    <main class="container mx-auto p-4 mt-6">
+        
+        <!-- Grid de Contenido (Sidebar + Secciones de Info) -->
+        <div class="flex flex-col md:flex-row gap-6">
+        
+            <!-- Barra Lateral de Categorías (Restaurada y Pegajosa) -->
+            <aside class="w-full md:w-1/4 lg:w-1/5 bg-white rounded-lg shadow p-6 self-start sticky top-24">
+                <h3 class="text-xl font-bold font-pixel mb-4 text-gray-800">INFORMACIÓN</h3>
+                <nav>
+                    <ul class="space-y-3" id="sidebar-nav">
+                        <li>
+                            <a href="#server-links" class="flex items-center gap-3 hover:text-action-orange transition-colors sidebar-link active">
+                                <i class="fa-solid fa-link w-5 text-center"></i>
+                                <span>Server Links</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#reglas" class="flex items-center gap-3 hover:text-action-orange transition-colors sidebar-link">
+                                <i class="fa-solid fa-scroll w-5 text-center"></i>
+                                <span>Reglas</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#comandos" class="flex items-center gap-3 hover:text-action-orange transition-colors sidebar-link">
+                                <i class="fa-solid fa-terminal w-5 text-center"></i>
+                                <span>Comandos</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#preguntas" class="flex items-center gap-3 hover:text-action-orange transition-colors sidebar-link">
+                                <i class="fa-solid fa-circle-question w-5 text-center"></i>
+                                <span>Preguntas</span>
+                            </a>
+                        </li>
+                    </ul>
+                </nav>
+            </aside>
+            
+            <!-- Secciones de Información (Contenido de las tarjetas, ahora en una sola columna) -->
+            <section class="w-full md:w-3/4 lg:w-4/5">
+                
+                <!-- Tarjeta: Server Links -->
+                <div id="server-links" class="bg-white rounded-lg shadow p-6 mb-6 content-section">
+                    <h2 class="text-2xl font-bold font-pixel mb-4 text-gray-900"><i class="fa-solid fa-link mr-2"></i>Server Links</h2>
+                    <p class="text-gray-700 mb-6">Enlaces importantes de nuestra comunidad. ¡Guárdalos en tus favoritos!</p>
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                        <a href="#" class="bg-gray-100 p-4 rounded-lg hover:bg-gray-200 transition-colors block">
+                            <h4 class="font-semibold text-lg text-minecraft-green-dark"><i class="fa-solid fa-check-to-slot mr-2"></i>Vota por el Servidor</h4>
+                            <p class="text-sm text-gray-600">Ayúdanos a crecer y recibe llaves y dinero en el juego.</p>
+                        </a>
+                        <a href="#" class="bg-gray-100 p-4 rounded-lg hover:bg-gray-200 transition-colors block">
+                            <h4 class="font-semibold text-lg text-blue-500"><i class="fa-solid fa-map-location-dot mr-2"></i>Dynmap (Mapa en vivo)</h4>
+                            <p class="text-sm text-gray-600">Mira el mundo y las construcciones en tiempo real.</p>
+                        </a>
+                        <a href="tienda.html" class="bg-gray-100 p-4 rounded-lg hover:bg-gray-200 transition-colors block">
+                            <h4 class="font-semibold text-lg text-action-orange"><i class="fa-solid fa-store mr-2"></i>Tienda y Donaciones</h4>
+                            <p class="text-sm text-gray-600">Apoya al servidor y obtén rangos y cosméticos.</p>
+                        </a>
+                        <a href="#" class="bg-gray-100 p-4 rounded-lg hover:bg-gray-200 transition-colors block">
+                            <h4 class="font-semibold text-lg text-indigo-500"><i class="fa-solid fa-users mr-2"></i>Foro de la Comunidad</h4>
+                            <p class="text-sm text-gray-600">Presenta sugerencias, reporta bugs o simplemente charla.</p>
+                        </a>
+                    </div>
+                </div>
+                
+                <!-- Tarjeta: Reglas -->
+                <div id="reglas" class="bg-white rounded-lg shadow p-6 mb-6 content-section">
+                    <h2 class="text-2xl font-bold font-pixel mb-4 text-gray-900"><i class="fa-solid fa-scroll mr-2"></i>Reglas del Servidor</h2>
+                    <p class="text-gray-700 mb-6">Para mantener una comunidad sana, sigue estas reglas. El desconocimiento no exime de la sanción.</p>
+                    
+                    <h4 class="font-semibold text-lg text-gray-800 mb-2">1. Reglas de Chat</h4>
+                    <ol class="list-decimal list-inside text-gray-700 space-y-2 mb-4">
+                        <li>Respetar a todos: Cero tolerancia al racismo, sexismo, acoso o cualquier tipo de discriminación.</li>
+                        <li>No hacer spam ni flood en el chat.</li>
+                        <li>No abusar de las mayúsculas (CAPS).</li>
+                        <li>No hacer publicidad de otros servidores o enlaces externos no autorizados.</li>
+                        <li>Mantener el lenguaje apropiado.</li>
+                    </ol>
 
-        <!-- FOOTER SIMPLE -->
-        <footer class="mt-20 text-center text-gray-600 pt-8 w-full border-t border-gray-800">
-            <p class="text-xs mb-4">
-                IVONIA NETWORK © 2025. Juega en: <span class="text-white font-mono">mc.ivonia.us</span>
+                    <h4 class="font-semibold text-lg text-gray-800 mb-2">2. Reglas de Jugabilidad</h4>
+                    <ol class="list-decimal list-inside text-gray-700 space-y-2">
+                        <li>No usar hacks o cheats: Prohibido cualquier cliente modificado que de una ventaja injusta (X-Ray, KillAura, Fly, etc).</li>
+                        <li>Prohibido el griefing o robo: No destruyas construcciones ajenas ni robes items de cofres que no te pertenecen.</li>
+                        <li>No abusar de bugs o exploits: Si encuentras un bug, repórtalo al staff. No lo explotes para tu beneficio.</li>
+                        <li>No crear granjas que generen lag excesivo (ej. granjas 0-tick).</li>
+                        <li>No estafar a otros usuarios en intercambios.</li>
+                    </ol>
+                </div>
+
+                <!-- Tarjeta: Comandos -->
+                <div id="comandos" class="bg-white rounded-lg shadow p-6 mb-6 content-section">
+                    <h2 class="text-2xl font-bold font-pixel mb-4 text-gray-900"><i class="fa-solid fa-terminal mr-2"></i>Comandos Útiles</h2>
+                    <p class="text-gray-700 mb-6">Comandos básicos para empezar a jugar en nuestro servidor:</p>
+                    
+                    <h4 class="font-semibold text-lg text-gray-800 mb-2">Comandos Básicos</h4>
+                    <div class="space-y-2 mb-4">
+                        <p><code class="font-mono bg-gray-200 px-2 py-1 rounded-md text-sm text-gray-800">/spawn</code> - Te teletransporta al punto de inicio del servidor.</p>
+                        <p><code class="font-mono bg-gray-200 px-2 py-1 rounded-md text-sm text-gray-800">/kit [nombre]</code> - Reclama un kit de inicio o un kit de tu rango.</p>
+                        <p><code class="font-mono bg-gray-200 px-2 py-1 rounded-md text-sm text-gray-800">/money</code> - Muestra tu balance de dinero en el juego.</p>
+                    </div>
+                    
+                    <h4 class="font-semibold text-lg text-gray-800 mb-2">Teletransporte</h4>
+                     <div class="space-y-2 mb-4">
+                        <p><code class="font-mono bg-gray-200 px-2 py-1 rounded-md text-sm text-gray-800">/sethome [nombre]</code> - Establece un punto de teletransporte personal (tu casa).</p>
+                        <p><code class="font-mono bg-gray-200 px-2 py-1 rounded-md text-sm text-gray-800">/home [nombre]</code> - Te teletransporta a la casa que estableciste.</p>
+                        <p><code class="font-mono bg-gray-200 px-2 py-1 rounded-md text-sm text-gray-800">/tpa [usuario]</code> - Envía una solicitud de teletransporte a otro jugador.</p>
+                        <p><code class="font-mono bg-gray-200 px-2 py-1 rounded-md text-sm text-gray-800">/tpaccept</code> - Acepta una solicitud de teletransporte.</p>
+                    </div>
+
+                    <h4 class="font-semibold text-lg text-gray-800 mb-2">Protección de Terreno</h4>
+                     <div class="space-y-2">
+                        <p><code class="font-mono bg-gray-200 px-2 py-1 rounded-md text-sm text-gray-800">/claim</code> - (O usa la pala de oro) para proteger tu terreno.</p>
+                        <p><code class="font-mono bg-gray-200 px-2 py-1 rounded-md text-sm text-gray-800">/trust [usuario]</code> - Permite a un amigo construir en tu terreno.</p>
+                        <p><code class="font-mono bg-gray-200 px-2 py-1 rounded-md text-sm text-gray-800">/untrust [usuario]</code> - Remueve el permiso a un amigo.</p>
+                    </div>
+                </div>
+
+                <!-- Tarjeta: Preguntas -->
+                <div id="preguntas" class="bg-white rounded-lg shadow p-6 mb-6 content-section">
+                    <h2 class="text-2xl font-bold font-pixel mb-4 text-gray-900"><i class="fa-solid fa-circle-question mr-2"></i>Preguntas Frecuentes</h2>
+                    <div class="space-y-6">
+                        <div>
+                            <h4 class="font-semibold text-lg text-gray-800">¿Cómo protejo mi casa?</h4>
+                            <p class="text-gray-700">Usamos un plugin de protección de terrenos. Obtén una <span class="font-bold">Pala de Oro</span> (Golden Shovel) y haz clic derecho en dos esquinas opuestas de tu terreno para crear una protección. También puedes usar <code class="font-mono bg-gray-200 px-2 py-1 rounded-md text-sm">/claim</code>. ¡Si tienes dudas, pregunta al staff!</p>
+                        </div>
+                        <div>
+                            <h4 class="font-semibold text-lg text-gray-800">¿Es un servidor "Pay to Win"?</h4>
+                            <p class="text-gray-700">¡No! Nuestra tienda se enfoca en rangos que ofrecen ventajas cosméticas (mascotas, efectos) y comandos de conveniencia (como <code class="font-mono bg-gray-200 px-2 py-1 rounded-md text-sm">/fly</code> en el lobby o más <code class="font-mono bg-gray-200 px-2 py-1 rounded-md text-sm">/sethome</code>). No vendemos items OP (Overpowered) ni ventajas de combate.</p>
+                        </div>
+                        <div>
+                            <h4 class="font-semibold text-lg text-gray-800">¿Qué versión de Minecraft usan?</h4>
+                            <p class="text-gray-700">Nuestro servidor corre en la versión <span class="font-bold">1.20.X</span>. Sin embargo, tenemos compatibilidad para que puedas unirte con clientes desde la versión <span class="font-bold">1.16</span> hasta la más reciente.</p>
+                        </div>
+                        <div>
+                            <h4 class="font-semibold text-lg text-gray-800">¿Puedo ser Staff?</h4>
+                            <p class="text-gray-700">No pedimos staff activamente. Los moderadores son elegidos de entre los miembros más activos, útiles y maduros de la comunidad. La mejor forma de ser considerado es ser un buen jugador y ayudar a los nuevos.</p>
+                        </div>
+                        <div>
+                            <h4 class="font-semibold text-lg text-gray-800">¿Perdí mi contraseña, qué hago?</h4>
+                            <p class="text-gray-700">Este servidor usa tu cuenta de Minecraft (Premium). No necesitas una contraseña separada. Si juegas en modo No-Premium, usa <code class="font-mono bg-gray-200 px-2 py-1 rounded-md text-sm">/login [tu_contraseña]</code>. Si la olvidaste, contacta a un admin en Discord.</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            
+        </div>
+    </main>
+    
+    <!-- Footer (sin cambios) -->
+    <footer class="bg-gray-800 text-gray-400 mt-12 py-10">
+        <div class="container mx-auto px-4 text-center">
+            <!-- Logo del Footer (placeholder) -->
+            <img src="img/logo.png" class="h-16 w-16 rounded-lg mx-auto mb-4">
+            <p class="text-sm">&copy; 2025 TuServidor. Todos los derechos reservados.</p>
+            <p class="text-xs mt-2">
+                Minecraft y todos los nombres, imágenes y marcas relacionadas son propiedad de Mojang Synergies AB y Microsoft.
+                Este es un sitio web de demostración ficticio.
             </p>
-            <div class="space-x-4 text-sm">
-                <a href="#" class="hover:text-white">Términos de Servicio</a>
-                <a href="#" class="hover:text-white">Política de Privacidad</a>
-            </div>
-        </footer>
-    </div>
-
+        </div>
+    </footer>
+    
+    <!-- Script para menú móvil Y barra lateral -->
     <script>
-        lucide.createIcons();
-
-        document.getElementById('copy-button').addEventListener('click', () => {
-            const ip = 'mc.ivonia.us';
-            const copyMessage = document.getElementById('copy-message');
-            
-            function fallbackCopyTextToClipboard(text) {
-                const textArea = document.createElement("textarea");
-                textArea.value = text;
-                textArea.style.position = "fixed"; 
-                textArea.style.left = "-9999px";
-                document.body.appendChild(textArea);
-                textArea.focus();
-                textArea.select();
-                try {
-                    document.execCommand('copy');
-                } catch (err) {
-                    console.error('Fallback: La copia fue imposible', err);
-                }
-                document.body.removeChild(textArea);
+        document.addEventListener('DOMContentLoaded', () => {
+            // Lógica del Menú Móvil
+            const menuButton = document.getElementById('mobile-menu-button');
+            const mobileMenu = document.getElementById('mobile-menu');
+            if (menuButton && mobileMenu) {
+                menuButton.addEventListener('click', () => {
+                    mobileMenu.classList.toggle('hidden');
+                });
             }
 
-            function showCopyMessage() {
-                copyMessage.classList.remove('hidden');
-                setTimeout(() => {
-                    copyMessage.classList.add('hidden');
-                }, 2000);
-            }
+            // Lógica de Scroll Suave y "Active" para la barra lateral (Restaurada)
+            const sidebarNav = document.getElementById('sidebar-nav');
+            if (sidebarNav) {
+                const sidebarLinks = sidebarNav.querySelectorAll('a.sidebar-link');
 
-            // Intentar copiar
-            if (navigator.clipboard && navigator.clipboard.writeText) {
-                navigator.clipboard.writeText(ip)
-                    .then(showCopyMessage)
-                    .catch(() => {
-                        fallbackCopyTextToClipboard(ip);
-                        showCopyMessage();
+                sidebarLinks.forEach(link => {
+                    link.addEventListener('click', function(e) {
+                        e.preventDefault();
+                        
+                        // 1. Quitar 'active' de todos los links
+                        sidebarNav.querySelectorAll('a.sidebar-link').forEach(l => l.classList.remove('active'));
+                        
+                        // 2. Poner 'active' al que se hizo clic
+                        this.classList.add('active');
+
+                        // 3. Scroll suave a la sección
+                        const targetId = this.getAttribute('href');
+                        const targetElement = document.querySelector(targetId);
+                        if(targetElement) {
+                            targetElement.scrollIntoView({
+                                behavior: 'smooth',
+                                block: 'start'
+                            });
+                        }
                     });
-            } else {
-                fallbackCopyTextToClipboard(ip);
-                showCopyMessage();
+                });
             }
-
-            const playerCount = document.getElementById('player-count');
-            const currentPlayers = parseInt(playerCount.textContent);
-            playerCount.textContent = currentPlayers + Math.floor(Math.random() * 5) + 1;
         });
-    </script>
+    </script> 
+
 </body>
-
 </html>
-
