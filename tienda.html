@@ -2,6 +2,7 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
+    <!-- ... (código de <head> sin cambios) ... -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Tienda de Servidor de Minecraft</title>
     
@@ -71,32 +72,34 @@
 </head>
 <body class="font-sans">
 
-    <!-- Barra de Navegación Principal (Estilo Pestañas) -->
+    <!-- ****** CABECERA ACTUALIZADA ****** -->
     <header class="bg-white shadow-md sticky top-0 z-50">
-        <nav class="container mx-auto px-4 flex justify-between items-center">
+        <nav class="container mx-auto px-4 flex items-center h-20">
             
-            <!-- Lado Izquierdo: Logo + Navegación Principal -->
-            <div class="flex items-stretch h-full">
-                <!-- Logo -->
-                <a href="#" class="text-3xl font-bold font-pixel text-minecraft-green-dark flex items-center py-3 mr-6">
-                    <i class="fa-solid fa-gem mr-1"></i>
-                    MINE-STORE
+            <!-- Lado Izquierdo: Logo -->
+            <div class="w-1/4">
+                <!-- He usado el mismo placeholder que en index.html -->
+                <a href="index.html" class="flex items-center py-2">
+                    <img src="img/logo.png" alt="Logo del Servidor" class="h-12 w-12 rounded-lg">
                 </a>
-                
-                <!-- Navegación de Escritorio (estilo "tab" como en la foto) -->
-                <div class="hidden md:flex items-stretch h-full">
-                    <a href="#" class="flex items-center text-gray-600 hover:bg-gray-100 transition-colors px-4 font-medium">Inicio</a>
-                    <!-- Elemento destacado, como "KASINO" en el original -->
-                    <a href="#" class="flex items-center bg-action-orange text-white font-semibold hover:bg-action-orange-dark transition-colors px-4">
-                        Tienda
-                    </a>
-                    <a href="#" class="flex items-center text-gray-600 hover:bg-gray-100 transition-colors px-4 font-medium">Foro</a>
-                    <a href="#" class="flex items-center text-gray-600 hover:bg-gray-100 transition-colors px-4 font-medium">Wiki</a>
-                </div>
             </div>
             
-            <!-- Lado Derecho: Navegación Secundaria y Botón Móvil -->
-            <div class="flex items-center space-x-4">
+            <!-- Navegación Central (NUEVA) -->
+            <div class="w-1/2 hidden md:flex items-center justify-center space-x-2">
+                <!-- "Inicio" ahora linkea a index.html -->
+                <a href="index.html" class="flex items-center text-gray-600 hover:bg-gray-100 hover:text-action-orange transition-colors px-4 py-2 rounded-lg font-medium">
+                    Inicio
+                </a>
+                <!-- "Tienda" es ahora el activo -->
+                <a href="#" class="flex items-center bg-action-orange text-white font-semibold hover:bg-action-orange-dark transition-colors px-4 py-2 rounded-lg">
+                    Tienda
+                </a>
+                <a href="404.html" class="flex items-center text-gray-600 hover:bg-gray-100 hover:text-action-orange transition-colors px-4 py-2 rounded-lg font-medium">Foro</a>
+                <a href="#" class="flex items-center text-gray-600 hover:bg-gray-100 hover:text-action-orange transition-colors px-4 py-2 rounded-lg font-medium">Wiki</a>
+            </div>
+            
+            <!-- Lado Derecho: Carrito y Botón Móvil -->
+            <div class="w-1/4 flex items-center justify-end space-x-4">
                 <!-- Icono de Carrito -->
                 <button id="cart-icon-button" class="relative text-gray-700 hover:text-action-orange transition-colors text-2xl" aria-label="Ver carrito">
                     <i class="fa-solid fa-cart-shopping"></i>
@@ -112,84 +115,96 @@
         
         <!-- Menú Móvil (Actualizado) -->
         <div id="mobile-menu" class="hidden md:hidden bg-white px-4 pb-4 border-t">
-            <a href="#" class="block py-2 text-gray-700 hover:text-action-orange">Inicio</a>
-            <a href="#" class="block py-2 text-action-orange font-semibold">Tienda</a>
-            <a href="#" class="block py-2 text-gray-700 hover:text-action-orange">Foro</a>
+            <a href="index.html" class="block py-2 text-gray-700 hover:text-action-orange">Inicio</a>
+            <a href="tienda.html" class="block py-2 text-action-orange font-semibold">Tienda</a>
+            <a href="404.html" class="block py-2 text-gray-700 hover:text-action-orange">Foro</a>
             <a href="#" class="block py-2 text-gray-700 hover:text-action-orange">Wiki</a>
         </div>
     </header>
 
     <!-- Modal del Carrito (Oculto por defecto) -->
     <div id="cart-modal" class="hidden fixed inset-0 bg-black bg-opacity-50 z-50 flex justify-end" aria-labelledby="cart-modal-title">
+        
+        <!-- ****** CAMBIO AQUÍ ****** -->
+        <!-- Estructura del modal cambiada para un scroll correcto -->
         <div class="bg-white w-full max-w-lg h-full shadow-xl flex flex-col">
-            <!-- Header del Modal -->
-            <div class="flex justify-between items-center p-4 border-b">
+            
+            <!-- Header del Modal (Fijo) -->
+            <div class="flex justify-between items-center p-4 border-b flex-shrink-0">
                 <h2 id="cart-modal-title" class="text-2xl font-pixel font-bold text-gray-800">Tu Carrito</h2>
                 <button id="close-cart-button" class="text-gray-500 hover:text-red-500 text-2xl" aria-label="Cerrar carrito">
                     <i class="fa-solid fa-xmark"></i>
                 </button>
             </div>
 
-            <!-- Contenido del Carrito -->
-            <div id="cart-items-container" class="flex-grow p-4 overflow-y-auto">
-                <!-- Los items del carrito se insertarán aquí por JS -->
-                <!-- Ejemplo de carrito vacío -->
-                <div id="empty-cart-message" class="text-center text-gray-500 pt-10">
-                    <i class="fa-solid fa-shopping-basket text-4xl mb-4"></i>
-                    <p>Tu carrito está vacío.</p>
-                </div>
-            </div>
+            <!-- ****** NUEVO CONTENEDOR SCROLLABLE ****** -->
+            <!-- Este div ahora envuelve tanto los items COMO el footer -->
+            <div class="flex-grow overflow-y-auto">
 
-            <!-- Footer del Modal (Checkout) -->
-            <div class="p-4 border-t bg-gray-50 space-y-4">
-                <!-- Cupón de Descuento -->
-                <div class="flex space-x-2">
-                    <input type="text" id="discount-code-input" placeholder="Código de descuento" class="flex-grow border rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-action-orange">
-                    <button id="apply-discount-button" class="bg-gray-700 text-white px-4 py-2 rounded-lg text-sm font-semibold hover:bg-gray-800">Aplicar</button>
-                </div>
-
-                <!-- Resumen de Pago -->
-                <div class="space-y-1 text-gray-700">
-                    <div class="flex justify-between">
-                        <span>Subtotal:</span>
-                        <span id="cart-subtotal" class="font-medium">$0.00</span>
-                    </div>
-                    <div id="discount-applied-row" class="hidden flex justify-between text-green-600">
-                        <span>Descuento (<span id="discount-code-text"></span>):</span>
-                        <span id="cart-discount" class="font-medium">-$0.00</span>
-                    </div>
-                    <hr class="py-1">
-                    <div class="flex justify-between text-xl font-bold">
-                        <span>Total:</span>
-                        <span id="cart-total">$0.00</span>
+                <!-- Contenido del Carrito (Ahora sin flex-grow) -->
+                <div id="cart-items-container" class="p-4">
+                    <!-- Los items del carrito se insertarán aquí por JS -->
+                    <!-- Ejemplo de carrito vacío -->
+                    <div id="empty-cart-message" class="text-center text-gray-500 pt-10">
+                        <i class="fa-solid fa-shopping-basket text-4xl mb-4"></i>
+                        <p>Tu carrito está vacío.</p>
                     </div>
                 </div>
 
-                <!-- Campo de Usuario de Minecraft -->
-                <div>
-                    <label for="minecraft-username" class="block text-sm font-medium text-gray-700 mb-1">Nombre de Usuario en Minecraft</label>
-                    <input type="text" id="minecraft-username" placeholder="TuNombreDeUsuario" class="w-full border rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-action-orange">
-                </div>
+                <!-- Footer del Modal (Checkout) (Ahora dentro del scroll) -->
+                <div class="p-4 border-t bg-gray-50 space-y-4">
+                    <!-- Cupón de Descuento -->
+                    <div class="flex space-x-2">
+                        <input type="text" id="discount-code-input" placeholder="Código de descuento" class="flex-grow border rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-action-orange">
+                        <button id="apply-discount-button" class="bg-gray-700 text-white px-4 py-2 rounded-lg text-sm font-semibold hover:bg-gray-800">Aplicar</button>
+                    </div>
 
-                <!-- Mensaje de Error/Estado -->
-                <div id="cart-message" class="text-center text-red-500 font-medium"></div>
+                    <!-- Resumen de Pago -->
+                    <div class="space-y-1 text-gray-700">
+                        <div class="flex justify-between">
+                            <span>Subtotal:</span>
+                            <span id="cart-subtotal" class="font-medium">$0.00</span>
+                        </div>
+                        <div id="discount-applied-row" class="hidden flex justify-between text-green-600">
+                            <span>Descuento (<span id="discount-code-text"></span>):</span>
+                            <span id="cart-discount" class="font-medium">-$0.00</span>
+                        </div>
+                        <hr class="py-1">
+                        <div class="flex justify-between text-xl font-bold">
+                            <span>Total:</span>
+                            <span id="cart-total">$0.00</span>
+                        </div>
+                    </div>
+
+                    <!-- Campo de Usuario de Minecraft -->
+                    <div>
+                        <label for="minecraft-username" class="block text-sm font-medium text-gray-700 mb-1">Nombre de Usuario en Minecraft</label>
+                        <input type="text" id="minecraft-username" placeholder="TuNombreDeUsuario" class="w-full border rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-action-orange">
+                    </div>
+
+                    <!-- Mensaje de Error/Estado -->
+                    <div id="cart-message" class="text-center text-red-500 font-medium"></div>
+                    
+                    <!-- Contenedor del Botón de PayPal -->
+                    <div id="paypal-button-container" class="w-full">
+                        <!-- PayPal se renderizará aquí -->
+                    </div>
+
+                    <!-- Botón de Reclamar Gratis (para descuentos del 100%) -->
+                    <button id="claim-free-button" class="hidden w-full bg-minecraft-green-dark text-white font-semibold py-3 rounded-lg hover:bg-minecraft-green-dark transition-colors text-lg">
+                        <i class="fa-solid fa-gift mr-2"></i>Reclamar Gratis
+                    </button>
+                </div>
                 
-                <!-- Contenedor del Botón de PayPal -->
-                <!-- CORRECCIÓN: Se corrigió 'class.=' a 'class=' -->
-                <div id="paypal-button-container" class="w-full">
-                    <!-- PayPal se renderizará aquí -->
-                </div>
-            </div>
+            </div> <!-- ****** FIN DEL CONTENEDOR SCROLLABLE ****** -->
+
         </div>
     </div>
 
-    <!-- Toast de Notificación (Oculto por defecto) -->
+    <!-- ... (código de Toast, Banner y Main sin cambios) ... -->
     <div id="notification-toast" class="hidden fixed bottom-5 right-5 bg-minecraft-green-dark text-white px-6 py-3 rounded-lg shadow-lg transition-all duration-300 transform translate-y-20 opacity-0">
         <!-- El mensaje se insertará aquí -->
     </div>
-
-
-    <!-- Sección de Héroe/Banner Principal (Contenido de Servidor) -->
     <section class="relative bg-gradient-to-r from-blue-400 to-minecraft-green-light text-white overflow-hidden">
         <div class="container mx-auto px-4 py-12 md:py-16 flex flex-col md:flex-row items-center relative z-10">
             <!-- Contenido de texto del Banner -->
@@ -215,15 +230,12 @@
             </div>
         </div>
         <!-- Fondo decorativo sutil (como el pueblo en el original) -->
-        <div class="absolute bottom-0 left-0 w-full h-20 bg-repeat-x opacity-40" style="background-image: url('img/ivonia.png'); background-size: auto 100%;"></div>
+        <div class="absolute bottom-0 left-0 w-full h-20 bg-repeat-x opacity-40" style="background-image: url('img/logo.png'); background-size: auto 100%;"></div>
     </section>
-
-    <!-- Contenido Principal -->
     <main class="container mx-auto p-4 mt-6">
     
         <!-- Barra de Filtros y Búsqueda -->
         <div class="bg-white rounded-lg shadow p-4 mb-6 flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
-            <!-- Búsqueda -->
             <div class="relative w-full md:w-auto">
                 <span class="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400">
                     <i class="fa-solid fa-magnifying-glass"></i>
@@ -231,15 +243,12 @@
                 <input type="text" id="search-input" placeholder="Buscar paquetes..." class="pl-10 pr-4 py-2 border rounded-lg w-full md:w-64 focus:outline-none focus:ring-2 focus:ring-action-orange">
             </div>
             
-            
-            <!-- Vistas (Cuadrícula/Lista) -->
             <div class="flex items-center space-x-2 text-gray-500">
                 <button class="text-2xl text-action-orange"><i class="fa-solid fa-grip"></i></button>
                 <button class="text-2xl hover:text-action-orange"><i class="fa-solid fa-list"></i></button>
             </div>
         </div>
         
-        <!-- Grid de Contenido (Sidebar + Productos) -->
         <div class="flex flex-col md:flex-row gap-6">
         
             <!-- Barra Lateral de Categorías (Contenido de Servidor) -->
@@ -247,7 +256,6 @@
                 <h3 class="text-xl font-bold font-pixel mb-4 text-gray-800">CATEGORÍAS</h3>
                 <nav>
                     <ul class="space-y-3" id="sidebar-nav">
-
                         <li>
                             <a href="#" class="flex items-center gap-3 hover:text-action-orange transition-colors sidebar-link" data-category="top20">
                                 <i class="fa-solid fa-fire w-5 text-center"></i>
@@ -258,7 +266,7 @@
                         <li>
                             <a href="#" class="flex items-center gap-3 hover:text-action-orange transition-colors sidebar-link" data-category="rangos">
                                 <i class="fa-solid fa-crown w-5 text-center"></i>
-                                <span>Rangos</span>
+                                <span>Rangos (VIP, MVP)</span>
                             </a>
                         </li>
                         <li>
@@ -270,13 +278,13 @@
                         <li>
                             <a href="#" class="flex items-center gap-3 hover:text-action-orange transition-colors sidebar-link" data-category="moneda">
                                 <i class="fa-solid fa-coins w-5 text-center"></i>
-                                <span>Moneda del Servidor (Dinero, Monedas)</span>
+                                <span>Moneda del Servidor (Gemas)</span>
                             </a>
                         </li>
                         <li>
                             <a href="#" class="flex items-center gap-3 hover:text-action-orange transition-colors sidebar-link" data-category="kits">
                                 <i class="fa-solid fa-boxes-stacked w-5 text-center"></i>
-                                <span>Kits</span>
+                                <span>Kits de Items</span>
                             </a>
                         </li>
                         <li>
@@ -288,7 +296,7 @@
                         <li>
                             <a href="#" class="flex items-center gap-3 hover:text-action-orange transition-colors sidebar-link" data-category="reclamos">
                                 <i class="fa-solid fa-map w-5 text-center"></i>
-                                <span>Protecciones</span>
+                                <span>Reclamos de Terreno (Plots)</span>
                             </a>
                         </li>
                         <li>
@@ -307,14 +315,11 @@
                 </nav>
             </aside>
             
-            <!-- Cuadrícula de Productos (Contenido de Servidor) -->
             <section class="w-full md:w-3/4 lg:w-4/5">
                 <h2 class="text-2xl font-bold font-pixel mb-4 text-gray-900" id="category-title">Todos los Paquetes</h2>
                 
-                <!-- El contenido se generará por JS -->
                 <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6" id="product-grid">
                     
-                    <!-- Tarjetas de Producto generadas por JavaScript se insertarán aquí -->
                     
                 </div>
             </section>
@@ -326,695 +331,17 @@
     <!-- Footer -->
     <footer class="bg-gray-800 text-gray-400 mt-12 py-10">
         <div class="container mx-auto px-4 text-center">
-            <p class="text-lg font-pixel mb-2">Ivonia Network</p>
-            <p class="text-sm">&copy; IVONIA NETWORK © 2025. Juega en: mc.ivonia.us</p>
+            <!-- Logo del Footer (placeholder) -->
+            <img src="img/logo.png" class="h-16 w-16 rounded-lg mx-auto mb-4">
+            <p class="text-sm">&copy; 2025 TuServidor. Todos los derechos reservados.</p>
             <p class="text-xs mt-2">
-                No estamos afiliados con Mojang AB.
+                Minecraft y todos los nombres, imágenes y marcas relacionadas son propiedad de Mojang Synergies AB y Microsoft.
+                Este es un sitio web de demostración ficticio.
             </p>
         </div>
     </footer>
-    
-    <!-- JavaScript para el menú móvil -->
-    <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            const menuButton = document.getElementById('mobile-menu-button');
-            const mobileMenu = document.getElementById('mobile-menu');
-            
-            menuButton.addEventListener('click', () => {
-                mobileMenu.classList.toggle('hidden');
-            });
-        });
-    </script>
 
-    <!-- Lógica de la Tienda (Productos y Filtros) -->
-    <script type="module">
-        
-        // --- 0. CONFIGURACIÓN ---
-        // ¡¡IMPORTANTE!! Edita esta sección con tu información.
-        const CONFIG = {
-            // Reemplaza 'sb' con tu Client ID de PayPal cuando estés listo para producción.
-            // Puedes obtener uno aquí: https://developer.paypal.com/
-            PAYPAL_CLIENT_ID: 'sb', // 'sb' es un Client ID de sandbox para PRUEBAS. 
-            
-            // ¡MUY IMPORTANTE! Este es el email de la cuenta de PayPal que RECIBIRÁ el dinero.
-            PAYPAL_BUSINESS_EMAIL: 'tu-email-de-negocios@paypal.com', 
-            
-            // Códigos de descuento (Código: porcentaje de descuento, ej. 0.10 = 10%)
-            // ¡RECUERDA! Esto no es seguro, los usuarios pueden ver los códigos en el JS.
-            DISCOUNT_CODES: {
-                'BIENVENIDO10': 0.10,
-                'SERVER20': 0.20,
-                'SOYVIP': 0.05
-            },
-
-            // Webhook para notificaciones de staff (privado)
-            // ¡RECUERDA! Esto es INSEGURO. Tu URL es visible.
-            WEBHOOK_STAFF_URL: 'https://discord.com/api/webhooks/TU_ID_DE_WEBHOOK/TU_TOKEN_SECRETO',
-
-            // Webhook para notificaciones públicas (canal #compras)
-            WEBHOOK_PUBLIC_URL: 'https://discord.com/api/webhooks/TU_ID_DE_WEBHOOK_PUBLICO/TU_TOKEN_SECRETO_PUBLICO'
-        };
-
-        // --- 1. DATOS DE LOS PRODUCTOS ---
-        // (Datos de productos existentes)
-        const allProducts = [
-            {
-                id: 1,
-                name: "Rango VIP (30 días)",
-                price: 9.99,
-                imageUrl: "https://placehold.co/300x200/90cdf4/ffffff?text=Rango+VIP",
-                altText: "Rango VIP",
-                rating: 4.5,
-                category: "rangos",
-                badge: null
-            },
-            {
-                id: 2,
-                name: "Rango MVP+ (Permanente)",
-                price: 24.99,
-                imageUrl: "https://placehold.co/300x200/a0aec0/ffffff?text=Rango+MVP%2B",
-                altText: "Rango MVP+",
-                rating: 5,
-                category: "rangos",
-                badge: "¡Hot!"
-            },
-            {
-                id: 3,
-                name: "Mascota: Golem de Hierro",
-                price: 7.99,
-                imageUrl: "https://placehold.co/300x200/fbd38d/ffffff?text=Mascota+Golem",
-                altText: "Mascota Golem de Hierro",
-                rating: 4,
-                category: "cosmeticos",
-                badge: null
-            },
-            {
-                id: 4,
-                name: "Paquete de 5000 Gemas",
-                price: 4.99,
-                imageUrl: "https://placehold.co/300x200/b794f4/ffffff?text=5000+Gemas",
-                altText: "Paquete de 5000 Gemas",
-                rating: 4.5,
-                category: "moneda",
-                badge: null
-            },
-            {
-                id: 5,
-                name: "Kit de Constructor (Uso Único)",
-                price: 3.99,
-                imageUrl: "https://placehold.co/300x200/f687b3/ffffff?text=Kit+Constructor",
-                altText: "Kit de Constructor",
-                rating: 5,
-                category: "kits",
-                badge: null
-            },
-            {
-                id: 6,
-                name: "Efectos de Partículas: Fuego",
-                price: 2.99,
-                imageUrl: "https://placehold.co/300x200/4fd1c5/ffffff?text=Efectos+de+Fuego",
-                altText: "Efectos de Partículas de Fuego",
-                rating: 4.5,
-                category: "cosmeticos",
-                badge: null
-            },
-            {
-                id: 7,
-                name: "Paquete de 5 Llaves Épicas",
-                price: 4.99,
-                imageUrl: "https://placehold.co/300x200/38b2ac/ffffff?text=5+Llaves+Epicas",
-                altText: "5 Llaves de Cajas Épicas",
-                rating: 4,
-                category: "llaves",
-                badge: null
-            },
-            {
-                id: 8,
-                name: "Pase de Batalla: Temporada 3",
-                price: 12.99,
-                imageUrl: "https://placehold.co/300x200/718096/ffffff?text=Pase+de+Batalla",
-                altText: "Pase de Batalla Temporada 3",
-                rating: 5,
-                category: "kits",
-                badge: null
-            }
-        ];
-
-        // --- 2. ESTADO DE LA APLICACIÓN ---
-        let cart = [];
-        let appliedDiscount = null; // Ej: { code: 'BIENVENIDO10', percent: 0.10 }
-        let currentMinecraftUsername = "";
-
-        // --- 3. SELECTORES DE ELEMENTOS ---
-        const productGrid = document.getElementById('product-grid');
-        const categoryTitle = document.getElementById('category-title');
-        const sidebarLinks = document.querySelectorAll('#sidebar-nav .sidebar-link');
-        const searchInput = document.getElementById('search-input');
-        
-        // Selectores del Carrito
-        const cartModal = document.getElementById('cart-modal');
-        const cartIconButton = document.getElementById('cart-icon-button');
-        const closeCartButton = document.getElementById('close-cart-button');
-        const cartItemsContainer = document.getElementById('cart-items-container');
-        const emptyCartMessage = document.getElementById('empty-cart-message');
-        const cartCountBadge = document.getElementById('cart-count-badge');
-        
-        // Selectores de Checkout
-        const cartSubtotalEl = document.getElementById('cart-subtotal');
-        const cartDiscountEl = document.getElementById('cart-discount');
-        const cartTotalEl = document.getElementById('cart-total');
-        const discountCodeInput = document.getElementById('discount-code-input');
-        const applyDiscountButton = document.getElementById('apply-discount-button');
-        const discountAppliedRow = document.getElementById('discount-applied-row');
-        const discountCodeText = document.getElementById('discount-code-text');
-        const usernameInput = document.getElementById('minecraft-username');
-        const cartMessage = document.getElementById('cart-message');
-        const paypalButtonContainer = document.getElementById('paypal-button-container');
-
-        // Selectores de Notificación
-        const notificationToast = document.getElementById('notification-toast');
-
-        // --- 4. FUNCIONES PRINCIPALES (INICIALIZACIÓN) ---
-
-        document.addEventListener('DOMContentLoaded', initStore);
-
-        function initStore() {
-            loadCart();
-            addEventListeners();
-            renderProducts(allProducts); // Render inicial
-            renderCart();
-            loadPayPalSDK();
-        }
-
-        // --- 5. LÓGICA DE EVENTOS ---
-
-        function addEventListeners() {
-            // Clics en la barra lateral (Categorías)
-            sidebarLinks.forEach(link => {
-                link.addEventListener('click', handleCategoryClick);
-            });
-
-            // Búsqueda
-            searchInput.addEventListener('input', handleSearch);
-
-            // Clics en la cuadrícula de productos (Añadir al carrito)
-            productGrid.addEventListener('click', (e) => {
-                const addToCartButton = e.target.closest('.add-to-cart-button');
-                if (addToCartButton) {
-                    e.preventDefault(); // Prevenir la navegación si el botón está dentro de un <a>
-                    const productId = parseInt(addToCartButton.dataset.id, 10);
-                    addToCart(productId);
-                }
-            });
-
-            // Abrir/Cerrar Carrito
-            cartIconButton.addEventListener('click', toggleCartModal);
-            closeCartButton.addEventListener('click', toggleCartModal);
-            cartModal.addEventListener('click', (e) => {
-                // Cierra el modal si se hace clic en el fondo oscuro
-                if (e.target === cartModal) {
-                    toggleCartModal();
-                }
-            });
-
-            // Actualizaciones dentro del Carrito
-            cartItemsContainer.addEventListener('click', (e) => {
-                const target = e.target;
-                const parentItem = target.closest('.cart-item');
-                if (!parentItem) return;
-
-                const productId = parseInt(parentItem.dataset.id, 10);
-
-                // Botón de Incrementar (+)
-                if (target.closest('.cart-quantity-increase')) {
-                    const item = cart.find(i => i.id === productId);
-                    updateCartQuantity(productId, item.quantity + 1);
-                }
-                // Botón de Decrementar (-)
-                else if (target.closest('.cart-quantity-decrease')) {
-                    const item = cart.find(i => i.id === productId);
-                    updateCartQuantity(productId, item.quantity - 1);
-                }
-                // Botón de Eliminar (x)
-                else if (target.closest('.cart-remove-item')) {
-                    updateCartQuantity(productId, 0); // Poner cantidad a 0 elimina el item
-                }
-            });
-
-            // Aplicar Descuento
-            applyDiscountButton.addEventListener('click', applyDiscount);
-
-            // Guardar nombre de usuario de MC
-            usernameInput.addEventListener('input', (e) => {
-                currentMinecraftUsername = e.target.value.trim();
-                // Si había un error de "nombre requerido", lo borra al escribir
-                if (currentMinecraftUsername) {
-                    setCartMessage("");
-                }
-            });
-        }
-
-        function handleCategoryClick(event) {
-            event.preventDefault(); 
-            
-            const clickedLink = event.currentTarget;
-            const category = clickedLink.dataset.category;
-
-            const linkText = clickedLink.querySelector('span').textContent;
-            categoryTitle.textContent = linkText;
-
-            sidebarLinks.forEach(link => link.classList.remove('active'));
-            clickedLink.classList.add('active');
-
-            let filteredProducts = [];
-            
-            if (category === 'all') {
-                filteredProducts = allProducts;
-            } else if (['favoritos', 'recomendados', 'top20'].includes(category)) {
-                if(category === 'top20') {
-                    filteredProducts = [...allProducts].sort((a, b) => b.rating - a.rating).slice(0, 20);
-                    categoryTitle.textContent = "Top 20 Más Valorados";
-                } else {
-                     filteredProducts = [];
-                }
-            } else {
-                filteredProducts = allProducts.filter(product => product.category === category);
-            }
-            
-            renderProducts(filteredProducts);
-        }
-
-        function handleSearch(e) {
-            const searchTerm = e.target.value.toLowerCase();
-            const filteredProducts = allProducts.filter(product => 
-                product.name.toLowerCase().includes(searchTerm)
-            );
-            renderProducts(filteredProducts);
-        }
-
-        // --- 6. FUNCIONES DE RENDERIZADO (UI) ---
-
-        /**
-         * "Pinta" los productos en el DOM.
-         * MODIFICADO: Ahora incluye un botón de "Añadir al carrito".
-         */
-        function renderProducts(productsToRender) {
-            productGrid.innerHTML = ''; // Limpia la cuadrícula
-
-            if (productsToRender.length === 0) {
-                productGrid.innerHTML = `
-                    <div class="col-span-full text-center text-gray-500 py-10">
-                        <i class="fa-solid fa-box-open text-4xl mb-4"></i>
-                        <p class="text-xl">No se encontraron productos.</p>
-                    </div>
-                `;
-                return;
-            }
-
-            const productCardsHTML = productsToRender.map(product => {
-                const ratingStars = generateRatingStars(product.rating);
-                const badgeHTML = product.badge 
-                    ? `<span class="absolute top-2 right-2 bg-red-500 text-white text-xs font-bold px-2 py-1 rounded-full uppercase z-10">${product.badge}</span>`
-                    : '';
-
-                return `
-                    <div class="bg-white rounded-lg shadow-lg overflow-hidden transition-all duration-300 product-card relative flex flex-col">
-                        ${badgeHTML}
-                        <img src="${product.imageUrl}" 
-                             alt="${product.altText}" 
-                             class="w-full h-48 object-cover"
-                             onerror="this.src='https://placehold.co/300x200/cccccc/ffffff?text=Imagen+No+Disponible'">
-                        
-                        <div class="p-4 flex flex-col flex-grow">
-                            <h4 class="text-lg font-semibold text-gray-800 truncate">${product.name}</h4>
-                            <div class="flex items-center mt-1">
-                                ${ratingStars}
-                            </div>
-                            <p class="text-lg font-bold text-minecraft-green-dark mt-2">$${product.price.toFixed(2)}</p>
-                            
-                            <button data-id="${product.id}" class="add-to-cart-button mt-4 w-full bg-action-orange text-white font-semibold py-2 rounded-lg hover:bg-action-orange-dark transition-colors">
-                                <i class="fa-solid fa-cart-plus mr-2"></i>Añadir
-                            </button>
-                        </div>
-                    </div>
-                `;
-            }).join('');
-
-            productGrid.innerHTML = productCardsHTML;
-        }
-
-        /**
-         * Pinta el contenido del modal del carrito
-         */
-        function renderCart() {
-            // Vaciar contenedor de items
-            cartItemsContainer.innerHTML = '';
-
-            if (cart.length === 0) {
-                emptyCartMessage.classList.remove('hidden');
-            } else {
-                emptyCartMessage.classList.add('hidden');
-                cart.forEach(item => {
-                    const itemHTML = `
-                        <div class="flex items-center space-x-4 mb-4 p-2 rounded-lg border cart-item" data-id="${item.id}">
-                            <img src="${item.imageUrl}" alt="${item.altText}" class="w-16 h-16 object-cover rounded-lg">
-                            <div class="flex-grow">
-                                <h4 class="font-semibold text-gray-800">${item.name}</h4>
-                                <p class="text-sm text-gray-600">$${item.price.toFixed(2)}</p>
-                            </div>
-                            <div class="flex items-center border rounded-lg">
-                                <button class="cart-quantity-decrease w-8 h-8 text-gray-600 hover:bg-gray-100 rounded-l-lg" aria-label="Reducir cantidad">-</button>
-                                <input type="number" value="${item.quantity}" class="w-12 text-center border-l border-r" readonly>
-                                <button class="cart-quantity-increase w-8 h-8 text-gray-600 hover:bg-gray-100 rounded-r-lg" aria-label="Aumentar cantidad">+</button>
-                            </div>
-                            <button class="cart-remove-item text-gray-400 hover:text-red-500 ml-2" aria-label="Eliminar item">
-                                <i class="fa-solid fa-trash"></i>
-                            </button>
-                        </div>
-                    `;
-                    cartItemsContainer.innerHTML += itemHTML;
-                });
-            }
-
-            // Calcular totales
-            const subtotal = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
-            let discountAmount = 0;
-            
-            if (appliedDiscount) {
-                discountAmount = subtotal * appliedDiscount.percent;
-                cartDiscountEl.textContent = `-$${discountAmount.toFixed(2)}`;
-                discountCodeText.textContent = appliedDiscount.code;
-                discountAppliedRow.classList.remove('hidden');
-            } else {
-                discountAppliedRow.classList.add('hidden');
-            }
-            
-            const total = subtotal - discountAmount;
-
-            cartSubtotalEl.textContent = `$${subtotal.toFixed(2)}`;
-            cartTotalEl.textContent = `$${total.toFixed(2)}`;
-
-            updateCartIconCount();
-            
-            // Re-renderizar el botón de PayPal CADA VEZ que el total cambie.
-            // Esto es crucial para que PayPal sepa el monto correcto.
-            if (cart.length > 0) {
-                renderPayPalButton(total);
-            } else {
-                paypalButtonContainer.innerHTML = ''; // Limpiar botón si el carrito está vacío
-            }
-        }
-
-        function updateCartIconCount() {
-            const count = cart.reduce((sum, item) => sum + item.quantity, 0);
-            cartCountBadge.textContent = count;
-            cartCountBadge.classList.toggle('hidden', count === 0);
-        }
-
-        function generateRatingStars(rating) {
-            let starsHTML = '';
-            const fullStars = Math.floor(rating);
-            const halfStar = (rating % 1) >= 0.5;
-            const emptyStars = 5 - fullStars - (halfStar ? 1 : 0);
-
-            for (let i = 0; i < fullStars; i++) starsHTML += '<i class="fa-solid fa-star text-sm text-yellow-500"></i>';
-            if (halfStar) starsHTML += '<i class="fa-solid fa-star-half-stroke text-sm text-yellow-500"></i>';
-            for (let i = 0; i < emptyStars; i++) starsHTML += '<i class="fa-regular fa-star text-sm text-yellow-500"></i>';
-            return starsHTML;
-        }
-
-        function toggleCartModal() {
-            cartModal.classList.toggle('hidden');
-        }
-
-        /**
-         * Muestra una notificación toast
-         */
-        function showNotification(message, isError = false) {
-            notificationToast.textContent = message;
-            notificationToast.classList.remove('hidden', 'translate-y-20', 'opacity-0', 'bg-red-500', 'bg-minecraft-green-dark');
-            
-            if (isError) {
-                notificationToast.classList.add('bg-red-500');
-            } else {
-                notificationToast.classList.add('bg-minecraft-green-dark');
-            }
-
-            // Forzar reflow para la animación de entrada
-            notificationToast.offsetWidth;
-            
-            notificationToast.classList.remove('translate-y-20', 'opacity-0');
-
-            setTimeout(() => {
-                notificationToast.classList.add('translate-y-20', 'opacity-0');
-                setTimeout(() => notificationToast.classList.add('hidden'), 500); // Ocultar después de la transición
-            }, 3000); // 3 segundos visible
-        }
-
-        /**
-         * Muestra un mensaje dentro del modal del carrito
-         */
-        function setCartMessage(message, isError = true) {
-            cartMessage.textContent = message;
-            cartMessage.classList.toggle('text-red-500', isError);
-            cartMessage.classList.toggle('text-green-600', !isError);
-        }
-
-        // --- 7. LÓGICA DEL CARRITO ---
-
-        function loadCart() {
-            const savedCart = localStorage.getItem('mine-store-cart');
-            cart = savedCart ? JSON.parse(savedCart) : [];
-        }
-
-        function saveCart() {
-            localStorage.setItem('mine-store-cart', JSON.stringify(cart));
-        }
-
-        function addToCart(productId) {
-            const product = allProducts.find(p => p.id === productId);
-            if (!product) return;
-
-            const existingItem = cart.find(item => item.id === productId);
-
-            if (existingItem) {
-                existingItem.quantity++;
-            } else {
-                cart.push({ ...product, quantity: 1 });
-            }
-
-            saveCart();
-            renderCart();
-            showNotification(`¡${product.name} añadido al carrito!`);
-        }
-
-        function updateCartQuantity(productId, newQuantity) {
-            if (newQuantity <= 0) {
-                // Eliminar item
-                cart = cart.filter(item => item.id !== productId);
-            } else {
-                // Actualizar cantidad
-                const item = cart.find(i => i.id === productId);
-                if (item) {
-                    item.quantity = newQuantity;
-                }
-            }
-            saveCart();
-            renderCart();
-        }
-
-        function clearCart() {
-            cart = [];
-            appliedDiscount = null;
-            discountCodeInput.value = '';
-            saveCart();
-            renderCart();
-        }
-
-        // --- 8. LÓGICA DE PAGO Y NOTIFICACIONES ---
-
-        function applyDiscount() {
-            const code = discountCodeInput.value.toUpperCase();
-            if (!code) return;
-
-            if (CONFIG.DISCOUNT_CODES[code]) {
-                const percent = CONFIG.DISCOUNT_CODES[code];
-                appliedDiscount = { code, percent };
-                setCartMessage(`¡${(percent * 100)}% de descuento aplicado!`, false);
-                renderCart(); // Re-renderizar para aplicar el descuento
-            } else {
-                appliedDiscount = null;
-                setCartMessage("Código de descuento no válido.", true);
-                renderCart(); // Re-renderizar para quitar cualquier descuento
-            }
-        }
-
-        function loadPayPalSDK() {
-            const script = document.createElement('script');
-            // Carga el SDK de PayPal con tu Client ID y la moneda
-            script.src = `https://www.paypal.com/sdk/js?client-id=${CONFIG.PAYPAL_CLIENT_ID}&currency=USD`;
-            script.onload = () => {
-                // Una vez cargado, renderiza el botón (si hay items en el carrito)
-                if (cart.length > 0) {
-                    // Recalcular el total aquí por si acaso
-                    const subtotal = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
-                    let discountAmount = 0;
-                    if (appliedDiscount) {
-                        discountAmount = subtotal * appliedDiscount.percent;
-                    }
-                    const total = subtotal - discountAmount;
-                    renderPayPalButton(total);
-                }
-            };
-            // MANEJO DE ERROR: Si el script de PayPal no se puede cargar (común en sandboxes)
-            script.onerror = () => {
-                console.error("Error al cargar el SDK de PayPal.");
-                setCartMessage("Error al cargar el módulo de pago. Inténtalo de nuevo.", true);
-            };
-            document.head.appendChild(script);
-        }
-
-        /**
-         * Renderiza el botón de PayPal
-         * @param {number} totalAmount - El monto final a pagar
-         */
-        function renderPayPalButton(totalAmount) {
-            // Limpia el contenedor antes de renderizar
-            paypalButtonContainer.innerHTML = '';
-            
-            // CORRECCIÓN: Añadir comprobación por si el SDK de PayPal no se carga
-            // El error 'Can not read window host' indica que el SDK falló al inicializarse.
-            // En ese caso, el objeto 'paypal' no estará definido.
-            if (typeof paypal === 'undefined') {
-                console.error("El SDK de PayPal no se cargó o inicializó correctamente.");
-                setCartMessage("Error al cargar el módulo de pago.", true);
-                return; // No intentes renderizar el botón
-            }
-
-            // Configuración del botón de PayPal
-            paypal.Buttons({
-                // Validación ANTES de abrir el popup de PayPal
-                onClick: (data, actions) => {
-                    if (!currentMinecraftUsername) {
-                        setCartMessage("Por favor, introduce tu nombre de usuario de Minecraft.", true);
-                        usernameInput.focus(); // Foco en el input
-                        return actions.reject(); // Cancela el pago
-                    } else {
-                        setCartMessage(""); // Limpia mensajes de error
-                        return actions.resolve(); // Procede con el pago
-                    }
-                },
-
-                // Configura la transacción
-                createOrder: (data, actions) => {
-                    return actions.order.create({
-                        purchase_units: [{
-                            amount: {
-                                value: totalAmount.toFixed(2) // Asegura 2 decimales
-                            },
-                            payee: {
-                                // ¡MUY IMPORTANTE! Aquí va tu email de PayPal
-                                email_address: CONFIG.PAYPAL_BUSINESS_EMAIL
-                            }
-                        }]
-                    });
-                },
-
-                // Se llama cuando el pago es aprobado por el usuario
-                onApprove: (data, actions) => {
-                    return actions.order.capture().then(details => {
-                        // ¡Pago Exitoso!
-                        setCartMessage(`¡Pago completado por ${details.payer.name.given_name}!`, false);
-                        
-                        // Enviar notificaciones a Discord
-                        sendDiscordNotification('staff', details);
-                        sendDiscordNotification('public', details);
-
-                        // Limpiar el carrito
-                        setTimeout(() => {
-                            clearCart();
-                            toggleCartModal(); // Cierra el modal
-                            showNotification("¡Gracias por tu compra!");
-                        }, 3000); // Espera 3 seg. para que el usuario lea el mensaje
-                    });
-                },
-
-                // Manejo de errores
-                onError: (err) => {
-                    console.error("Error de PayPal:", err);
-                    setCartMessage("Ocurrió un error durante el pago.", true);
-                }
-            }).render('#paypal-button-container');
-        }
-
-        /**
-         * Envía la notificación a Discord vía Webhook
-         * @param {string} type - 'staff' o 'public'
-         * @param {object} details - Los detalles del pago de PayPal
-         */
-        async function sendDiscordNotification(type, details) {
-            let url = '';
-            let embed = {};
-            const payerName = `${details.payer.name.given_name} ${details.payer.name.surname}`;
-            const total = details.purchase_units[0].amount.value;
-            
-            // Construir la lista de items
-            const itemsDescription = cart.map(item => `${item.quantity}x ${item.name}`).join('\n');
-
-            if (type === 'staff') {
-                url = CONFIG.WEBHOOK_STAFF_URL;
-                if (!url.includes('https://discord.com/api/webhooks/')) return; // No envía si la URL no es válida
-
-                embed = {
-                    title: '✅ Nueva Compra de Staff',
-                    description: `**¡Venta realizada con éxito!**`,
-                    color: 0x00FF00, // Verde
-                    fields: [
-                        { name: 'Usuario de Minecraft', value: `\`${currentMinecraftUsername}\``, inline: true },
-                        { name: 'Comprador de PayPal', value: `\`${payerName}\``, inline: true },
-                        { name: 'Email de PayPal', value: `\`${details.payer.email_address}\``, inline: false },
-                        { name: 'Total Pagado', value: `**$${total} USD**`, inline: true },
-                        { name: 'Items Comprados', value: `\`\`\`${itemsDescription}\`\`\``, inline: false },
-                    ],
-                    timestamp: new Date().toISOString()
-                };
-
-            } else { // 'public'
-                url = CONFIG.WEBHOOK_PUBLIC_URL;
-                if (!url.includes('https://discord.com/api/webhooks/')) return; // No envía si la URL no es válida
-                
-                // Para el público, solo mostramos el primer item para no saturar
-                const firstItemName = cart[0] ? cart[0].name : 'un paquete';
-
-                embed = {
-                    title: '🎉 ¡Nueva Compra en la Tienda!',
-                    description: `¡**${currentMinecraftUsername}** acaba de comprar **${firstItemName}** y está apoyando al servidor!`,
-                    color: 0x5865F2, // Azul de Discord
-                    footer: {
-                        text: '¡Gracias por tu apoyo!'
-                    },
-                    timestamp: new Date().toISOString()
-                };
-            }
-
-            try {
-                await fetch(url, {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json',
-                    },
-                    body: JSON.stringify({
-                        username: 'Notificador de Tienda',
-                        avatar_url: 'https://i.imgur.com/v1k4f5I.png', // Un ícono de cofre
-                        embeds: [embed],
-                    }),
-                });
-            } catch (error) {
-                console.error('Error enviando webhook a Discord:', error);
-            }
-        }
-
-    </script>
+    <script src="JS/logic.js"></script>
 
 </body>
 </html>
