@@ -1,7 +1,7 @@
 // --- 0. CONFIGURACIÓN ---
 const CONFIG = {
 
-    PAYPAL_CLIENT_ID: 'VD5V2TDCBK95J', // 'sb' es un Client ID de sandbox para PRUEBAS. 
+    PAYPAL_CLIENT_ID: 'AZ0-wyrOpQcRnTbsqOCNX9HwkkKFnkOEM1yF0NgGGg-xyhrEwLmwle-eni73yaaywSMgykYDKzvVCr2p', // 'sb' es un Client ID de sandbox para PRUEBAS. 
     
     // ¡MUY IMPORTANTE! Este es el email de la cuenta de PayPal que RECIBIRÁ el dinero.
     PAYPAL_BUSINESS_EMAIL: 'alexanderosales048@gmail.com', 
@@ -799,4 +799,5 @@ async function sendDiscordNotification(type, details) {
         console.error('Error enviando webhook a Discord:', error);
     }
 }
+
 
