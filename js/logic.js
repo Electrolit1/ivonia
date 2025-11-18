@@ -111,6 +111,7 @@ const allProducts = [
     name: "Llave Premium",
     price: "3.99",
     imgUrl: "img/IMG_3339",
+    altText: "llaves",
     rating: 4,
     category: "llaves",
     badge: null
@@ -120,6 +121,7 @@ const allProducts = [
     name: "Llave Ultimate",
     price: "5.99",
     imgUrl: "img/IMG_3340",
+    altText: "llaves",
     rating: 5,
     category: "llaves",
     badge: null
@@ -129,6 +131,7 @@ const allProducts = [
     name: "Llave Legendaria",
     price: "7.99",
     imgUrl: "img/IMG_3341",
+    altText: "llaves",
     rating: 5,
     category: "llaves",
     badge: null
@@ -138,6 +141,7 @@ const allProducts = [
     name: "Llave Seasonal",
     price: "9.99",
     imgUrl: "img/IMG_3342",
+    altText: "llaves",
     rating: 5,
     category: "llaves",
     badge: null
@@ -147,6 +151,7 @@ const allProducts = [
     name: "100 Monedas",
     price: "0.99",
     imgUrl: "img/IMG_3348",
+    altText: "llaves",
     rating: 3,
     category: "monedas",
     badge: null
@@ -156,6 +161,7 @@ const allProducts = [
     name: "500 Monedas",
     price: "3.99",
     imgUrl: "img/IMG_3349",
+    altText: "llaves",
     rating: 4,
     category: "monedas",
     badge: null
@@ -165,6 +171,7 @@ const allProducts = [
     name: "3000 Monedas",
     price: "14.99",
     imgUrl: "img/IMG_3350",
+    altText: "llaves",
     rating: 5,
     category: "monedas",
     badge: "Popular"
@@ -174,6 +181,7 @@ const allProducts = [
     name: "10,000 Monedas",
     price: "39.99",
     imgUrl: "img/IMG_33",
+    altText: "llaves",
     rating: 5,
     category: "monedas",
     badge: null
@@ -183,6 +191,7 @@ const allProducts = [
     name: "1 Millón de Monedas",
     price: "99.99",
     imgUrl: "img/IMG_3351",
+    altText: "llaves",
     rating: 5,
     category: "monedas",
     badge: "Mejor Valor"
@@ -880,6 +889,7 @@ async function sendDiscordNotification(type, details) {
         console.error('Error enviando webhook a Discord:', error);
     }
 }
+
 
 
 
