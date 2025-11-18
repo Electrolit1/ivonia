@@ -40,7 +40,7 @@ const allProducts = [
         id: 2,
         name: "Rango FOX (Permanente)",
         price: 4.5,
-        imageUrl: "img/IMG_3331",
+        imageUrl: "https://media.discordapp.net/attachments/1440146283238002798/1440146351525593250/IMG_3331.png?ex=691d184e&is=691bc6ce&hm=c12863f5b788638dc89bb58619f34a00b30451be99e0b081f8211de3a6691bf8&=&format=webp&quality=lossless&width=450&height=450",
         altText: "Rango FOX",
         rating: 5,
         category: "rangos",
@@ -50,7 +50,7 @@ const allProducts = [
         id: 3,
         name: "Rango Creeper (30 Dias)",
         price: 3.5,
-        imageUrl: "img/IMG_3332",
+        imageUrl: "https://media.discordapp.net/attachments/1440146283238002798/1440146351760478359/IMG_3332.png?ex=691d184e&is=691bc6ce&hm=a70948f6dd1f4f2c6f93b0ae3ee39e93dc6410337e71ebfde8d8660d3662d8a3&=&format=webp&quality=lossless&width=450&height=450",
         altText: "Rango Creeper",
         rating: 4,
         category: "rangos",
@@ -60,7 +60,7 @@ const allProducts = [
         id: 4,
         name: "Rango Creeper (Permanente)",
         price: 8.0,
-        imageUrl: "img/IMG_3332",
+        imageUrl: "https://media.discordapp.net/attachments/1440146283238002798/1440146351760478359/IMG_3332.png?ex=691d184e&is=691bc6ce&hm=a70948f6dd1f4f2c6f93b0ae3ee39e93dc6410337e71ebfde8d8660d3662d8a3&=&format=webp&quality=lossless&width=450&height=450",
         altText: "Rango Creeper",
         rating: 4.5,
         category: "rangos",
@@ -70,7 +70,7 @@ const allProducts = [
         id: 5,
         name: "Rango Allay (30 Dias)",
         price: 3.3,
-        imageUrl: "img/IMG_3333",
+        imageUrl: "https://media.discordapp.net/attachments/1440146283238002798/1440146352016461854/IMG_3333.png?ex=691d184e&is=691bc6ce&hm=7778f4aa31ae46de661e60045703340465466f338da55d19075021b3c7238167&=&format=webp&quality=lossless&width=450&height=450",
         altText: "Rango Allay",
         rating: 5,
         category: "rangos",
@@ -80,7 +80,7 @@ const allProducts = [
         id: 6,
         name: "Rango Allay (Permanente)",
         price: 9.0,
-        imageUrl: "img/IMG_3333",
+        imageUrl: "https://media.discordapp.net/attachments/1440146283238002798/1440146352016461854/IMG_3333.png?ex=691d184e&is=691bc6ce&hm=7778f4aa31ae46de661e60045703340465466f338da55d19075021b3c7238167&=&format=webp&quality=lossless&width=450&height=450",
         altText: "Rango Allay",
         rating: 4.5,
         category: "Rango Allay",
@@ -90,7 +90,7 @@ const allProducts = [
         id: 7,
         name: "Rango With (30 Dias)",
         price: 5.0,
-        imageUrl: "img/IMG_3334",
+        imageUrl: "https://media.discordapp.net/attachments/1440146283238002798/1440146352389619722/IMG_3334.png?ex=691d184f&is=691bc6cf&hm=04d7947b8e18ec62e818bacf3a14d5cde24803bb4145e35239804991ebd19a34&=&format=webp&quality=lossless&width=450&height=450",
         altText: "Rango With",
         rating: 4,
         category: "rangos",
@@ -100,7 +100,7 @@ const allProducts = [
         id: 8,
         name: "Rango With (Permanente)",
         price: 14.99,
-        imageUrl: "img/IMG_3334",
+        imageUrl: "https://media.discordapp.net/attachments/1440146283238002798/1440146352389619722/IMG_3334.png?ex=691d184f&is=691bc6cf&hm=04d7947b8e18ec62e818bacf3a14d5cde24803bb4145e35239804991ebd19a34&=&format=webp&quality=lossless&width=450&height=450",
         altText: "rangos",
         rating: 5,
         category: "rangos",
@@ -880,6 +880,7 @@ async function sendDiscordNotification(type, details) {
         console.error('Error enviando webhook a Discord:', error);
     }
 }
+
 
 
 
