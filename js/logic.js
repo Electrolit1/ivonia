@@ -30,7 +30,7 @@ const allProducts = [
         id: 1,
         name: "Rango FOX (30 dias)",
         price: 1.5,
-        imageUrl: "img/IMG_3331",
+        imageUrl: "https://media.discordapp.net/attachments/1440146283238002798/1440146351525593250/IMG_3331.png?ex=691d184e&is=691bc6ce&hm=c12863f5b788638dc89bb58619f34a00b30451be99e0b081f8211de3a6691bf8&=&format=webp&quality=lossless&width=450&height=450",
         altText: "Rango FOX",
         rating: 4.5,
         category: "rangos",
@@ -880,6 +880,7 @@ async function sendDiscordNotification(type, details) {
         console.error('Error enviando webhook a Discord:', error);
     }
 }
+
 
 
 
