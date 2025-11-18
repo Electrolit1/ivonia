@@ -83,7 +83,7 @@ const allProducts = [
         imageUrl: "https://media.discordapp.net/attachments/1440146283238002798/1440146352016461854/IMG_3333.png?ex=691d184e&is=691bc6ce&hm=7778f4aa31ae46de661e60045703340465466f338da55d19075021b3c7238167&=&format=webp&quality=lossless&width=450&height=450",
         altText: "Rango Allay",
         rating: 4.5,
-        category: "Rango Allay",
+        category: "Rangos",
         badge: null
     },
     {
@@ -153,7 +153,7 @@ const allProducts = [
          imgUrl: "img/IMG_3348",
          altText: "llaves",
          rating: 3,
-         category: "monedas",
+         category: "moneda",
          badge: null
     },
     {
@@ -163,7 +163,7 @@ const allProducts = [
          imgUrl: "img/IMG_3349",
          altText: "llaves",
          rating: 4,
-         category: "monedas",
+         category: "moneda",
          badge: null
     },
     {
@@ -173,7 +173,7 @@ const allProducts = [
          imgUrl: "img/IMG_3350",
          altText: "llaves",
          rating: 5,
-         category: "monedas",
+         category: "moneda",
          badge: "Popular"
     },
     {
@@ -183,7 +183,7 @@ const allProducts = [
          imgUrl: "img/IMG_33",
          altText: "llaves",
          rating: 5,
-         category: "monedas",
+         category: "moneda",
          badge: null
     },
     {
@@ -193,7 +193,7 @@ const allProducts = [
          imgUrl: "img/IMG_3351",
          altText: "llaves",
          rating: 5,
-         category: "monedas",
+         category: "moneda",
          badge: "Mejor Valor"
     }   
 ]
@@ -889,6 +889,7 @@ async function sendDiscordNotification(type, details) {
         console.error('Error enviando webhook a Discord:', error);
     }
 }
+
 
 
 
