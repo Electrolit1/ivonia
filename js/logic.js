@@ -83,7 +83,7 @@ const allProducts = [
         imageUrl: "https://media.discordapp.net/attachments/1440146283238002798/1440146352016461854/IMG_3333.png?ex=691d184e&is=691bc6ce&hm=7778f4aa31ae46de661e60045703340465466f338da55d19075021b3c7238167&=&format=webp&quality=lossless&width=450&height=450",
         altText: "Rango Allay",
         rating: 4.5,
-        category: "Rangos",
+        category: "rangos",
         badge: null
     },
     {
@@ -109,7 +109,7 @@ const allProducts = [
     {
          id: 9,
          name: "Llave Premium",
-         price: "3.99",
+         price: 3.99,
          imgUrl: "img/IMG_3339",
          altText: "llaves",
          rating: 4,
@@ -119,7 +119,7 @@ const allProducts = [
      {
          id: 10,
          name: "Llave Ultimate",
-         price: "5.99",
+         price: 5.99,
          imgUrl: "img/IMG_3340",
          altText: "llaves",
          rating: 5,
@@ -129,7 +129,7 @@ const allProducts = [
     {
          id: 11,
          name: "Llave Legendaria",
-         price: "7.99",
+         price: 7.99,
          imgUrl: "img/IMG_3341",
          altText: "llaves",
          rating: 5,
@@ -139,7 +139,7 @@ const allProducts = [
     {
          id: 12,
          name: "Llave Seasonal",
-         price: "9.99",
+         price: 9.99,
          imgUrl: "img/IMG_3342",
          altText: "llaves",
          rating: 5,
@@ -149,7 +149,7 @@ const allProducts = [
    {
          id: 13,
          name: "100 Monedas",
-         price: "0.99",
+         price: 0.99,
          imgUrl: "img/IMG_3348",
          altText: "llaves",
          rating: 3,
@@ -159,7 +159,7 @@ const allProducts = [
     {
          id: 14,
          name: "500 Monedas",
-         price: "3.99",
+         price: 3.99,
          imgUrl: "img/IMG_3349",
          altText: "llaves",
          rating: 4,
@@ -169,7 +169,7 @@ const allProducts = [
     {
          id: 15,
          name: "3000 Monedas",
-         price: "14.99",
+         price: 14.99,
          imgUrl: "img/IMG_3350",
          altText: "llaves",
          rating: 5,
@@ -179,7 +179,7 @@ const allProducts = [
     {
          id: 16,
          name: "10,000 Monedas",
-         price: "39.99",
+         price: 39.99,
          imgUrl: "img/IMG_33",
          altText: "llaves",
          rating: 5,
@@ -189,7 +189,7 @@ const allProducts = [
     {
          id: 17,
          name: "1 Millón de Monedas",
-         price: "99.99",
+         price: 99.99,
          imgUrl: "img/IMG_3351",
          altText: "llaves",
          rating: 5,
@@ -889,6 +889,7 @@ async function sendDiscordNotification(type, details) {
         console.error('Error enviando webhook a Discord:', error);
     }
 }
+
 
 
 
