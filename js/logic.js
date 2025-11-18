@@ -82,7 +82,7 @@ const allProducts = [
         price: 9.0,
         imageUrl: "https://media.discordapp.net/attachments/1440146283238002798/1440146352016461854/IMG_3333.png?ex=691d184e&is=691bc6ce&hm=7778f4aa31ae46de661e60045703340465466f338da55d19075021b3c7238167&=&format=webp&quality=lossless&width=450&height=450",
         altText: "Rango Allay",
-        rating: 4.5,
+        rating: 4,
         category: "rangos",
         badge: null
     },
@@ -110,7 +110,7 @@ const allProducts = [
          id: 9,
          name: "Llave Premium",
          price: 3.99,
-         imgUrl: "img/IMG_3339",
+         imgUrl: "https://cdn.discordapp.com/attachments/1440146283238002798/1440159360108986470/IMG_3339.png?ex=691d246c&is=691bd2ec&hm=d9e3aeaae84443a5e5b010909a4a850ab950b22942a20bfdb0b9814fc2f519e7&",
          altText: "llaves",
          rating: 4,
          category: "llaves",
@@ -120,7 +120,7 @@ const allProducts = [
          id: 10,
          name: "Llave Ultimate",
          price: 5.99,
-         imgUrl: "img/IMG_3340",
+         imgUrl: "https://media.discordapp.net/attachments/1440146283238002798/1440159360536809524/IMG_3340.png?ex=691d246c&is=691bd2ec&hm=6c9e45db1375509505fe97e5b72d60d50b6bec6e6c62ea05a6e505e419c2f58e&=&format=webp&quality=lossless&width=595&height=339",
          altText: "llaves",
          rating: 5,
          category: "llaves",
@@ -130,7 +130,7 @@ const allProducts = [
          id: 11,
          name: "Llave Legendaria",
          price: 7.99,
-         imgUrl: "img/IMG_3341",
+         imgUrl: "https://cdn.discordapp.com/attachments/1440146283238002798/1440159360922816522/IMG_3341.png?ex=691d246c&is=691bd2ec&hm=e73a56fc8beb6850cb4cf8feff69e7c7a206805575425c95a822518616a43f2c&",
          altText: "llaves",
          rating: 5,
          category: "llaves",
@@ -140,7 +140,7 @@ const allProducts = [
          id: 12,
          name: "Llave Seasonal",
          price: 9.99,
-         imgUrl: "img/IMG_3342",
+         imgUrl: "https://media.discordapp.net/attachments/1440146283238002798/1440159361216548884/IMG_3342.png?ex=691d246c&is=691bd2ec&hm=53d3f29f2447a1fec3a5528eb54e439d7a225e4e56e1fc419259a626aad5b24a&=&format=webp&quality=lossless&width=595&height=339",
          altText: "llaves",
          rating: 5,
          category: "llaves",
@@ -150,7 +150,7 @@ const allProducts = [
          id: 13,
          name: "100 Monedas",
          price: 0.99,
-         imgUrl: "img/IMG_3348",
+         imgUrl: "https://cdn.discordapp.com/attachments/1440146283238002798/1440159423707353170/IMG_3348.png?ex=691d247b&is=691bd2fb&hm=c93ecc343fde56273f4a9313cede6da23d95c84cc6613c090e7c96e6e03e5dae&",
          altText: "llaves",
          rating: 3,
          category: "moneda",
@@ -170,7 +170,7 @@ const allProducts = [
          id: 15,
          name: "3000 Monedas",
          price: 14.99,
-         imgUrl: "img/IMG_3350",
+         imgUrl: "https://cdn.discordapp.com/attachments/1440146283238002798/1440159424709656646/IMG_3349.png?ex=691d247b&is=691bd2fb&hm=490a6695fa2782f04279c391505788835581a9bbd63d9efd863e776a69e50e42&",
          altText: "llaves",
          rating: 5,
          category: "moneda",
@@ -180,7 +180,7 @@ const allProducts = [
          id: 16,
          name: "10,000 Monedas",
          price: 39.99,
-         imgUrl: "img/IMG_33",
+         imgUrl: "https://media.discordapp.net/attachments/1440146283238002798/1440159424948998184/IMG_3350.png?ex=691d247b&is=691bd2fb&hm=7ba601152116e1898008ce93f4ad253c65d063fb33205c1d5d897fbe20b0b6fc&=&format=webp&quality=lossless&width=450&height=450",
          altText: "llaves",
          rating: 5,
          category: "moneda",
@@ -190,7 +190,7 @@ const allProducts = [
          id: 17,
          name: "1 Millón de Monedas",
          price: 99.99,
-         imgUrl: "img/IMG_3351",
+         imgUrl: "https://media.discordapp.net/attachments/1440146283238002798/1440159424948998184/IMG_3350.png?ex=691d247b&is=691bd2fb&hm=7ba601152116e1898008ce93f4ad253c65d063fb33205c1d5d897fbe20b0b6fc&=&format=webp&quality=lossless&width=450&height=450",
          altText: "llaves",
          rating: 5,
          category: "moneda",
@@ -889,6 +889,7 @@ async function sendDiscordNotification(type, details) {
         console.error('Error enviando webhook a Discord:', error);
     }
 }
+
 
 
 
