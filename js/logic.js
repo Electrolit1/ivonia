@@ -28,85 +28,166 @@ const CONFIG = {
 const allProducts = [
     {
         id: 1,
-        name: "Rango VIP (30 días)",
-        price: 9.99,
-        imageUrl: "https://placehold.co/300x200/90cdf4/ffffff?text=Rango+VIP",
-        altText: "Rango VIP",
+        name: "Rango FOX (30 dias)",
+        price: 1.5,
+        imageUrl: "img/IMG_3331",
+        altText: "Rango FOX",
         rating: 4.5,
         category: "rangos",
         badge: null
     },
     {
         id: 2,
-        name: "Rango MVP+ (Permanente)",
-        price: 24.99,
-        imageUrl: "https://placehold.co/300x200/a0aec0/ffffff?text=Rango+MVP%2B",
-        altText: "Rango MVP+",
+        name: "Rango FOX (Permanente)",
+        price: 4.5,
+        imageUrl: "img/IMG_3331",
+        altText: "Rango FOX",
         rating: 5,
         category: "rangos",
         badge: "¡Hot!"
     },
     {
         id: 3,
-        name: "Mascota: Golem de Hierro",
-        price: 7.99,
-        imageUrl: "https://placehold.co/300x200/fbd38d/ffffff?text=Mascota+Golem",
-        altText: "Mascota Golem de Hierro",
+        name: "Rango Creeper (30 Dias)",
+        price: 3.5,
+        imageUrl: "img/IMG_3332",
+        altText: "Rango Creeper",
         rating: 4,
-        category: "cosmeticos",
+        category: "rangos",
         badge: null
     },
     {
         id: 4,
-        name: "Paquete de 5000 Gemas",
-        price: 4.99,
-        imageUrl: "https://placehold.co/300x200/b794f4/ffffff?text=5000+Gemas",
-        altText: "Paquete de 5000 Gemas",
+        name: "Rango Creeper (Permanente)",
+        price: 8.0,
+        imageUrl: "img/IMG_3332",
+        altText: "Rango Creeper",
         rating: 4.5,
-        category: "moneda",
+        category: "rangos",
         badge: null
     },
     {
         id: 5,
-        name: "Kit de Constructor (Uso Único)",
-        price: 3.99,
-        imageUrl: "https://placehold.co/300x200/f687b3/ffffff?text=Kit+Constructor",
-        altText: "Kit de Constructor",
+        name: "Rango Allay (30 Dias)",
+        price: 3.3,
+        imageUrl: "img/IMG_3333",
+        altText: "Rango Allay",
         rating: 5,
-        category: "kits",
+        category: "rangos",
         badge: null
     },
     {
         id: 6,
-        name: "Efectos de Partículas: Fuego",
-        price: 2.99,
-        imageUrl: "https://placehold.co/300x200/4fd1c5/ffffff?text=Efectos+de+Fuego",
-        altText: "Efectos de Partículas de Fuego",
+        name: "Rango Allay (Permanente)",
+        price: 9.0,
+        imageUrl: "img/IMG_3333",
+        altText: "Rango Allay",
         rating: 4.5,
-        category: "cosmeticos",
+        category: "Rango Allay",
         badge: null
     },
     {
         id: 7,
-        name: "Paquete de 5 Llaves Épicas",
-        price: 4.99,
-        imageUrl: "https://placehold.co/300x200/38b2ac/ffffff?text=5+Llaves+Epicas",
-        altText: "5 Llaves de Cajas Épicas",
+        name: "Rango With (30 Dias)",
+        price: 5.0,
+        imageUrl: "img/IMG_3334",
+        altText: "Rango With",
         rating: 4,
-        category: "llaves",
-        badge: null
+        category: "rangos",
+        badge: "¡hot!"
     },
     {
         id: 8,
-        name: "Pase de Batalla: Temporada 3",
-        price: 12.99,
-        imageUrl: "https://placehold.co/300x200/718096/ffffff?text=Pase+de+Batalla",
-        altText: "Pase de Batalla Temporada 3",
+        name: "Rango With (Permanente)",
+        price: 14.99,
+        imageUrl: "img/IMG_3334",
+        altText: "rangos",
         rating: 5,
-        category: "kits",
-        badge: null
-    }
-];
+        category: "rangos",
+        badge: "¡hot!"
+    },       
+{
+    id: 9,
+    name: "Llave Premium",
+    price: "3.99",
+    imgUrl: "img/IMG_3339",
+    rating: 4,
+    category: "llaves",
+    badge: null
+  },
+  {
+    id: 10,
+    name: "Llave Ultimate",
+    price: "5.99",
+    imgUrl: "img/IMG_3340",
+    rating: 5,
+    category: "llaves",
+    badge: null
+  },
+  {
+    id: 11,
+    name: "Llave Legendaria",
+    price: "7.99",
+    imgUrl: "img/IMG_3341",
+    rating: 5,
+    category: "llaves",
+    badge: null
+  },
+  {
+    id: 12,
+    name: "Llave Seasonal",
+    price: "9.99",
+    imgUrl: "img/IMG_3342",
+    rating: 5,
+    category: "llaves",
+    badge: null
+  },
+ {
+    id: 13,
+    name: "100 Monedas",
+    price: "0.99",
+    imgUrl: "img/IMG_3348",
+    rating: 3,
+    category: "monedas",
+    badge: null
+  },
+  {
+    id: 14,
+    name: "500 Monedas",
+    price: "3.99",
+    imgUrl: "img/IMG_3349",
+    rating: 4,
+    category: "monedas",
+    badge: null
+  },
+  {
+    id: 15,
+    name: "3000 Monedas",
+    price: "14.99",
+    imgUrl: "img/IMG_3350",
+    rating: 5,
+    category: "monedas",
+    badge: "Popular"
+  },
+  {
+    id: 16,
+    name: "10,000 Monedas",
+    price: "39.99",
+    imgUrl: "img/IMG_33",
+    rating: 5,
+    category: "monedas",
+    badge: null
+  },
+  {
+    id: 17,
+    name: "1 Millón de Monedas",
+    price: "99.99",
+    imgUrl: "img/IMG_3351",
+    rating: 5,
+    category: "monedas",
+    badge: "Mejor Valor"
+  }   
+]
 
 // --- 2. ESTADO DE LA APLICACIÓN ---
 let cart = [];
@@ -799,5 +880,6 @@ async function sendDiscordNotification(type, details) {
         console.error('Error enviando webhook a Discord:', error);
     }
 }
+
 
 
