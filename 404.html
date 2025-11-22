@@ -5,18 +5,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>404 - Página No Encontrada</title>
     
-    <!-- Tailwind -->
     <script src="https://cdn.tailwindcss.com"></script>
     
-    <!-- Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     
-    <!-- Fuentes -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Pixelify+Sans:wght@400..700&family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
     
-    <!-- Configuración Tailwind -->
     <script>
         tailwind.config = {
             theme: {
@@ -45,27 +41,20 @@
     </script>
 </head>
 
-<!-- FONDO NEGRO aplicado aquí -->
 <body class="font-sans flex flex-col min-h-screen bg-black">
 
-    <!-- NAVBAR -->
     <header class="bg-neutral-900 shadow-md sticky top-0 z-50">
         <nav class="container mx-auto px-4 flex items-center h-20">
             
-            <!-- Logo -->
             <div class="w-1/4">
                 <a href="index.html" class="flex items-center py-2">
                     <img src="img/logo.png" alt="Logo del Servidor" class="h-12 w-12 rounded-lg">
                 </a>
             </div>
             
-            <!-- Navegación -->
             <div class="w-1/2 hidden md:flex items-center justify-center space-x-2">
                 <a href="index.html" class="flex items-center text-gray-300 hover:bg-neutral-800 hover:text-action-orange transition-colors px-4 py-2 rounded-lg font-medium">
                     Inicio
-                </a>
-                <a href="tienda.html" class="flex items-center text-gray-300 hover:bg-neutral-800 hover:text-action-orange transition-colors px-4 py-2 rounded-lg font-medium">
-                    Tienda
                 </a>
                 <a href="404.html" class="flex items-center text-gray-300 hover:bg-neutral-800 hover:text-action-orange transition-colors px-4 py-2 rounded-lg font-medium">
                     Foro
@@ -73,7 +62,6 @@
                 <a href="#" class="flex items-center text-gray-300 hover:bg-neutral-800 hover:text-action-orange transition-colors px-4 py-2 rounded-lg font-medium">Wiki</a>
             </div>
             
-            <!-- Móvil -->
             <div class="w-1/4 flex items-center justify-end">
                 <button id="mobile-menu-button" class="md:hidden text-gray-300 text-2xl">
                     <i class="fa-solid fa-bars"></i>
@@ -89,7 +77,6 @@
         </div>
     </header>
 
-    <!-- 404 -->
     <main class="container mx-auto p-4 mt-6 flex-grow flex items-center justify-center">
 
         <div class="bg-neutral-900 rounded-lg shadow-lg p-8 md:p-12 text-center max-w-lg w-full border border-neutral-700">
@@ -122,7 +109,7 @@
     <footer class="bg-neutral-900 text-gray-400 mt-12 py-10 border-t border-neutral-800">
         <div class="container mx-auto px-4 text-center">
             <img src="img/logo.png" class="h-16 w-16 rounded-lg mx-auto mb-4">
-            <p class="text-sm">&copy; 2025 TuServidor. Todos los derechos reservados.</p>
+            <p class="text-sm">&copy; 2025 Ivonia Network Todos los derechos reservados.</p>
             <p class="text-xs mt-2 text-gray-500">
                 Minecraft es propiedad de Mojang AB & Microsoft.
             </p>
@@ -143,3 +130,4 @@
 
 </body>
 </html>
+
