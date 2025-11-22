@@ -45,7 +45,7 @@
             scroll-behavior: smooth;
         }
         body {
-            background-color: #000000; /* cambiado a negro */
+            background-color: #000000;
         }
         .sidebar-link.active {
             color: #ED8936;
@@ -243,10 +243,8 @@
         </div>
     </main>
     
-    <!-- Footer (sin cambios) -->
     <footer class="bg-gray-800 text-gray-400 mt-12 py-10">
         <div class="container mx-auto px-4 text-center">
-            <!-- Logo del Footer (placeholder) -->
             <img src="img/logo.png" class="h-16 w-16 rounded-lg mx-auto mb-4">
             <p class="text-sm">&copy; 2025 Ivonia Network Todos los derechos reservados.</p>
             <p class="text-xs mt-2">
@@ -256,10 +254,8 @@
         </div>
     </footer>
     
-    <!-- Script para menú móvil Y barra lateral -->
     <script>
         document.addEventListener('DOMContentLoaded', () => {
-            // Lógica del Menú Móvil
             const menuButton = document.getElementById('mobile-menu-button');
             const mobileMenu = document.getElementById('mobile-menu');
             if (menuButton && mobileMenu) {
@@ -277,13 +273,10 @@
                     link.addEventListener('click', function(e) {
                         e.preventDefault();
                         
-                        // 1. Quitar 'active' de todos los links
                         sidebarNav.querySelectorAll('a.sidebar-link').forEach(l => l.classList.remove('active'));
                         
-                        // 2. Poner 'active' al que se hizo clic
                         this.classList.add('active');
 
-                        // 3. Scroll suave a la sección
                         const targetId = this.getAttribute('href');
                         const targetElement = document.querySelector(targetId);
                         if(targetElement) {
@@ -300,6 +293,7 @@
 
 </body>
 </html>
+
 
 
 
