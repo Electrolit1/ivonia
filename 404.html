@@ -5,18 +5,18 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>404 - Página No Encontrada</title>
     
-    <!-- Cargar Tailwind CSS -->
+    <!-- Tailwind -->
     <script src="https://cdn.tailwindcss.com"></script>
     
-    <!-- Cargar Font Awesome (para iconos) -->
+    <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-    
-    <!-- Cargar Fuentes de Google (Pixelify Sans para un look "gamer", Inter para legibilidad) -->
+
+    <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Pixelify+Sans:wght@400..700&family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
-    
-    <!-- Configuración personalizada de Tailwind (la misma que la tienda) -->
+
+    <!-- Tailwind Config -->
     <script>
         tailwind.config = {
             theme: {
@@ -27,118 +27,100 @@
                     },
                     colors: {
                         'minecraft-green': {
-                            'light': '#68D391',
-                            'DEFAULT': '#48BB78',
-                            'dark': '#38A169',
-                        },
-                        'minecraft-brown': {
-                            'DEFAULT': '#8B4513'
+                            light: '#68D391',
+                            DEFAULT: '#48BB78',
+                            dark: '#38A169',
                         },
                         'action-orange': {
-                            'DEFAULT': '#ED8936',
-                            'dark': '#DD6B20'
+                            DEFAULT: '#ED8936',
+                            dark: '#DD6B20'
                         }
                     }
                 }
             }
         }
     </script>
-    
+
     <style>
-        /* Estilos personalizados */
         body {
-            background-color: #f4f4f5;
+            background-color: #000; /* Fondo negro */
         }
     </style>
 </head>
+
 <body class="font-sans flex flex-col min-h-screen">
 
-    <!-- Barra de Navegación Principal (Modificada para centrar) -->
-    <header class="bg-white shadow-md sticky top-0 z-50">
+    <!-- Header oscuro -->
+    <header class="bg-gray-900 shadow-md sticky top-0 z-50">
         <nav class="container mx-auto px-4 flex items-center h-20">
-            
-            <!-- Lado Izquierdo: Logo -->
+
             <div class="w-1/4">
                 <a href="index.html" class="flex items-center py-2">
                     <img src="img/logo.png" alt="Logo del Servidor" class="h-12 w-12 rounded-lg">
                 </a>
             </div>
-            
-            <!-- Navegación Central (NUEVA) -->
+
             <div class="w-1/2 hidden md:flex items-center justify-center space-x-2">
-                <!-- "Inicio" ahora linkea a index.html -->
-                <a href="index.html" class="flex items-center text-gray-600 hover:bg-gray-100 hover:text-action-orange transition-colors px-4 py-2 rounded-lg font-medium">
-                    Inicio
-                </a>
-                <!-- "Tienda" ahora linkea a minecraft_store.html -->
-                <a href="tienda.html" class="flex items-center text-gray-600 hover:bg-gray-100 hover:text-action-orange transition-colors px-4 py-2 rounded-lg font-medium">
-                    Tienda
-                </a>
-                <!-- "Foro" es ahora el activo -->
-                <a href="404.html" class="flex items-center text-gray-600 hover:bg-gray-100 hover:text-action-orange transition-colors px-4 py-2 rounded-lg font-medium">
-                    Foro
-                </a>
-                <a href="#" class="flex items-center text-gray-600 hover:bg-gray-100 hover:text-action-orange transition-colors px-4 py-2 rounded-lg font-medium">Wiki</a>
+                <a href="index.html" class="flex items-center text-gray-300 hover:bg-gray-700 hover:text-action-orange transition-colors px-4 py-2 rounded-lg font-medium">Inicio</a>
+                <a href="tienda.html" class="flex items-center text-gray-300 hover:bg-gray-700 hover:text-action-orange transition-colors px-4 py-2 rounded-lg font-medium">Tienda</a>
+                <a href="404.html" class="flex items-center text-gray-300 hover:bg-gray-700 hover:text-action-orange transition-colors px-4 py-2 rounded-lg font-medium">Foro</a>
+                <a href="#" class="flex items-center text-gray-300 hover:bg-gray-700 hover:text-action-orange transition-colors px-4 py-2 rounded-lg font-medium">Wiki</a>
             </div>
-            
-            <!-- Lado Derecho: Botón Móvil -->
+
             <div class="w-1/4 flex items-center justify-end">
-                <button id="mobile-menu-button" class="md:hidden text-gray-700 text-2xl">
+                <button id="mobile-menu-button" class="md:hidden text-gray-300 text-2xl">
                     <i class="fa-solid fa-bars"></i>
                 </button>
             </div>
+
         </nav>
-        
-        <!-- Menú Móvil (Actualizado, sin carrito) -->
-        <div id="mobile-menu" class="hidden md:hidden bg-white px-4 pb-4 border-t">
-            <a href="index.html" class="block py-2 text-gray-700 hover:text-action-orange">Inicio</a>
-            <a href="tienda.html" class="block py-2 text-gray-700 hover:text-action-orange">Tienda</a>
-            <a href="foro.html" class="block py-2 text-gray-700 hover:text-action-orange">Foro</a>
-            <a href="#" class="block py-2 text-gray-700 hover:text-action-orange">Wiki</a>
+
+        <!-- Menú móvil oscuro -->
+        <div id="mobile-menu" class="hidden md:hidden bg-gray-900 px-4 pb-4 border-t border-gray-700">
+            <a href="index.html" class="block py-2 text-gray-300 hover:text-action-orange">Inicio</a>
+            <a href="foro.html" class="block py-2 text-gray-300 hover:text-action-orange">Foro</a>
+            <a href="#" class="block py-2 text-gray-300 hover:text-action-orange">Wiki</a>
         </div>
     </header>
 
-    <!-- Contenido Principal 404 (flex-grow para empujar el footer hacia abajo) -->
+    <!-- Contenido -->
     <main class="container mx-auto p-4 mt-6 flex-grow flex items-center justify-center">
-        
-        <div class="bg-white rounded-lg shadow-lg p-8 md:p-12 text-center max-w-lg w-full">
-            <div class="text-9xl font-bold font-pixel text-action-orange">
-                404
-            </div>
+
+        <div class="bg-gray-900 rounded-lg shadow-lg p-8 md:p-12 text-center max-w-lg w-full border border-gray-700">
+            <div class="text-9xl font-bold font-pixel text-action-orange">404</div>
+
             <div class="my-4">
-                <!-- Icono de brújula reemplazado por un placeholder para tu logo -->
                 <img src="img/404.png" alt="Logo Bloque Invisible" class="h-20 w-20 mx-auto rounded-lg">
             </div>
-            <h1 class="text-3xl font-bold font-pixel text-gray-900 mb-4">¡Ups! Página No Encontrada</h1>
-            <p class="text-gray-700 mb-8">
+
+            <h1 class="text-3xl font-bold font-pixel text-gray-200 mb-4">¡Ups! Página No Encontrada</h1>
+
+            <p class="text-gray-400 mb-8">
                 Parece que te has perdido. El mapa no muestra esta ubicación.
                 ¡Pero no te preocupes! Puedes volver al inicio.
             </p>
+
             <a href="index.html" class="inline-flex items-center bg-action-orange text-white font-semibold py-3 px-6 rounded-lg hover:bg-action-orange-dark transition-colors text-lg">
                 <i class="fa-solid fa-house mr-2"></i>
                 Volver al Inicio
             </a>
         </div>
-        
+
     </main>
-    
-    <!-- Footer (sin cambios) -->
-    <footer class="bg-gray-800 text-gray-400 mt-12 py-10">
+
+    <footer class="bg-black text-gray-400 mt-12 py-10">
         <div class="container mx-auto px-4 text-center">
-            <!-- Logo del Footer (placeholder) -->
             <img src="img/logo.png" class="h-16 w-16 rounded-lg mx-auto mb-4">
             <p class="text-sm">&copy; 2025 TuServidor. Todos los derechos reservados.</p>
             <p class="text-xs mt-2">
-                Minecraft y todos los nombres, imágenes y marcas relacionadas son propiedad de Mojang Synergies AB y Microsoft.
-                Este es un sitio web de demostración ficticio.
+                Minecraft y marcas relacionadas son propiedad de Mojang y Microsoft.  
+                Sitio web de demostración.
             </p>
         </div>
     </footer>
-    
-    <!-- Script solo para el menú móvil -->
+
     <script>
         document.addEventListener('DOMContentLoaded', () => {
-            // Lógica del Menú Móvil
             const menuButton = document.getElementById('mobile-menu-button');
             const mobileMenu = document.getElementById('mobile-menu');
             if (menuButton && mobileMenu) {
@@ -147,7 +129,7 @@
                 });
             }
         });
-    </script> 
+    </script>
 
 </body>
 </html>
