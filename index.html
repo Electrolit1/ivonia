@@ -1,300 +1,171 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <link rel="icon" href="img/logo.png" type="image/png">
-    <link rel="apple-touch-icon" href="img/logo.png">
-    <link rel="shortcut icon" href="img/logo.png" type="image/png">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Inicio - Ivonia Network</title>
+    <title>Ivonia Network</title>
+    
+    <link rel="icon" type="image/png" href="img/logo.png">
     
     <script src="https://cdn.tailwindcss.com"></script>
-    
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-    
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Pixelify+Sans:wght@400..700&family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
-    
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    fontFamily: {
-                        'sans': ['Inter', 'sans-serif'],
-                        'pixel': ['"Pixelify Sans"', 'sans-serif']
-                    },
-                    colors: {
-                        'minecraft-green': {
-                            'light': '#68D391',
-                            'DEFAULT': '#48BB78',
-                            'dark': '#38A169',
-                        },
-                        'minecraft-brown': {
-                            'DEFAULT': '#8B4513'
-                        },
-                        'action-orange': {
-                            'DEFAULT': '#ED8936',
-                            'dark': '#DD6B20'
-                        }
-                    }
-                }
-            }
-        }
-    </script>
-    
+    <script src="https://unpkg.com/lucide@latest"></script>
     <style>
-        html {
-            scroll-behavior: smooth;
+        @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@700&family=Inter:wght@400;700;900&display=swap');
+
+        :root {
+            --orange-main: #ff6a00;
+            --bg-dark: #0a0a0a;
         }
+
         body {
-            background-color: #000000;
+            background-color: var(--bg-dark);
+            color: white;
+            font-family: 'Inter', sans-serif;
+            margin: 0;
+            background-image: radial-gradient(circle at 50% 40%, #221200 0%, #0a0a0a 70%);
+            background-attachment: fixed;
         }
-        .sidebar-link.active {
-            color: #ED8936;
+
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-15px); }
+            100% { transform: translateY(0px); }
+        }
+
+        .floating-logo {
+            animation: float 4s ease-in-out infinite;
+            max-width: 350px;
+            width: 80%;
+            will-change: transform;
+            filter: drop-shadow(0 10px 15px rgba(0,0,0,0.6));
+        }
+
+        .store-card {
+            position: relative;
+            width: 100%;
+            max-width: 440px;
+            height: 160px;
+            border-radius: 24px;
+            padding: 25px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            overflow: hidden;
+            text-decoration: none;
+        }
+
+        .store-card:hover {
+            transform: translateY(-8px);
+            filter: brightness(1.1);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.5);
+        }
+
+        .card-java { background: linear-gradient(135deg, #ffb703 0%, #e6a600 100%); color: #451a03; }
+        .card-bedrock { background: linear-gradient(135deg, #3b82f6 0%, #2563eb 100%); color: #ffffff; }
+
+        .store-card h2 {
+            font-weight: 900;
+            font-size: 2.2rem;
+            line-height: 1;
+            margin: 0;
+        }
+
+        .store-card p {
             font-weight: 700;
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            margin-top: 5px;
         }
-        .content-section {
-            scroll-margin-top: 100px; 
+
+        /* Estilos de Tooltip para Contribuidores */
+        .contributor-wrapper {
+            position: relative;
+            display: inline-block;
+        }
+
+        .contributor-img {
+            width: 35px;
+            height: 35px;
+            border-radius: 50%;
+            border: 2px solid rgba(255,255,255,0.1);
+            transition: all 0.2s ease;
+            object-fit: cover;
+            cursor: pointer;
+        }
+
+        .tooltip-name {
+            position: absolute;
+            bottom: 120%;
+            left: 50%;
+            transform: translateX(-50%) translateY(10px);
+            background: #1f2937;
+            color: white;
+            padding: 4px 10px;
+            border-radius: 6px;
+            font-size: 11px;
+            font-weight: bold;
+            white-space: nowrap;
+            opacity: 0;
+            pointer-events: none;
+            transition: all 0.2s ease;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.3);
+            border: 1px solid rgba(255,255,255,0.1);
+        }
+
+        .tooltip-name::after {
+            content: "";
+            position: absolute;
+            top: 100%;
+            left: 50%;
+            margin-left: -5px;
+            border-width: 5px;
+            border-style: solid;
+            border-color: #1f2937 transparent transparent transparent;
+        }
+
+        .contributor-wrapper:hover .tooltip-name,
+        .contributor-wrapper:active .tooltip-name {
+            opacity: 1;
+            transform: translateX(-50%) translateY(0);
+        }
+
+        .contributor-wrapper:hover .contributor-img {
+            transform: scale(1.2);
+            border-color: var(--orange-main);
+            z-index: 20;
+        }
+
+        #toast {
+            visibility: hidden;
+            position: fixed;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: #f59e0b;
+            color: #451a03;
+            font-weight: 800;
+            padding: 12px 24px;
+            border-radius: 12px;
+            z-index: 100;
+            opacity: 0;
+            transition: all 0.3s;
+        }
+
+        #toast.show {
+            visibility: visible;
+            opacity: 1;
+            transform: translateX(-50%) translateY(-10px);
         }
     </style>
 </head>
-<body class="font-sans">
+<body class="min-h-screen flex flex-col">
 
-    <header class="bg-black shadow-md sticky top-0 z-50">
-        <nav class="container mx-auto px-4 flex items-center h-20">
-            
-            <div class="w-1/4">
-                <a href="#" class="flex items-center py-2">
-                    <img src="img/logo.png" alt="Logo del Servidor" class="h-12 w-12 rounded-lg">
-                </a>
-            </div>
-            
-            <div class="w-1/2 hidden md:flex items-center justify-center space-x-2">
-                <a href="index.html" class="flex items-center bg-action-orange text-white font-semibold hover:bg-action-orange-dark transition-colors px-4 py-2 rounded-lg">
-                    Inicio
-                </a>
-                <a href="404.html" class="flex items-center text-gray-300 hover:bg-gray-100 hover:text-action-orange transition-colors px-4 py-2 rounded-lg font-medium">Foro</a>
-                <a href="#" class="flex items-center text-gray-300 hover:bg-gray-100 hover:text-action-orange transition-colors px-4 py-2 rounded-lg font-medium">Wiki</a>
-            </div>
-            
-            <div class="w-1/4 flex items-center justify-end">
-                <button id="mobile-menu-button" class="md:hidden text-gray-300 text-2xl">
-                    <i class="fa-solid fa-bars"></i>
-                </button>
-            </div>
-        </nav>
-        
-        <div id="mobile-menu" class="hidden md:hidden bg-black px-4 pb-4 border-t">
-            <a href="index.html" class="block py-2 text-action-orange font-semibold">Inicio</a>
-            <a href="404.html" class="block py-2 text-gray-300 hover:text-action-orange">Foro</a>
-            <a href="#" class="block py-2 text-gray-300 hover:text-action-orange">Wiki</a>
+    <nav class="p-6 w-full">
+        <div class="max-w-7xl mx-auto flex justify-center md:justify-end">
+            <button onclick="copyIP()" class="bg-[#f59e0b] text-[#451a03] px-5 py-2.5 rounded-xl font-black flex items-center gap-3 hover:scale-105 transition active:scale-95 shadow-lg">
+                <span id="ip-text">MC.IVONIA.US</span>
+                <span class="bg-black/10 px-2 py-0.5 rounded text-sm">ONLINE</span>
+            </button>
         </div>
-    </header>
-
-    <section class="relative bg-gradient-to-r from-blue-400 to-minecraft-green-light text-white overflow-hidden">
-        <div class="container mx-auto px-4 py-12 md:py-16 flex flex-col md:flex-row items-center relative z-10">
-            <div class="md:w-1/2 text-center md:text-left mb-8 md:mb-0">
-                <h1 class="text-4xl lg:text-5xl font-bold font-pixel mb-3" style="text-shadow: 2px 2px 4px rgba(0,0,0,0.3);">
-                    ¡BIENVENIDO A NUESTRO SERVIDOR!
-                </h1>
-                <p class="text-lg lg:text-xl mb-6 max-w-lg" style="text-shadow: 1px 1px 2px rgba(0,0,0,0.2);">
-                    Únete a nuestra increíble comunidad. ¡Te esperamos dentro!
-                </p>
-                
-                <div class="space-y-4 md:space-y-0 md:flex md:items-center md:space-x-4">
-                    <div class="bg-gray-900 bg-opacity-50 border-2 border-gray-400 rounded-lg px-6 py-3 text-center transition-all hover:bg-opacity-70">
-                        <span class="text-gray-300 text-sm uppercase font-pixel">IP del Servidor</span>
-                        <p class="text-white font-bold text-xl font-mono tracking-wider">mc.ivonia.us</p>
-                    </div>
-                    <a href="https://discord.gg/xk2Cw37ecn" target="_blank" rel="noopener noreferrer" class="inline-flex items-center justify-center bg-blue-600 text-white font-bold font-pixel text-lg px-8 py-4 rounded-lg shadow-lg hover:bg-blue-700 transition-transform hover:scale-105">
-                        <i class="fa-brands fa-discord mr-3 text-2xl"></i>
-                        ÚNETE AL DISCORD
-                    </a>
-                </div>
-            </div>
-            
-            <div class="md:w-1/2 flex justify-center md:justify-end">
-                <img src="img/logo1.png" 
-                     alt="Banner Promocional del Servidor" 
-                     class="max-w-full h-auto rounded-lg shadow-2xl"
-                     onerror="this.src='https://placehold.co/500x350/76c893/ffffff?text=Error+Cargando+Imagen'">
-            </div>
-        </div>
-        <div class="absolute bottom-0 left-0 w-full h-20 bg-repeat-x opacity-40" style="background-image: url('img/logo.png'); background-size: auto 100%;"></div>
-    </section>
-
-    <main class="container mx-auto p-4 mt-6">
-        
-        <div class="flex flex-col md:flex-row gap-6">
-        
-            <aside class="w-full md:w-1/4 lg:w-1/5 bg-black rounded-lg shadow p-6 self-start sticky top-24">
-                <h3 class="text-xl font-bold font-pixel mb-4 text-gray-100">INFORMACIÓN</h3>
-                <nav>
-                    <ul class="space-y-3" id="sidebar-nav">
-                        <li>
-                            <a href="#server-links" class="flex items-center gap-3 hover:text-action-orange transition-colors sidebar-link active text-gray-300">
-                                <i class="fa-solid fa-link w-5 text-center"></i>
-                                <span>Links del Sevidor</span>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#reglas" class="flex items-center gap-3 hover:text-action-orange transition-colors sidebar-link text-gray-300">
-                                <i class="fa-solid fa-scroll w-5 text-center"></i>
-                                <span>Reglas</span>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#comandos" class="flex items-center gap-3 hover:text-action-orange transition-colors sidebar-link text-gray-300">
-                                <i class="fa-solid fa-terminal w-5 text-center"></i>
-                                <span>Comandos</span>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#preguntas" class="flex items-center gap-3 hover:text-action-orange transition-colors sidebar-link text-gray-300">
-                                <i class="fa-solid fa-circle-question w-5 text-center"></i>
-                                <span>Preguntas</span>
-                            </a>
-                        </li>
-                    </ul>
-                </nav>
-            </aside>
-            
-            <section class="w-full md:w-3/4 lg:w-4/5">
-                
-                <div id="server-links" class="bg-black rounded-lg shadow p-6 mb-6 content-section">
-                    <h2 class="text-2xl font-bold font-pixel mb-4 text-gray-100"><i class="fa-solid fa-link mr-2"></i>Links del servidor</h2>
-                    <p class="text-gray-300 mb-6">Enlaces importantes de nuestra comunidad. ¡Guárdalos en tus favoritos!</p>
-                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                        <a href="https://tiktok.ivonia.us" class="bg-gray-100 p-4 rounded-lg hover:bg-gray-200 transition-colors block" target="_blank">
-                            <h4 class="font-semibold text-lg text-minecraft-green-dark"><i class="fa-solid fa-check-to-slot mr-2"></i>Tiktok</h4>
-                            <p class="text-sm text-gray-600">Ayúdanos a crecer apoyando nuestras cuentas.</p>
-                        </a>
-                        <a href="https://status.ivonia.us" class="bg-gray-100 p-4 rounded-lg hover:bg-gray-200 transition-colors block" target="_blank">
-                            <h4 class="font-semibold text-lg text-indigo-500"><i class="fa-solid fa-users mr-2"></i>Estado</h4>
-                            <p class="text-sm text-gray-600">Revisa el estado del servidor actualmente.</p>
-                        </a>
-                    </div>
-                </div>
-                
-                <div id="reglas" class="bg-black rounded-lg shadow p-6 mb-6 content-section">
-                    <h2 class="text-2xl font-bold font-pixel mb-4 text-gray-100"><i class="fa-solid fa-scroll mr-2"></i>Reglas del Servidor</h2>
-                    <p class="text-gray-300 mb-6">Para mantener una comunidad sana, sigue estas reglas. El desconocimiento no exime de la sanción.</p>
-                    
-                    <h4 class="font-semibold text-lg text-gray-100 mb-2">1. Reglas de Chat</h4>
-                    <ol class="list-decimal list-inside text-gray-300 space-y-2 mb-4">
-                        <li>Respetar a todos: Cero tolerancia al racismo, sexismo, acoso o cualquier tipo de discriminación.</li>
-                        <li>No hacer spam ni flood en el chat.</li>
-                        <li>No abusar de las mayúsculas (CAPS).</li>
-                        <li>No hacer publicidad de otros servidores o enlaces externos no autorizados.</li>
-                        <li>Mantener el lenguaje apropiado.</li>
-                    </ol>
-
-                    <h4 class="font-semibold text-lg text-gray-100 mb-2">2. Reglas de Jugabilidad</h4>
-                    <ol class="list-decimal list-inside text-gray-300 space-y-2">
-                        <li>No usar hacks o cheats: Prohibido cualquier cliente modificado que de una ventaja injusta (X-Ray, KillAura, Fly, etc).</li>
-                        <li>Prohibido el griefing o robo: No destruyas construcciones ajenas ni robes items de cofres que no te pertenecen.</li>
-                        <li>No abusar de bugs o exploits: Si encuentras un bug, repórtalo al staff. No lo explotes para tu beneficio.</li>
-                        <li>No crear granjas que generen lag excesivo (ej. granjas 0-tick).</li>
-                        <li>No estafar a otros usuarios en intercambios.</li>
-                    </ol>
-                </div>
-
-                <div id="comandos" class="bg-black rounded-lg shadow p-6 mb-6 content-section">
-                    <h2 class="text-2xl font-bold font-pixel mb-4 text-gray-100"><i class="fa-solid fa-terminal mr-2"></i>Comandos Útiles</h2>
-                    <p class="text-gray-300 mb-6">Comandos básicos para empezar a jugar en nuestro servidor:</p>
-                    
-                    <h4 class="font-semibold text-lg text-gray-100 mb-2">Comandos Básicos</h4>
-                    <div class="space-y-2 mb-4">
-                        <p><code class="font-mono bg-gray-200 px-2 py-1 rounded-md text-sm text-gray-800">/spawn</code> - Te teletransporta al punto de inicio del servidor.</p>
-                        <p><code class="font-mono bg-gray-200 px-2 py-1 rounded-md text-sm text-gray-800">/kits</code> - Reclama un kit de inicio o un kit de tu rango.</p>
-                        <p><code class="font-mono bg-gray-200 px-2 py-1 rounded-md text-sm text-gray-800">/money</code> - Muestra tu balance de dinero en el juego.</p>
-                    </div>
-                    
-                    <h4 class="font-semibold text-lg text-gray-100 mb-2">Teletransporte</h4>
-                     <div class="space-y-2 mb-4">
-                        <p><code class="font-mono bg-gray-200 px-2 py-1 rounded-md text-sm text-gray-800">/sethome [nombre]</code> - Establece un punto de teletransporte personal (tu casa).</p>
-                        <p><code class="font-mono bg-gray-200 px-2 py-1 rounded-md text-sm text-gray-800">/home [nombre]</code> - Te teletransporta a la casa que estableciste.</p>
-                        <p><code class="font-mono bg-gray-200 px-2 py-1 rounded-md text-sm text-gray-800">/tpa [usuario]</code> - Envía una solicitud de teletransporte a otro jugador.</p>
-                        <p><code class="font-mono bg-gray-200 px-2 py-1 rounded-md text-sm text-gray-800">/tpaccept</code> - Acepta una solicitud de teletransporte.</p>
-                    </div>
-
-                </div>
-                <div id="preguntas" class="bg-black rounded-lg shadow p-6 mb-6 content-section">
-                    <h2 class="text-2xl font-bold font-pixel mb-4 text-gray-100"><i class="fa-solid fa-circle-question mr-2"></i>Preguntas Frecuentes</h2>
-                    <div class="space-y-6 text-gray-300">
-                        <div>
-                            <h4 class="font-semibold text-lg text-gray-100">¿Es un servidor "Pay to Win"?</h4>
-                            <p>¡No! Nuestra tienda se enfoca en rangos que ofrecen ventajas cosméticas (mascotas, efectos) y comandos de conveniencia (como <code class="font-mono bg-gray-700 px-2 py-1 rounded-md text-sm text-gray-200">/fly</code> en el lobby o más <code class="font-mono bg-gray-700 px-2 py-1 rounded-md text-sm text-gray-200">/sethome</code>). No vendemos items OP (Overpowered) ni ventajas de combate.</p>
-                        </div>
-                        <div>
-                            <h4 class="font-semibold text-lg text-gray-100">¿Qué versión de Minecraft usan?</h4>
-                            <p>Nuestro servidor corre en la versión <span class="font-bold">1.20.X</span>. Sin embargo, tenemos compatibilidad para que puedas unirte con clientes desde la versión <span class="font-bold">1.16</span> hasta la más reciente.</p>
-                        </div>
-                        <div>
-                            <h4 class="font-semibold text-lg text-gray-100">¿Puedo ser Staff?</h4>
-                            <p>No pedimos staff activamente. Los moderadores son elegidos de entre los miembros más activos, útiles y maduros de la comunidad. La mejor forma de ser considerado es ser un buen jugador y ayudar a los nuevos.</p>
-                        </div>
-                        <div>
-                            <h4 class="font-semibold text-lg text-gray-100">¿Perdí mi contraseña, qué hago?</h4>
-                            <p>Este servidor usa tu cuenta de Minecraft (Premium). No necesitas una contraseña separada. Si juegas en modo No-Premium, usa <code class="font-mono bg-gray-700 px-2 py-1 rounded-md text-sm text-gray-200">/login [tu_contraseña]</code>. Si la olvidaste, contacta a un admin en Discord.</p>
-                        </div>
-                    </div>
-                </div>
-            </section>
-            
-        </div>
-    </main>
-    
-    <footer class="bg-gray-800 text-gray-400 mt-12 py-10">
-        <div class="container mx-auto px-4 text-center">
-            <img src="img/logo.png" class="h-16 w-16 rounded-lg mx-auto mb-4">
-            <p class="text-sm">&copy; 2025 Ivonia Network Todos los derechos reservados.</p>
-            <p class="text-xs mt-2">
-                Minecraft y todos los nombres, imágenes y marcas relacionadas son propiedad de Mojang Synergies AB y Microsoft.
-            </p>
-        </div>
-    </footer>
-    
-    <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            const menuButton = document.getElementById('mobile-menu-button');
-            const mobileMenu = document.getElementById('mobile-menu');
-            if (menuButton && mobileMenu) {
-                menuButton.addEventListener('click', () => {
-                    mobileMenu.classList.toggle('hidden');
-                });
-            }
-            const sidebarNav = document.getElementById('sidebar-nav');
-            if (sidebarNav) {
-                const sidebarLinks = sidebarNav.querySelectorAll('a.sidebar-link');
-
-                sidebarLinks.forEach(link => {
-                    link.addEventListener('click', function(e) {
-                        e.preventDefault();
-                        
-                        sidebarNav.querySelectorAll('a.sidebar-link').forEach(l => l.classList.remove('active'));
-                        
-                        this.classList.add('active');
-
-                        const targetId = this.getAttribute('href');
-                        const targetElement = document.querySelector(targetId);
-                        if(targetElement) {
-                            targetElement.scrollIntoView({
-                                behavior: 'smooth',
-                                block: 'start'
-                            });
-                        }
-                    });
-                });
-            }
-        });
-    </script> 
-
-</body>
-</html>
-
-
-
-
-
+    </
